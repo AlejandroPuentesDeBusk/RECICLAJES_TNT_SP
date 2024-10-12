@@ -9,10 +9,6 @@ __pycache__/
 .vscode/
 .idea/
 
-
-db.sqlite3
-
-
 # Archivos de configuración de MySQL o conectores
 *.db
 *.sql
@@ -22,5 +18,8 @@ db.sqlite3
 *.bak
 *.backup
 
+
+
 # Configuración local para la conexión a MySQL (si tienes archivos de configuración)
 *.cnf
+
