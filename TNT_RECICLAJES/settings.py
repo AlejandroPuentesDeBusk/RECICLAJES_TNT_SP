@@ -75,11 +75,18 @@ WSGI_APPLICATION = 'TNT_RECICLAJES.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+	'default': {
+		'ENGINE': 'django.db.backends.mysql', #No cambien esto
+
+		'NAME': 'TNT_PRUEBA1', #Así se debe de llamar la BD para que Django pueda aplicar las tablas, si crean una con un nombre distinto, pongan ese nombre aquí
+		
+        'USER': 'root',     #Igual, por lo general este usuario es el que deben usar, pero lo pueden cambiar
+		'PASSWORD': '', #Ponen su contraseña si tienen, si no han configurado una, así lo dejan
+		'HOST':'localhost', 
+		'PORT':'3306',  #Generalmente este puerto es el que se activa, pero puede variar
+	}
 }
+
 
 
 # Password validation
