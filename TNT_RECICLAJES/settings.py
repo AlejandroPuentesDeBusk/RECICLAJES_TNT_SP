@@ -78,7 +78,7 @@ DATABASES = {
 	'default': {
 		'ENGINE': 'django.db.backends.mysql', #No cambien esto
 
-		'NAME': 'TNT_PRUEBA1', #Así se debe de llamar la BD para que Django pueda aplicar las tablas, si crean una con un nombre distinto, pongan ese nombre aquí
+		'NAME': 'TNT_PRUEBA2', #Así se debe de llamar la BD para que Django pueda aplicar las tablas, si crean una con un nombre distinto, pongan ese nombre aquí cuando vayan a hacer las migraciones
 		
         'USER': 'root',     #Igual, por lo general este usuario es el que deben usar, pero lo pueden cambiar
 		'PASSWORD': '', #Ponen su contraseña si tienen, si no han configurado una, así lo dejan
@@ -87,6 +87,7 @@ DATABASES = {
 	}
 }
 
+AUTH_USER_MODEL = 'main_app.Users' #No cambien esto, es para indicar que django use el modelo de usuario personalizado
 
 
 # Password validation
