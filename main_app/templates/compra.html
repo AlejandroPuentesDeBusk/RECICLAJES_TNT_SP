@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modal Compra</title>
+    <link rel="stylesheet" href="css/modal.css">
+</head>
+<body>
+    <!-- Botón para abrir el modal -->
+    <button id="boton_modal">Abrir Modal</button>
+
+    <!-- Ventana Modal 1 -->
+    <div id="modal1" class="modal">
+        <div class="contenido_modal">
+            <h2>¿Estas Seguro?</h2>
+            <button class="accion_boton" id="confirmar">Realizar Compra</button>
+            <button class="boton_cancelar" id="cerrar_vent_modal">Cancelar</button>
+        </div>
+    </div>
+
+    <!-- Ventana Modal 2 (Compra Exitosa)    -->
+    <div id="modal2" class="modal">
+        <div class="contenido_modal">
+            <h2>Compra Registrada con Éxito</h2>
+            <button class="accion_boton" id="boton_regresar">Regresar</button>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
