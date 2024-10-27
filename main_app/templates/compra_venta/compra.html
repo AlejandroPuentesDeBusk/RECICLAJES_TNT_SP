@@ -1,37 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="/main_app/static/main_app/css/Compra_ventas/compra_venta.css">
-</head>
-<body>
-    
+{% extends 'base.html' %}
 
-    <h1>hola</h1>
+{% load static %}
 
-    <!--Aqui estan las ventanas modales para compra y venta-->
-    <!-- Botón para abrir el modal -->
-    <button id="boton_modal">Comprar</button>
+{% block title %}Compra / Venta{% endblock %}
 
-    <!-- Ventana Modal 1 -->
-    <div id="modal1" class="modal">
-        <div class="contenido_modal">
-            <h2>¿Estas Seguro?</h2>
-            <button class="accion_boton" id="confirmar">Realizar Compra</button>
-            <button class="boton_cancelar" id="cerrar_vent_modal">Cancelar</button>
-        </div>
-    </div>
+{% block head %}
+    <link rel="stylesheet" href="{% static 'main_app/css/compra_venta/compra.css' %}">
+{% endblock %}
 
-    <!-- Ventana Modal 2 (Compra Exitosa)    -->
-    <div id="modal2" class="modal">
-        <div class="contenido_modal">
-            <h2>Compra Registrada con Éxito</h2>
-            <button class="accion_boton" id="boton_regresar">Regresar</button>
-        </div>
-    </div>
+{% block body %}compra{% endblock %}
 
-    <script src="/main_app/static/main_app/java_script/Vent_Modal.js"></script>
-</body>
-</html>
+<!--faaaack-->
+
+{% block content_1 %}
+    <h>Tabla de en medio</h>
+{% endblock %}
+
+{% block content_2 %}
+    <h1>Parte de la derecha</h1>
+{% endblock %}
