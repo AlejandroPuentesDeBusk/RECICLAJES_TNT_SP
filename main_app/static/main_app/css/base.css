@@ -1,0 +1,29 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.container{
+    display: grid;
+    grid-template-columns: 15% 55% 30%;
+    grid-gap: 3rem;
+}
+
+.container div{
+    background-color: blue;
+    border-radius: 1rem;
+
+}
+
+
+#cont_1 ul li{
+    display: block;
+    padding: 2rem;
+    background-color: whitesmoke;
+    margin: 1rem;
+    border-radius: 1rem;
+}
+
+#cont_2{
+    width: 100%;
+}
