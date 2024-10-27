@@ -1,5 +1,5 @@
 .compra .container{
     display: grid;
-    grid-template-columns: 18% 45% 29%;
+    grid-template-columns: 20% 40% 35%;
     grid-gap: 3rem;
 }

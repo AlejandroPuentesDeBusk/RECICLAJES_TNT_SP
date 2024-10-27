@@ -5,11 +5,12 @@
 
 body{
     background-color: whitesmoke;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .container{
     display: grid;
-    grid-template-columns: 10% 60% 30%;
+    grid-template-columns: 20% 40% 35%;
     grid-gap: 3rem;
 }
 
@@ -20,25 +21,68 @@ body{
 
 }
 
+/*________________Estilos contenedor 1_______________________________________________*/
 
-#cont_1{
+/* Estilo general del contenedor */
+#cont_1 {
+
     margin-left: 1rem;
+    border-radius: 10px;
+    font-family: 'Arial', sans-serif;
+
+}
+
+/* Título */
+#cont_1 h2 {
+    font-size: 24px;
+    color: #2d2d2d;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+/* Línea divisoria */
+#cont_1 hr {
+    border: none;
+    border-top: 1px solid #ddd;
+    margin-bottom: 20px;
+}
+
+/* Lista de opciones */
+#cont_1 ul {
+    list-style: none;
+    padding: 0;
+}
+
+/* Elementos de la lista */
+#cont_1 ul li {
+
+    align-items: center;
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    color: #2d2d2d;
+    font-weight: bold;
+    height: 1.5rem;
 }
 
 
-#cont_1 ul li{
-    display: block;
-    padding: 2rem;
-    background-color: whitesmoke;
-    margin: 1rem;
-    border-radius: 1rem;
-}
 
-#cont_2{
-    width: 100%;
-}
-
-#cont_3{
-    margin-right: 1rem;
+#cont_1 ul li:hover {
+    background-color: #e0e7e9;
 
 }
+
+
+#cont_1 ul li.active {
+    background-color: #e0e7e9;
+    color: #2b6a5e;
+}
+
+/*________________Estilos contenedor 2_______________________________________________*/
+
+
+
+
+/*_______________Estilos contenedor 3________________________________________________*/
