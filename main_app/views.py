@@ -1,37 +1,45 @@
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required, user_passes_test
+from django.contrib.auth import get_user_model
 
-# Create your views here.
+Users = get_user_model()
 
-#TUtorial aqui mero haces una funcion para que se renderize una nueva vista html que crees
-#1. defines la funcion
-#2 regresas el render que es una funcion que ya existe
-#3 le dises la ruta donde esta, si esta ddentro de una carpeta dentro de templates le das el nombre, si solo esta en templates asi queda
 
-#Esta es para el login v:
+def is_owner(users):
+    return users.is_active and users.is_superuser
+
+def is_employee(users):
+    return users.is_active 
+
+#el index es ella ventana del login
 def index(request):
     return render(request, 'index.html')
 
+
 #request de Alex
+
 def compra_1(request):
     return render(request, 'compra_venta/compra.html')
 
+@login_required
 def venta_1(request):
     return render(request, 'compra_venta/venta.html')
 
-#request del perro de harry
+@login_required
 def ajustes_1(request):
     return render(request, 'ajustes_caja/ajustes_1.html')
 
 #request de francisco
-
+@login_required
 def dashboard(request):
     return render(request, 'dashboard/dashboard.html')
 
-#request de la huevona de Adri
-
+#request de Adri
+@login_required
+@user_passes_test(is_owner) 
 def panel_control(request):
     return render(request, 'panel_control/panel.html')
 
-
+@login_required
 def pantalla_carga(request):
     return render(request, 'p_carga.html')
