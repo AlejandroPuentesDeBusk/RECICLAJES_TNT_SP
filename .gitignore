@@ -1,8 +1,14 @@
 # Entorno virtual
 venv/
+.env
+venv/
+.venv/
+ENV/
 # Archivos compilados de Python
 *.pyc
 __pycache__/
+*.py[cod]
+*.so
 # Archivos de bases de datos locales
 *.sqlite3
 # Archivos de configuración de IDE
@@ -19,7 +25,12 @@ __pycache__/
 *.backup
 
 
-
 # Configuración local para la conexión a MySQL (si tienes archivos de configuración)
 *.cnf
 
+*.log
+*.pot
+*.pyc
+*.mo
+
+**/migrations/
