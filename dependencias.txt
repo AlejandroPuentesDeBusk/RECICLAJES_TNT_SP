@@ -1,0 +1,5 @@
+Hay que tener instalado
+
+django
+mysql connector
+python-decouple
