@@ -2,4 +2,10 @@ Hay que tener instalado
 
 django
 mysql connector
-python-decouple
+python-decouple (para establecer variables de entorno y no tener problemas en settings asi hacen su archivo 
+                .env literal asi le ponen y adentro ponen 
+                
+                PASS= US CONTRASEÑA DE LA BASE DA DATOS
+                USUARIO= SU USUARIO DE LA BASE DE DATOS)
+
+                CON ESO YA NO VA A HABER CAMBIOS EN EL SETTINGS.PY
