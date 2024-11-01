@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -80,8 +81,8 @@ DATABASES = {
 
 		'NAME': 'TNT_PRUEBA2', #Así se debe de llamar la BD para que Django pueda aplicar las tablas, si crean una con un nombre distinto, pongan ese nombre aquí cuando vayan a hacer las migraciones
 		
-        'USER': 'root',     #Igual, por lo general este usuario es el que deben usar, pero lo pueden cambiar
-		'PASSWORD': '', #Ponen su contraseña si tienen, si no han configurado una, así lo dejan
+        'USER': config('USUARIO'),     #Igual, por lo general este usuario es el que deben usar, pero lo pueden cambiar
+		'PASSWORD': config('PASS'), #Ponen su contraseña si tienen, si no han configurado una, así lo dejan
 		'HOST':'localhost', 
 		'PORT':'3306',  #Generalmente este puerto es el que se activa, pero puede variar
 	}
