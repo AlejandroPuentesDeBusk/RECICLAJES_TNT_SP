@@ -11,13 +11,14 @@ body{
 .container{
     display: grid;
     grid-template-columns: 20rem 40% 35%;
-    grid-gap: 3rem;
+    grid-gap: 2rem;
 }
 
 .container div{
     background-color: white;
     border-radius: 1rem;
-    margin-top: 2rem;
+    margin-top: 1rem;
+    margin-bottom: 0rem;
 
 }
 
@@ -25,6 +26,7 @@ body{
 
 /* Estilo general del contenedor */
 #cont_1 {
+
 
     margin-left: 1rem;
     border-radius: 10px;
@@ -97,3 +99,29 @@ body{
 
 
 /*_______________Estilos contenedor 3________________________________________________*/
+
+
+
+/*________________AJUSTES DE LOS TOP___________________*/
+
+#cont_t_1{
+    background-color: whitesmoke    ;
+    grid-gap: 0rem;
+    margin-top: 0rem;
+}
+
+#cont_t_2{
+    background-color: whitesmoke    ;
+    grid-gap: 0rem;
+    margin-top: 0rem;
+
+}
+
+#cont_t_3{
+    background-color: whitesmoke    ;
+    grid-gap: 0rem;
+    margin-top: 0rem;
+    
+
+
+}

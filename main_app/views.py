@@ -42,6 +42,9 @@ def dashboard(request):
 def panel_control(request):
     return render(request, 'panel_control/panel.html')
 
+def panel_control_personal(request):
+    return render(request, 'panel_control/personal.html')
+
 #@login_required
 def pantalla_carga(request):
     return render(request, 'p_carga.html')

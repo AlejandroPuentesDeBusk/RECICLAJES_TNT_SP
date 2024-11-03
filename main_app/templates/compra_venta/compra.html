@@ -14,6 +14,33 @@
 {% block body %}compra{% endblock %}
 
 
+
+{% block content_top_1 %}
+
+{% endblock %}
+
+{% block content_top_2 %}
+
+    <div id="texto_compra">
+        <h2>Compra/</h2>
+        <h2>Venta</h2>
+    </div>
+
+
+{% endblock %}
+
+{% block content_top_3 %}
+    <div id="dinero_caja">
+        <div id="dinero_caja_fondo">
+            <h3>Dinero en caja</h3>
+            <h4>$53,000</h4>
+        </div>
+    </div>
+{% endblock %}
+
+
+
+
 {% block content_1 %}
 
     <div id="top">
@@ -93,7 +120,43 @@
     <ul id="lista_material_comprar"></ul>
 </div>
 
+<div class="extras">
+    <div class="descuento">
+        <h2>Desucento</h2>
+        <input type="text">
+    </div>
+
+    <div class="extra">
+        <h2>Cargo Extra</h2>
+        <input type="text">
+    </div>
+</div>
+
+<!--__________________________________________________________________________-->
+<div class="final">
+
+    <div id="final_texto">
+        <textarea placeholder="Añadir descripción de compra"></textarea>
+
+    </div>
+
+    <div id="final_monto">
+        <h3>Total Compra</h3>
+        <h4>$5000</h4>
+
+    </div>
+
+    <div id="final_btn">
+
+        <button type="button">Realizar Compra</button>
+
+    </div>
+
+</div>
+
 
 
 
 {% endblock %}
+
+
