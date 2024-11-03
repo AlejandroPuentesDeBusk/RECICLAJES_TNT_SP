@@ -1,16 +1,73 @@
 .compra .container{
     display: grid;
-    grid-template-columns: 20% 40% 35%;
-    grid-gap: 3rem;
+    grid-template-columns: 20% 30% 44%;
+    grid-gap: 2rem;
+}
+
+#top{
+    position: sticky;
+    top: 1rem;
+    padding-left: .5rem;
 }
 
 .materiales td,  .materiales th{
-    padding: 1 rem;
+    padding: 1rem;
     text-align: left;
+    font-size: 1vw;
 
 
 }
-#imagenes {
-    width: 1wv;
+#imagen {
+    width: 9vw;
+    height: 2.5vw;
+    border-radius: 8px;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+}
+
+.cajitas{
+    float: right;
+}
+
+#cajita {
+    width: 2vw;
     height: 2vw;
+    border-radius: 15px;
+
+}
+
+
+  
+  .check #cajita{
+    display: none; 
+  }
+  
+  .check .checkmark {
+    top: 5px;
+    width: 3vw; 
+    height: 3vw;
+    border-radius: 10px; 
+    background-color: transparent;
+    border: 1px solid #8fb792; 
+    display: inline-block;
+    transition: background-color 0.3s ease;
+  }
+  
+  .check #cajita:checked + .checkmark {
+    background-color: #8fb792; 
+  }
+
+
+  
+
+
+h2{
+    color: #2D3748;
+    font-size: 1.3rem;
+    padding: 0;
+}
+
+h3{
+    color: #A0AEC0;
+    font-size: .8rem;
 }

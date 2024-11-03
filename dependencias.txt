@@ -9,3 +9,6 @@ python-decouple (para establecer variables de entorno y no tener problemas en se
                 USUARIO= SU USUARIO DE LA BASE DE DATOS)
 
                 CON ESO YA NO VA A HABER CAMBIOS EN EL SETTINGS.PY
+
+#este es para las que jale ImageFiled en models.py
+pillow 

@@ -133,3 +133,8 @@ STATICFILES_DIRS = [BASE_DIR / "main_app/static"]
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+#esto va a ser para las imagenes de los materiales o utras cuya url este en base de datos
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / "main_app/media"

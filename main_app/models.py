@@ -9,6 +9,10 @@ class Material(models.Model):
     Wholesale_Sale_Price = models.DecimalField(max_digits=10, decimal_places=2)
     Retail_Purchase_Price = models.DecimalField(max_digits=10, decimal_places=2)
     Retail_Sale_Price = models.DecimalField(max_digits=10, decimal_places=2)
+    #lo de blanck true y null true es para que pueda no haber una imagen en cada registro para no batallar
+    #image field checa que si sea un png o jpg y el upload es para que l imagen se valla ahi y no se guarde en bd
+    image = models.ImageField(upload_to='img/materiales/', blank=True, null=True)
+
 
     @property 
     def Stock(self):
