@@ -3,3 +3,14 @@
     grid-template-columns: 20% 40% 35%;
     grid-gap: 3rem;
 }
+
+.materiales td,  .materiales th{
+    padding: 1 rem;
+    text-align: left;
+
+
+}
+#imagenes {
+    width: 1wv;
+    height: 2vw;
+}

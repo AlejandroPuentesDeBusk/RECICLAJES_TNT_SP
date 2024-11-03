@@ -5,18 +5,47 @@
 {% block title %}Compra / Venta{% endblock %}
 
 {% block head %}
+
     <link rel="stylesheet" href="{% static 'main_app/css/compra_venta/compra.css' %}">
+
 {% endblock %}
 
 {% block body %}compra{% endblock %}
 
-<!--faaaack-->
 
 {% block content_1 %}
-    <h2>Tabla de en medio</h2>
 
-    
-    
+    <div>
+        <h2>Comprar</h2>
+        <hr>
+        <h3>Seleccionar Material a Comprar</h3>
+
+    </div>
+
+    <table class="materiales">
+        <tr>
+            <th>Material</th>
+            <th>Imagen</th>
+            <th>Seleccionar</th>
+        </tr>
+
+        {% for material in materials %}
+        <tr>
+            <td>{{ material.Material_Type }}</td>
+            <td>
+                <img  id="imagenes"src="{% static 'img/materiales/' %}{{ material.Material_Type|slugify }}.jpg" alt="{{ material.Material_Type }}">
+            </td>
+            <td>
+                <input type="checkbox">
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+
+   
+
+
 {% endblock %}
 
 {% block content_2 %}
