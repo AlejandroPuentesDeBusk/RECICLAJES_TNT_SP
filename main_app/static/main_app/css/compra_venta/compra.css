@@ -1,59 +1,82 @@
 .compra .container{
     display: grid;
-    grid-template-columns: 20% 30% 44%;
+    grid-template-columns: 17rem 30% 42%;
     grid-gap: 2rem;
 }
 
 #top{
-    position: sticky;
+
     top: 1rem;
     padding-left: .5rem;
 }
 
+table tr {
+    padding: 0rem;
+    margin: 0;
+    height: .1rem;
+    border-bottom: solid 1px;
+    width: 100%;
+
+}
+
+
+
+
+
+#nombre{
+    font-size: .8rem;
+    font-weight: bold;
+}
+
+
+
+
 .materiales td,  .materiales th{
-    padding: 1rem;
+    padding: .5rem;
     text-align: left;
     font-size: 1vw;
 
 
 }
 #imagen {
-    width: 9vw;
-    height: 2.5vw;
+    width: 9rem;
+    height: 2.5rem;
     border-radius: 8px;
     image-rendering: -webkit-optimize-contrast;
     image-rendering: crisp-edges;
+    object-fit: cover;
 }
 
 .cajitas{
     float: right;
 }
 
-#cajita {
-    width: 2vw;
-    height: 2vw;
+.cajita {
+    width: 2rem;
+    height: 2rem;
     border-radius: 15px;
 
 }
 
-
   
-  .check #cajita{
+  .check .cajita{
     display: none; 
+   
   }
   
   .check .checkmark {
     top: 5px;
-    width: 3vw; 
-    height: 3vw;
-    border-radius: 10px; 
+    width: 2.5rem; 
+    height: 2.5rem;
+    border-radius: 1rem; 
     background-color: transparent;
     border: 1px solid #8fb792; 
     display: inline-block;
     transition: background-color 0.3s ease;
+    cursor: pointer;
   }
   
-  .check #cajita:checked + .checkmark {
+  .check .cajita:checked + .checkmark {
     background-color: #8fb792; 
   }
 
@@ -70,4 +93,49 @@ h2{
 h3{
     color: #A0AEC0;
     font-size: .8rem;
+}
+
+.top_calculadora{
+    display: grid;
+    grid-template-columns: 30% 30% 40%;
+    place-items: center;
+    padding-top: 0rem;
+}
+
+#text_calculadora{
+    font-weight: bold;
+
+}
+    
+
+#tipo_cargo{
+    width: 12rem;
+    height: 2.5rem;
+    background-color: #A2B18A;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    border-radius: 1rem;
+    text-align: center;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+}
+
+
+#lista_material_comprar li {
+    display: flex;                  
+    justify-content: center;        
+    align-items: center;            
+    gap: 1rem;                     
+    padding: 1rem;                  
+    width: 100%;                   
+
+
+    text-align: center;             
+    margin-bottom: 1rem;            
+}
+
+#lista_material_comprar li span {
+    display: inline-block;          
+    text-align: center;             
 }

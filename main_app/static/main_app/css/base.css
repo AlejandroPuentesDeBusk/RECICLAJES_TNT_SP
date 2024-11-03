@@ -10,7 +10,7 @@ body{
 
 .container{
     display: grid;
-    grid-template-columns: 20% 40% 35%;
+    grid-template-columns: 20rem 40% 35%;
     grid-gap: 3rem;
 }
 
@@ -31,7 +31,7 @@ body{
     font-family: 'Arial', sans-serif;
     position: sticky;
     top: 1rem;
-    height: 21vw;
+    height: 18rem;
 
 
 }
@@ -39,13 +39,15 @@ body{
 #cont_1 ul li a{
     text-decoration: none;
     color: gray;
+    display: block;
 }
 
 /* Título */
 #cont_1 h2 {
-    font-size: 24px;
+    font-size: 1.2rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
     color: #2d2d2d;
-    margin-bottom: 10px;
     text-align: center;
 }
 
