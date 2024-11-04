@@ -10,7 +10,7 @@ body{
 
 .container{
     display: grid;
-    grid-template-columns: 20rem 40% 35%;
+    grid-template-columns: 12rem 40% 35%;
     grid-gap: 2rem;
 }
 

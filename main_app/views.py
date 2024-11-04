@@ -19,6 +19,9 @@ def index(request):
 
 #request de Alex
 
+def menu_cv(request):
+    return render(request, 'compra_venta/menu_cv.html')
+
 def compra_1(request):
     materials = Material.objects.all()
     return render(request, 'compra_venta/compra.html', {'materials':materials})

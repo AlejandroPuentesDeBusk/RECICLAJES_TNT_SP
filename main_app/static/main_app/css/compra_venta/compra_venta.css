@@ -1,0 +1,6 @@
+.cv .container{
+    display: grid;
+    grid-template-columns: 12rem 30% 50%;
+    grid-gap: 1rem;
+    min-width: 100%;
+}
