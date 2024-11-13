@@ -81,17 +81,16 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    // Añadir evento 'change' a cada checkbox
+    // CON ESTO VA A ESTAR CHECANDO EL ESTADO DE LAS CAJITAS
     checkboxes.forEach((checkbox) => {
         checkbox.addEventListener('change', function () {
             actualizarMaterialSeleccionado(checkbox);
         });
     });
 
-    // Evento para actualizar los precios cuando se cambia el tipo de precio en el <select>
+    // CAMBIA EL PRECIO SENGUN ES MAYOREO O MENUDEO, ESTA CHECANDO ESE SELECT Y LAS CAJITAS QUE AGARRA
     tipoCargoSelect.addEventListener('change', function () {
         checkboxes.forEach((checkbox) => {
-            // Si el material está seleccionado, actualizar el precio mostrado
             if (checkbox.checked) {
                 actualizarMaterialSeleccionado(checkbox);
             }
