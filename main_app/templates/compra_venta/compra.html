@@ -64,7 +64,7 @@
             <td id="nombre">{{ material.Material_Type }}</td>
             <td>
                 {% if material.image %}
-                <img id="imagen" src="{{ material.image.url }}" alt="{{ material.Material_Type }}" width="100" height="100">
+                <img class="imagen" src="{{ material.image.url }}" alt="{{ material.Material_Type }}" width="100" height="100">
                 {% else %}
                     <p>No hay hahahary</p>
                 {% endif %}
@@ -74,7 +74,8 @@
                     <input type="checkbox" class="cajita" 
                     data-material="{{ material.Material_Type }}"
                     data-wholesale_purchase_price="{{ material.Wholesale_Purchase_Price }}"
-                    data-retail_purchase_price="{{ material.Retail_Purchase_Price }}">
+                    data-retail_purchase_price="{{ material.Retail_Purchase_Price }}"
+                    data-image="{{ material.image.url }}">
                     <span class="checkmark"></span>
                   </label>
             </td>
@@ -123,12 +124,12 @@
 <div class="extras">
     <div class="descuento">
         <h2>Desucento</h2>
-        <input type="text">
+        <input type="number" id="discount" min="0" step="10">
     </div>
 
     <div class="extra">
         <h2>Cargo Extra</h2>
-        <input type="text">
+        <input type="number" id="extra_charge" min="0" step="10">
     </div>
 </div>
 
@@ -142,7 +143,7 @@
 
     <div id="final_monto">
         <h3>Total Compra</h3>
-        <h4>$5000</h4>
+        <h4 id="total_general">0 MXN</h4>
 
     </div>
 

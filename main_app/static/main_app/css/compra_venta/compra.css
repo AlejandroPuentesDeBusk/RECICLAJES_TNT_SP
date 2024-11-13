@@ -62,7 +62,7 @@ table tr {
 
 
 }
-#imagen {
+.imagen {
     width: 9rem;
     height: 2.5rem;
     border-radius: 8px;
@@ -106,7 +106,7 @@ table tr {
 
 
   
-/*PAarte de la calculadora*/
+/*_______________________PAarte de la calculadora____________________________*/
 #material_compar h3{
     padding-left: 1rem;
     margin-left: 1rem;
@@ -172,8 +172,17 @@ h3{
     text-align: center;             
 }
 
+.cant_total{
+    width: 4rem;
+    border-radius: 0.4rem;
+    padding: .2rem;
+    border-color: #A0AEC0;
+    
+}
 
-/*PARTE DE EXTRAS, DESCUENTO Y ESO QUE YA SABES*/
+
+
+/*_______________PARTE DE EXTRAS, DESCUENTO Y ESO QUE YA SABES___________________*/
 
 .extras{
     display: grid;
@@ -202,7 +211,7 @@ h3{
     align-items: center;
 }
 
-/*PARTE DE TOTAL, BOTON Y LA CAJA DE DESCRIPCION*/
+/*_________________PARTE DE TOTAL, BOTON Y LA CAJA DE DESCRIPCION__________________*/
 
 .final{
     display: grid;
