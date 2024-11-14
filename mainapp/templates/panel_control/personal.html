@@ -1,0 +1,114 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Control</title>
+    <link rel="stylesheet" href="{% static 'mainapp/css/panel_control/personal.css' %}">
+    <!-- <link rel="stylesheet" href="../static/main_app/css/panel_control/personal.css"> -->
+    <!-- <link rel="stylesheet" href="../static/img/otros/paneldecontrolfonts/styles.css">    Iconos de fontastic que no jalaron-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo">
+            <img src="{% static 'img/tnt_logo.png' %}" >
+        </div>
+
+        <nav>
+            <div class="nav-item">
+                <div><img id="icon-home" src="{% static '/img/otros/casa.png' %}"></div>
+                <a href="#">Dashboard</a>
+            </div>
+           <div class="nav-item">
+                <div class="icon-banknote"></div>
+                <a href="#">Compra - venta</a>
+           </div>
+           <div class="nav-item">
+                <div class="icon-credit-card"></div>
+                <a href="#">Ajuste de caja</a>
+           </div>
+           <div class="nav-item" >
+                <div class="icon-cog"></div>
+                <a href="#" class="active">Panel de Control</a>
+           </div>
+        </nav>
+
+        <div class="help">
+            <p>¿Necesitas ayuda?<br>Revisa la documentación</p>
+            <button>DOCUMENTACIÓN</button>
+        </div>
+    </div>
+    <div class="main-content">
+        <header>
+            <h1>Panel de Control</h1>
+            <div class="search">
+                <input type="text" placeholder="Buscar...">
+                <span>10/20/2024 12:26 PM</span>
+                <a href="#"><div class="icon-user"></div></a>
+            </div>
+        </header>
+        <div class="tabs">
+            <button>Materiales</button>
+            <button>Transacciones</button>
+            <button class="active">Personal</button>
+        </div>
+        <section class="personal">
+            <h2>Ajustes de Personal</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Personal</th>
+                        <th>Function</th>
+                        <th>Estatus</th>
+                        <th>Fecha de contratación</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="personal-item">
+                                <div class="icon-user"></div>
+                                <div>
+                                    <strong>Juan López</strong><br> juan@lopez.com
+                                </div>
+                            </div>
+                            
+                        </td>
+                        <td>
+                            <strong>Encargado</strong><br> Planta
+                        </td>
+                        <td><span class="estatus activo">Activo</span></td>
+                        <td>14/06/24</td>
+                        <td><div class="editar" ><a href="#"><div class="icon-pencil"></div></a></td></div>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="personal-item">
+                                <div class="icon-user"></div>
+                                <div>
+                                    <strong>Alexa Perez</strong><br> alexa@perez.com
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <strong>Encargado</strong><br> Caja
+                        </td>
+                        <td><span class="estatus inactivo">Inactivo</span></td>
+                        <td>14/06/24</td>
+                        <td><div class="editar"><a href="#"><div class="icon-pencil"></div></a></td></div>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <footer>
+            <p>© 2024, made by bola de huevones</p>
+        </footer>
+    </div>
+</body>
+</html>

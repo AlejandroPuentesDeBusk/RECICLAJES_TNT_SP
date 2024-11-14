@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'main_app',
+    'mainapp',
 ]
 
 MIDDLEWARE = [
@@ -88,7 +88,7 @@ DATABASES = {
 	}
 }
 
-AUTH_USER_MODEL = 'main_app.Users' #No cambien esto, es para indicar que django use el modelo de usuario personalizado
+AUTH_USER_MODEL = 'mainapp.Users' #No cambien esto, es para indicar que django use el modelo de usuario personalizado
 
 
 # Password validation
@@ -127,7 +127,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 #STATICFILES_DIRS = [BASE_DIR / "static"] 
-STATICFILES_DIRS = [BASE_DIR / "main_app/static"]
+STATICFILES_DIRS = [BASE_DIR / "mainapp/static"]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -137,4 +137,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #esto va a ser para las imagenes de los materiales o utras cuya url este en base de datos
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / "main_app/media"
+MEDIA_ROOT = BASE_DIR / "mainapp/media"
