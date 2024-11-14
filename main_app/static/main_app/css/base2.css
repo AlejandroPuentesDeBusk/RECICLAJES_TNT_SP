@@ -22,13 +22,6 @@ body{
 
 }
 
-.panel {
-    width: 80%;
-    background-color: #ffffff;
-    border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
 
 /*___________________ESTILOS MENU FRANCISCO_________________________*/
 
@@ -110,18 +103,6 @@ body{
 
 /*________________Estilos contenedor 2_______________________________________________*/
 
-#cont_2 {
-
-
-    margin-left: 1rem;
-    border-radius: 10px;
-    font-family: 'Arial', sans-serif;
-    position: sticky;
-    top: 1rem;
-    height: 30rem;
-
-
-}
 
 
 /*_______________Estilos contenedor 3________________________________________________*/

@@ -1,6 +1,5 @@
 <!--ESTO ES PARA CARGAR LA PLANTILLA-->
-{% extends 'base2.html' %}
-
+    {% extends 'base2.html' %}
 
 <!--CARGAR LOS ARCHIVOS DE LA CARPETA STATIC DONDE ESTAN LOS CSS ETC..-->
 {% load static %}
@@ -32,8 +31,8 @@
 
 {% block content_top_1 %}
 
-<div class="imagen">
-    <img src="{% static "static/img/tnt_logo.jpg" %}" alt="Imagen tnt">
+<div>
+    <img class="logo" src="{% static "img/Tnt_logo.jpg" %}" alt="Imagen tnt">
 </div>
 
 {% endblock %}
@@ -42,7 +41,7 @@
 
 {% block content_top_2 %}
 <div>
-    <h2>Panel Control</h2>
+    <h2 class="barras_arriba">Panel Control</h2>
 </div>
 {% endblock %}
 
@@ -50,7 +49,8 @@
 
 {% block content_top_3 %}
 <div>
-    <h2>Barra de busqueda</h2>{% now "Y-m-d H:i" %}
+    <h3> barra busqueda</h3>
+    <h2 class="barras_arriba"> {% now "Y-m-d H:i" %}</h2>
 </div>
 {% endblock %}
 
@@ -288,52 +288,229 @@
 {% endblock %}
 {% endcomment %}
 
+
+
 {% block content_1 %}
-    
-    
-<div class="pestañas">
-    <button>Materiales</button>
-    <button>Transacciones</button>
-    <button>Empleados</button>
-</div>
-    <div>
-        <h1>Panel de Control</h1>
-        
-        <section class="materiales">
-            <h2>Ajustes de Materiales</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Material</th>
-                        <th>Stock</th>
-                        <th>Precio Compra</th>
-                        <th>Mayoreo</th>
-                        <th>Menudeo</th>
-                        <th>Precio Venta</th>
-                        <th>Mayoreo</th>
-                        <th>Menudeo</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    
-                    <tr>
-                        <td>
-                            <img id="imagen" src="/media/img/materiales/cobre_1ra.jpeg" alt="Cobre 1ra" width="100" height="100">
-                            Cobre
-                        </td>
-                        <td>$150</td>
-                        <td><button class="edit-button"></button></td>
-                        <td>$150</td>
-                        <td>$150</td>
-                        <td>$150</td>
-                        <td>$150</td>
-                        <td><button class="edit-button"></button></td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
+
+    <div class="pestañas">
+        <button>Materiales</button>
+        <button>Transacciones</button>
+        <button>Empleados</button>
     </div>
-    
+        <div class="cuerpo">
+            <h1>Panel de Control</h1>
+            
+            <section class="materiales">
+                <h2>Ajustes de Materiales</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Material</th>
+                            <th>Stock</th>
+                            <th>Precio Compra</th>
+                            <th>Mayoreo</th>
+                            <th>Menudeo</th>
+                            <th>Precio Venta</th>
+                            <th>Mayoreo</th>
+                            <th>Menudeo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <img id="imagen" src="/media/img/materiales/cobre_1ra.jpeg" alt="Cobre 1ra" width="100" height="100">
+                                Cobre
+                            </td>
+                            <td>$150</td>
+                            <td>
+                                <button class="editar_boton">
+                                    <img class="imagen" src="{% static "img/otros/lapiz-y-regla.png" %}" alt="lapiz">
+                                </button>
+                            </td>
+                            <td>$150</td>
+                            <td>$150</td>
+                            <td>$150</td>
+                            <td>$150</td>
+                            <td>
+                                <button class="editar_boton">
+                                    <img class="imagen" src="{% static "img/otros/lapiz-y-regla.png" %}" alt="lapiz">
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <img id="imagen" src="/media/img/materiales/aluminio_delgado.jpg" alt="Aluminio delgado" width="100" height="100">
+                                Aluminio delgado
+                            </td>
+                            <td>$150</td>
+                            <td>
+                                <button class="editar_boton">
+                                    <img class="imagen" src="{% static "img/otros/lapiz-y-regla.png" %}" alt="lapiz">
+                                </button>
+                            </td>
+                            <td>$150</td>
+                            <td>$150</td>
+                            <td>$150</td>
+                            <td>$150</td>
+                            <td>
+                                <button class="editar_boton">
+                                    <img class="imagen" src="{% static "img/otros/lapiz-y-regla.png" %}" alt="lapiz">
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <img id="imagen" src="/media/img/materiales/cobre_1ra.jpeg" alt="Cobre 1ra" width="100" height="100">
+                                Cobre
+                            </td>
+                            <td>$150</td>
+                            <td>
+                                <button class="editar_boton">
+                                    <img class="imagen" src="{% static "img/otros/lapiz-y-regla.png" %}" alt="lapiz">
+                                </button>
+                            </td>
+                            <td>$150</td>
+                            <td>$150</td>
+                            <td>$150</td>
+                            <td>$150</td>
+                            <td>
+                                <button class="editar_boton">
+                                    <img class="imagen" src="{% static "img/otros/lapiz-y-regla.png" %}" alt="lapiz">
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <img id="imagen" src="/media/img/materiales/cobre_1ra.jpeg" alt="Cobre 1ra" width="100" height="100">
+                                Cobre
+                            </td>
+                            <td>$150</td>
+                            <td>
+                                <button class="editar_boton">
+                                    <img class="imagen" src="{% static "img/otros/lapiz-y-regla.png" %}" alt="lapiz">
+                                </button>
+                            </td>
+                            <td>$150</td>
+                            <td>$150</td>
+                            <td>$150</td>
+                            <td>$150</td>
+                            <td>
+                                <button class="editar_boton">
+                                    <img class="imagen" src="{% static "img/otros/lapiz-y-regla.png" %}" alt="lapiz">
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <img id="imagen" src="/media/img/materiales/cobre_1ra.jpeg" alt="Cobre 1ra" width="100" height="100">
+                                Cobre
+                            </td>
+                            <td>$150</td>
+                            <td>
+                                <button class="editar_boton">
+                                    <img class="imagen" src="{% static "img/otros/lapiz-y-regla.png" %}" alt="lapiz">
+                                </button>
+                            </td>
+                            <td>$150</td>
+                            <td>$150</td>
+                            <td>$150</td>
+                            <td>$150</td>
+                            <td>
+                                <button class="editar_boton">
+                                    <img class="imagen" src="{% static "img/otros/lapiz-y-regla.png" %}" alt="lapiz">
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <img id="imagen" src="/media/img/materiales/cobre_1ra.jpeg" alt="Cobre 1ra" width="100" height="100">
+                                Cobre
+                            </td>
+                            <td>$150</td>
+                            <td>
+                                <button class="editar_boton">
+                                    <img class="imagen" src="{% static "img/otros/lapiz-y-regla.png" %}" alt="lapiz">
+                                </button>
+                            </td>
+                            <td>$150</td>
+                            <td>$150</td>
+                            <td>$150</td>
+                            <td>$150</td>
+                            <td>
+                                <button class="editar_boton">
+                                    <img class="imagen" src="{% static "img/otros/lapiz-y-regla.png" %}" alt="lapiz">
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <img id="imagen" src="/media/img/materiales/cobre_1ra.jpeg" alt="Cobre 1ra" width="100" height="100">
+                                Cobre
+                            </td>
+                            <td>$150</td>
+                            <td>
+                                <button class="editar_boton">
+                                    <img class="imagen" src="{% static "img/otros/lapiz-y-regla.png" %}" alt="lapiz">
+                                </button>
+                            </td>
+                            <td>$150</td>
+                            <td>$150</td>
+                            <td>$150</td>
+                            <td>$150</td>
+                            <td>
+                                <button class="editar_boton">
+                                    <img class="imagen" src="{% static "img/otros/lapiz-y-regla.png" %}" alt="lapiz">
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <img id="imagen" src="/media/img/materiales/cobre_1ra.jpeg" alt="Cobre 1ra" width="100" height="100">
+                                Cobre
+                            </td>
+                            <td>$150</td>
+                            <td>
+                                <button class="editar_boton">
+                                    <img class="imagen" src="{% static "img/otros/lapiz-y-regla.png" %}" alt="lapiz">
+                                </button>
+                            </td>
+                            <td>$150</td>
+                            <td>$150</td>
+                            <td>$150</td>
+                            <td>$150</td>
+                            <td>
+                                <button class="editar_boton">
+                                    <img class="imagen" src="{% static "img/otros/lapiz-y-regla.png" %}" alt="lapiz">
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <img id="imagen" src="/media/img/materiales/cobre_1ra.jpeg" alt="Cobre 1ra" width="100" height="100">
+                                Cobre
+                            </td>
+                            <td>$150</td>
+                            <td>
+                                <button class="editar_boton">
+                                    <img class="imagen" src="{% static "img/otros/lapiz-y-regla.png" %}" alt="lapiz">
+                                </button>
+                            </td>
+                            <td>$150</td>
+                            <td>$150</td>
+                            <td>$150</td>
+                            <td>$150</td>
+                            <td>
+                                <button class="editar_boton">
+                                    <img class="imagen" src="{% static "img/otros/lapiz-y-regla.png" %}" alt="lapiz">
+                                </button>
+                            </td>
+                        </tr>
+                        
+                    </tbody>
+                </table>
+            </section>
+        </div>
+        
 {% endblock %}
     
     
