@@ -381,8 +381,8 @@
                         </tr>
                         <tr>
                             <td>
-                                <img id="imagen" src="/media/img/materiales/cobre_1ra.jpeg" alt="Cobre 1ra" width="100" height="100">
-                                Cobre
+                                <img id="imagen" src="/media/img/materiales/aluminio_perfil.jpeg" alt="Aluminio perfil" width="100" height="100">
+                                Aluminio perfil
                             </td>
                             <td>$150</td>
                             <td>
@@ -402,8 +402,8 @@
                         </tr>
                         <tr>
                             <td>
-                                <img id="imagen" src="/media/img/materiales/cobre_1ra.jpeg" alt="Cobre 1ra" width="100" height="100">
-                                Cobre
+                                <img id="imagen" src="/media/img/materiales/aluminio_rin.jpeg" alt="Aluminio rin" width="100" height="100">
+                                Aluminio Rin
                             </td>
                             <td>$150</td>
                             <td>
@@ -423,8 +423,8 @@
                         </tr>
                         <tr>
                             <td>
-                                <img id="imagen" src="/media/img/materiales/cobre_1ra.jpeg" alt="Cobre 1ra" width="100" height="100">
-                                Cobre
+                                <img id="imagen" src="/media/img/materiales/rvc.jpeg" alt="Rvc" width="100" height="100">
+                                Rvc
                             </td>
                             <td>$150</td>
                             <td>
@@ -432,12 +432,13 @@
                                     <img class="imagen" src="{% static "img/otros/lapiz-y-regla.png" %}" alt="lapiz">
                                 </button>
                             </td>
-                            <td>$150</td>
-                            <td>$150</td>
-                            <td>$150</td>
-                            <td>$150</td>
+                            <td>$35</td>
+                            <td>$40</td>
+                            <td>$40</td>
+                            <td>$35</td>
                             <td>
-                                <button class="editar_boton">
+                                
+                                <button id="boton_modal" class="editar_boton">
                                     <img class="imagen" src="{% static "img/otros/lapiz-y-regla.png" %}" alt="lapiz">
                                 </button>
                             </td>
@@ -514,3 +515,18 @@
 {% endblock %}
     
     
+{% block content_2 %}
+<!-- Ventana Modal 1 -->
+<div id="modal1" class="modal">
+    <div class="contenido_modal">
+        <h2>¿Estas Seguro?</h2>
+        <a href="pop_2.html"><button class="accion_boton" id="confirmar">Realizar Compra</button></a>
+
+        <a href="compra.html">
+            <button class="boton_cancelar" id="cerrar_vent_modal">Cancelar</button>
+        </a>
+    </div>
+</div>
+
+{% endblock content_2 %}
+
