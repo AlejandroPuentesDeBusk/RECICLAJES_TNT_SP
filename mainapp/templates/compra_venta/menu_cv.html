@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+
+
+<!--CARGAR LOS ARCHIVOS DE LA CARPETA STATIC DONDE ESTAN LOS CSS ETC..-->
+{% load static %}
+
+<!--TITULO DE LA VENTANA-->
+{% block title %} Compra/Venta {% endblock %}
+
+<!--ESTE ES SU HEAD DE HTML PEUDEN METER LO MISMO QUE EN EL NORMAL-->
+{% block head %}
+
+    <link rel="stylesheet" href="{% static 'mainapp/css/compra_venta/compra_venta.css' %}">
+    <script src="{% static 'mainapp/JS/compra_venta/compra_venta.js' %}"></script>
+
+{% endblock %}
+
+
+<!--AQUI EMPIEZA EL BODY-->
+{% block body %}cv{% endblock %}
+
+<!--_______________CONTENEDORES ARRIBA___________________-->
+
+{% block content_top_1 %}
+<div>
+  
+</div>
+{% endblock %}
+
+
+
+{% block content_top_2 %}
+<div id="top_2">
+    <h2>Compra/Venta</h2>
+</div>
+{% endblock %}
+
+
+
+{% block content_top_3 %}
+<div id="dinero_caja">
+    <div id="dinero_caja_fondo">
+        <h3>Dinero en caja</h3>
+        <h4>$53,000</h4>
+    </div>
+</div>
+{% endblock %}
+
+<!--_______________CONTENEDORES ABAJO___________________-->
+
+{% block content_1 %}
+
+<div class="top_bar">
+
+    <div>
+        <h2>Transacciones de Hoy</h2>
+    </div>
+
+    <div id="c_v">
+        <select id="tipo_t">
+            <option>
+                Nueva Compra +
+            </option>
+            <option>
+                Nueva Venta +
+            </option>
+        </select>
+    </div>
+
+</div>
+
+<div>
+    <table class="tabla">
+        <tr>
+            <th>Material</th>
+            <th>Imagen</th>
+            <th>Usuario</th>
+            <th>Cantidad KG</th>
+            <th>Total</th>
+        </tr>
+
+
+    </table>
+</div>
+
+
+
+
+
+
+
+
+
+
+{% endblock %}
+
+{% block content_2 %}
+<div class="block_2">
+    <button type="button" id="ejecutar">+</button>
+</div>
+
+{% endblock %}

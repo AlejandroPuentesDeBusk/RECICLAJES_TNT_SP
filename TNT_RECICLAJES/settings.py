@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'main_app',
+    'mainapp',
 ]
 
 MIDDLEWARE = [
@@ -77,18 +77,18 @@ WSGI_APPLICATION = 'TNT_RECICLAJES.wsgi.application'
 
 DATABASES = {
 	'default': {
-		'ENGINE': 'django.db.backends.mysql', #No cambien esto
+		'ENGINE': config('ENG'), #No cambien esto
 
-		'NAME': 'TNT_PRUEBA2', #Así se debe de llamar la BD para que Django pueda aplicar las tablas, si crean una con un nombre distinto, pongan ese nombre aquí cuando vayan a hacer las migraciones
+		'NAME': config('NM'), #Así se debe de llamar la BD para que Django pueda aplicar las tablas, si crean una con un nombre distinto, pongan ese nombre aquí cuando vayan a hacer las migraciones
 		
         'USER': config('USUARIO'),     #Igual, por lo general este usuario es el que deben usar, pero lo pueden cambiar
 		'PASSWORD': config('PASS'), #Ponen su contraseña si tienen, si no han configurado una, así lo dejan
-		'HOST':'localhost', 
-		'PORT':'3306',  #Generalmente este puerto es el que se activa, pero puede variar
+		'HOST': config('HS'), 
+		'PORT': config('PO'),  #Generalmente este puerto es el que se activa, pero puede variar
 	}
 }
 
-AUTH_USER_MODEL = 'main_app.Users' #No cambien esto, es para indicar que django use el modelo de usuario personalizado
+AUTH_USER_MODEL = 'mainapp.Users' #No cambien esto, es para indicar que django use el modelo de usuario personalizado
 
 
 # Password validation
@@ -127,7 +127,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 #STATICFILES_DIRS = [BASE_DIR / "static"] 
-STATICFILES_DIRS = [BASE_DIR / "main_app/static"]
+STATICFILES_DIRS = [BASE_DIR / "mainapp/static"]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -137,4 +137,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #esto va a ser para las imagenes de los materiales o utras cuya url este en base de datos
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / "main_app/media"
+MEDIA_ROOT = BASE_DIR / "mainapp/media"
