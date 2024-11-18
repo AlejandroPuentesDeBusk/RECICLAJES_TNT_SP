@@ -1,7 +1,7 @@
 <!--ESTO ES PARA CARGAR LA PLANTILLA-->
     {% extends 'base2.html' %}
 
-<<<<<<< HEAD:main_app/templates/panel_control/panel.html
+
 <!--CARGAR LOS ARCHIVOS DE LA CARPETA STATIC DONDE ESTAN LOS CSS ETC..-->
 {% load static %}
 ({% block panel %}.cv .container{
@@ -11,11 +11,10 @@
     min-width: 100%;
 }
 {% endblock panel %})
-=======
-    {%load static%}
 
-    <link rel="stylesheet" href="{%static 'mainapp/css/panel_control/panel.css'%}">
->>>>>>> 65071f7aa7cdb3e00523c90fee1d1a1d38a6275e:mainapp/templates/panel_control/panel.html
+{%load static%}
+
+    <link rel="stylesheet" href="{% static 'panel_control/css/panel.css' %}">
 
 
 <!--TITULO DE LA VENTANA-->
@@ -24,7 +23,7 @@
 <!--ESTE ES SU HEAD DE HTML PEUDEN METER LO MISMO QUE EN EL NORMAL-->
 {% block head %}
 
-    <link rel="stylesheet" href="{% static 'main_app/css/panel_control/panel.css' %}">
+    <link rel="stylesheet" href="{% static 'panel_control/css/panel.css' %}">
     <script src="{% static 'main_app/java_script/' %}"></script>
 
 {% endblock %}

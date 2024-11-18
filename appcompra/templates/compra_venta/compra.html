@@ -6,8 +6,8 @@
 
 {% block head %}
 
-    <link rel="stylesheet" href="{% static 'mainapp/css/compra_venta/compra.css' %}">
-    <script src="{% static 'mainapp/JS/compra_venta/compra.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'appcompra/css/compra.css' %}">
+    <script src="{% static 'appcompra/js/compra.js' %}"></script>
 
 {% endblock %}
 
@@ -77,15 +77,13 @@
                     data-retail_purchase_price="{{ material.Retail_Purchase_Price }}"
                     data-image="{{ material.image.url }}">
                     <span class="checkmark"></span>
-                  </label>
+                </label>
             </td>
         </tr>
-
         {% endfor %}
     </table>
 
 
-   
 
 
 {% endblock %}
