@@ -21,7 +21,12 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('mainapp.urls'),)
+    path('', include('mainapp.urls')),
+    path('appcompra/', include('appcompra.urls')), #PUSE LA APP DE COMPRA
+    path('panelcontrol/',include('panel_control.urls')),#app de Panel_control
+    path('dashboard/', include('app_Dashboard.urls')),
+    path('caja/', include('app_CorteCaja.urls'))
+
 ]
 
 if settings.DEBUG:
