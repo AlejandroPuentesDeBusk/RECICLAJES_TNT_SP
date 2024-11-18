@@ -1,7 +1,7 @@
 from django . urls import path
 from . import views
 from django.contrib.auth import views as auth_views
-
+from django.conf.urls import handler404
 #tutorial v: aqui van a poner el path que va a tener la vista que se renderiza,
 #1. nombre de la ruta
 #2. llamas a la funcion que hiciste en views.py para que se renderiza
@@ -16,6 +16,14 @@ urlpatterns = [
     path('dashboard', views.dashboard, name= 'dashboard'),
     path('panel_control', views.panel_control, name= 'panel_control'),
     path('panel_control_personal', views.panel_control_personal, name= 'personal'),
+<<<<<<< HEAD:main_app/urls.py
+    path('pantalla_carga', views.pantalla_carga, name='pantalla_carga'),
+
+]
+
+handler404= 'mainapp.views.error404'
+=======
     path('panel_control_transacciones', views.panel_control_transacciones, name='transacciones'),
     path('pantalla_carga', views.pantalla_carga, name='pantalla_carga')
 ]
+>>>>>>> 62486421da25d36c7d59364d091b52a49ffa06c3:mainapp/urls.py

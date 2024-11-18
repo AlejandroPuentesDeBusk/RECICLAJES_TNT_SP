@@ -73,3 +73,6 @@ def panel_control_transacciones(request):
 #@login_required
 def pantalla_carga(request):
     return render(request, 'p_carga.html')
+
+def error404(request,exception):
+    return render(request, 'mainapp/404.html')
