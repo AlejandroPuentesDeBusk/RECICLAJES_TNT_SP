@@ -6,8 +6,14 @@ from mainapp.models import Transaction,Transaction_Details
 def panel_control(request):
     return render(request, 'panel.html')
 
-def panel_control_personal(request):
+def personal(request):
     return render(request, 'personal.html')
 
-def panel_control_transacciones(request):
+def transacciones(request):
     return render(request, 'transacciones.html')
+
+def materiales(request):
+    return render (request, 'materiales.html')
+
+def cortes(request):
+    return render (request, 'cortes.html')

@@ -1,176 +1,30 @@
+{% extends 'base.html' %}
+
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel de Control | Transacciones</title>
-    <link rel="stylesheet" href="{% static 'css/panel_control/transacciones.css' %}">
-    <!-- <link rel="stylesheet" href="transacciones.css">
-    <link rel="stylesheet" href="../../OTROS/fonts/styles.css"> -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
-</head>
-<body>
-    <div class="sidebar">
-        <div class="logo">
-            <img src="../../IMG/tnt_logo.png" alt="tnt_logo">
-        </div>
 
-        <nav>
-            <div class="nav-item">
-                <div class="icon-home"></div>
-                <a href="#">Dashboard</a>
-            </div>
-           <div class="nav-item">
-                <div class="icon-banknote"></div>
-                <a href="#">Compra - venta</a>
-           </div>
-           <div class="nav-item">
-                <div class="icon-credit-card"></div>
-                <a href="#">Ajuste de caja</a>
-           </div>
-           <div class="nav-item" >
-                <div class="icon-cog"></div>
-                <a href="#" class="active">Panel de Control</a>
-           </div>
-        </nav>
+{% block title %}Transacciones{% endblock %}
 
-        <div class="help">
-            <p>¿Necesitas ayuda?<br>Revisa la documentación</p>
-            <button>DOCUMENTACIÓN</button>
-        </div>
+{% block head %}
+
+    <link rel="stylesheet" href="{% static 'panel_control/css/panel.css' %}">
+    <script src="{% static 'panel_control/JS/transacciones.js' %}"></script>
+
+{% endblock %}
+
+{% block body %}Transacciones{% endblock %}
+
+{% block content_top_2 %}
+
+    <div id="titulo">
+        <h2>Panel de Control</h2>
     </div>
-    <div class="main-content">
-        <div id="cabecera">
-            <header>
-                <h1>Panel de Control</h1>
-                <div class="search">
-                    <input type="text" placeholder="Buscar...">
-                    <span>10/20/2024 12:26 PM</span>
-                    <a href="#"><div class="icon-user"></div></a>
-                </div>
-            </header>
-            <div class="tabs">
-                <button><a href="../materiales/materiales.html">Materiales</a></button>
-                <button class="active"><a href="../transacciones/transacciones.html">Transacciones</a></button>
-                <button><a href="../personal/personal.html"></a>Personal</button>
-            </div>
-            <h2>Ajustes de Transacciones</h2>
-        </div>
-        
-        <section class="transactions-table">
-            <button class="filter-btn">Filter</button>
-            <table>
-                <thead>
-                    <tr>
-                        <th>N.</th>
-                        <th>Tipo</th>
-                        <th>Material</th>
-                        <th>Cantidad</th>
-                        <th>Precio</th>
-                        <th>Descripcion</th>
-                        <th>Fecha</th>
-                        <th>Estado</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Venta</td>
-                        <td>Cobre</td>
-                        <td>5kg</td>
-                        <td>$0.00</td>
-                        <td>----------------</td>
-                        <td>10/20/2024</td>
-                        <td>Confirmada</td>
-                        <td><div class="editar"><a href="#"><div class="icon-pencil"> Editar</div></a></td></div>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Compra</td>
-                        <td>Carton</td>
-                        <td>2.5kg</td>
-                        <td>$0.00</td>
-                        <td>----------------</td>
-                        <td>10/20/2024</td>
-                        <td>Pendiente</td>
-                        <td><div class="editar"><a href="#"><div class="icon-pencil"> Editar</div></a></td></div>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Venta</td>
-                        <td>Cobre estañado</td>
-                        <td>5kg</td>
-                        <td>$0.00</td>
-                        <td>----------------</td>
-                        <td>10/20/2024</td>
-                        <td>Confirmada</td>
-                        <td><div class="editar"><a href="#"><div class="icon-pencil"> Editar</div></a></td></div>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>Compra</td>
-                        <td>Aluminio rin</td>
-                        <td>2.5kg</td>
-                        <td>$0.00</td>
-                        <td>----------------</td>
-                        <td>10/20/2024</td>
-                        <td>Pendiente</td>
-                        <td><div class="editar"><a href="#"><div class="icon-pencil"> Editar</div></a></td></div>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>Venta</td>
-                        <td>Cobre 1era</td>
-                        <td>5kg</td>
-                        <td>$0.00</td>
-                        <td>----------------</td>
-                        <td>10/20/2024</td>
-                        <td>Confirmada</td> 
-                        <td><div class="editar"><a href="#"><div class="icon-pencil"> Editar</div></a></td></div>
-                    </tr>
-                    <tr>
-                        <td>6</td>
-                        <td>Compra</td>
-                        <td>Aluminio bote</td>
-                        <td>2.5kg</td>
-                        <td>$0.00</td>
-                        <td>----------------</td>
-                        <td>10/20/2024</td>
-                        <td>Pendiente</td>
-                        <td><div class="editar"><a href="#"><div class="icon-pencil"> Editar</div></a></td></div>
-                    </tr>
-                    <tr>
-                        <td>7</td>
-                        <td>Venta</td>
-                        <td>Bronce</td>
-                        <td>5kg</td>
-                        <td>$0.00</td>
-                        <td>----------------</td>
-                        <td>10/20/2024</td>
-                        <td>Confirmada</td> 
-                        <td><div class="editar"><a href="#"><div class="icon-pencil"> Editar</div></a></td></div>
-                    </tr>
-                    <tr>
-                        <td>8</td>
-                        <td>Compra</td>
-                        <td>Aluminio lata</td>
-                        <td>2.5kg</td>
-                        <td>$0.00</td>
-                        <td>----------------</td>
-                        <td>10/20/2024</td>
-                        <td>Pendiente</td>
-                        <td><div class="editar"><a href="#"><div class="icon-pencil"> Editar</div></a></td></div>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
-        <footer>
-            <p>© 2024, made by bola de huevones</p>
-        </footer>
+
+{% endblock %}
+
+{% block tabs %}
+    <div class="pestañas">
+        <button>Materiales</button>
+        <button>Transacciones</button>
+        <button>Empleados</button>
     </div>
-</body>
-</html>
+{% endblock tabs %}
