@@ -1,3 +1,10 @@
 body{
     color: aqua;
 }
+
+.logo{
+    padding-left: 1rem;
+    margin: 1rem;
+    height: 120px;
+    border-radius: 15%;
+}

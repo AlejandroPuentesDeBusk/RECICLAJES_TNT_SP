@@ -4,6 +4,13 @@
     box-sizing: border-box;
 }
 
+.logo{
+    padding-left: 1rem;
+    margin: 1rem;
+    height: 120px;
+    border-radius: 15%;
+}
+
 body {
     font-family: "Outfit", sans-serif;
     color: #333;
