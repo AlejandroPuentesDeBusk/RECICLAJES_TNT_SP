@@ -9,21 +9,19 @@ from django.conf.urls import handler404
 
 urlpatterns = [
     path('', views.index, name = 'index'),
-    path('compra_venta', views.menu_cv, name='compra_venta'),
-    path('compra_1', views.compra_1, name = 'compra_1' ),
-    path('venta_1', views.venta_1, name = 'venta_1'),
-    path('ajustes_1', views.ajustes_1, name = 'ajustes_1'),
-    path('dashboard', views.dashboard, name= 'dashboard'),
-    path('panel_control', views.panel_control, name= 'panel_control'),
-    path('panel_control_personal', views.panel_control_personal, name= 'personal'),
-<<<<<<< HEAD:main_app/urls.py
+    #path('compra_venta', views.menu_cv, name='compra_venta'), #Lo movi a appcompra
+    #path('compra_1', views.compra_1, name = 'compra_1' ), #Lo movi a appcompra
+    #path('venta_1', views.venta_1, name = 'venta_1'), #Lo movi a appcompra
+#    path('ajustes_1', views.ajustes_1, name = 'ajustes_1'), se movio a app_caja
+#    path('dashboard', views.dashboard, name= 'dashboard'), SE MOVIO A DASHBOARD
+#    path('panel_control', views.panel_control, name= 'panel_control'),
+#    path('panel_control_personal', views.panel_control_personal, name= 'personal'),
     path('pantalla_carga', views.pantalla_carga, name='pantalla_carga'),
-
+#    path('panel_control_transacciones', views.panel_control_transacciones, name='transacciones'),
 ]
 
-handler404= 'mainapp.views.error404'
-=======
-    path('panel_control_transacciones', views.panel_control_transacciones, name='transacciones'),
-    path('pantalla_carga', views.pantalla_carga, name='pantalla_carga')
-]
->>>>>>> 62486421da25d36c7d59364d091b52a49ffa06c3:mainapp/urls.py
+handler404 = 'mainapp.views.error404'
+
+
+
+# Listo ahora si, hacer las apps
