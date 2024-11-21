@@ -59,10 +59,10 @@
                 </div>
             </header>
             <div class="tabs">
-                <button><a href="../materiales/materiales.html">Materiales</a></button>
-                <button><a href="../transacciones/transacciones.html">Transacciones</a></button>
-                <button><a href="../personal/personal.html"></a>Personal</button>
-                <button class="active"><a href="../cortes/cortes.html"></a>Cortes</button>
+                <button><a href="{% url "materiales" %}">Materiales</a></button>
+                <button><a href="{% url "transacciones" %}">Transacciones</a></button>
+                <button><a href="{% url "personal" %}"></a>Personal</button>
+                <button class="active"><a href="{% url "cortes" %}"></a>Cortes</button>
             </div>
             <h2>
                 {% block subsection %}

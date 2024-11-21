@@ -7,17 +7,25 @@ def panel_control(request):
     return render(request, 'panel.html')
 
 def personal(request):
-    return render(request, 'personal.html')
+    return render(request, 'personal.html', {
+        'title': 'Panel de Control | Personal',
+        'section': 'Panel de Control',
+        'subsection': 'Ajustes de Personal'
+    })
 
 def transacciones(request):
     return render(request, 'transacciones.html', {
         'title': 'Panel de Control | Transacciones',
         'section': 'Panel de Control',
-        'subsection': 'Ajustes de Transacciones'
+        'subsection': 'Ajustes de Transacciones',
     })
 
 def materiales(request):
-    return render (request, 'materiales.html')
+    return render (request, 'materiales.html', {
+        'title': 'Panel de Control | Materiales',
+        'section': 'Panel de Control',
+        'subsection': 'Ajustes de Materiales'
+    })
 
 def cortes(request):
     return render (request, 'cortes.html', {
