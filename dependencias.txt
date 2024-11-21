@@ -12,6 +12,3 @@ python-decouple (para establecer variables de entorno y no tener problemas en se
 
 #este es para las que jale ImageFiled en models.py
 pillow 
-al hacer un git push hacerlo como
-
-git push https://github.com/IngRamirezJezhuah/RECICLAJES_TNT_SP.git

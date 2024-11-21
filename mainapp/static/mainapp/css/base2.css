@@ -22,7 +22,6 @@ body{
 
 }
 
-
 /*___________________ESTILOS MENU FRANCISCO_________________________*/
 
 
@@ -103,6 +102,9 @@ body{
 
 /*________________Estilos contenedor 2_______________________________________________*/
 
+#cont_2 {
+    margin: auto;
+}
 
 
 /*_______________Estilos contenedor 3________________________________________________*/
@@ -129,10 +131,6 @@ body{
     grid-gap: 0rem;
     margin-top: 0rem;
     
-}
-.container div {
-    background-color: white;
-    border-radius: 1rem;
-    margin-top: 1rem;
-    margin-bottom: 0rem;
+
+
 }
