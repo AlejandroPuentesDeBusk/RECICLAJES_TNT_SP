@@ -232,3 +232,67 @@ footer div a {
     text-decoration: none;
     margin: 0 5px;
 }
+
+/*--------------------------*/
+
+.pestañas button:hover {
+    background-color: #c0d09f;
+}
+/*body{
+    color: blue;
+}
+*/
+a{
+    text-decoration: none;
+    color: #849255;
+}
+.lapiz{
+    margin: 1rem;
+    width: 1rem;
+}
+.logo{
+    padding-left: 1rem;
+    margin: 1rem;
+    height: 120px;
+    border-radius: 15%;
+}
+
+.cuerpo{
+    margin: 2rem;
+    padding: 1.5rem;
+}
+
+#imagen {
+    width: 9rem;
+    height: 2.5rem;
+    border-radius: 8px;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    object-fit: cover;
+}
+
+.materiales td, .materiales th {
+    padding: .5rem;
+    text-align: left;
+    font-size: 1vw;
+}
+
+.pestañas {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.pestañas button {
+    padding: 10px 20px;
+    background-color: #d5dfb3;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    color: #333;
+}
+
+.pestañas button:hover {
+    background-color: #c0d09f;
+}
