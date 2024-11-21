@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Menu{% endblock %}</title>
+
+    {%load static%}
+
+    <link rel="stylesheet" href="{%static 'mainapp/css/base.css'%}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+
+    {% block head %}{% endblock %}
+
+</head>
+<body class="{% block body %}{% endblock %}">
+
+<!--__________________________PLANTILLA PRINCIPAL__________________________________________________-->
+    <div class="container">
+
+<!--________bloque aqrriba a la izquierda______________-->
+        <div id="cont_t_1">
+
+            {% block content_top_1 %}
+            {% endblock %}
+
+        </div>
+
+<!--________bloque aqrriba al centro______________-->
+        <div id="cont_t_2">
+            {% block content_top_2 %}
+            {% endblock %}
+
+        </div>
+        
+<!--________bloque aqrriba a la derecha_____________-->
+        <div id="cont_t_3">
+
+            {% block content_top_3 %}
+            {% endblock %}
+
+        </div>
+
+<!--______________________________________MENU_______________________________________________-->
+        <div id="cont_1">
+
+            <h2 id="title">TNT Recyclajes</h2>
+            <hr>
+
+            <ul>
+                <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
+                <li><a href="{% url 'compra_1' %}">Compra Venta</a></li>
+                <li><a href="{% url 'ajustes_1' %}">Ajustes Caja</a></li>
+                <li><a href="{% url 'panel_control' %}">Panel de Control</a></li>
+            </ul>
+
+        </div>
+
+
+
+<!--______________________________________BLOQUE DEL CENTRO______________________________________________-->
+        <div id="cont_2">
+
+
+        {% block content_1 %}
+
+        <!-- hagan de cuenta que del css grid esta es la columan del medio donde por ejemplo en compras va la tabal con los materiales a elegir-->
+
+        {% endblock %}
+
+
+        </div>
+
+
+<!--______________________________________BLOQUE DE LA DERECHA______________________________________________-->
+        <div id="cont_3">
+
+            {% block content_2%}
+
+            {% endblock %}
+
+        </div>
+
+</body>
+</html>

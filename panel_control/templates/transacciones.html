@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Transacciones{% endblock %}
+
+{% block head %}
+
+    <link rel="stylesheet" href="{% static 'panel_control/css/panel.css' %}">
+    <script src="{% static 'panel_control/JS/transacciones.js' %}"></script>
+
+{% endblock %}
+
+{% block body %}Transacciones{% endblock %}
+
+{% block content_top_2 %}
+
+    <div id="titulo">
+        <h2>Panel de Control</h2>
+    </div>
+
+{% endblock %}
+
+{% block tabs %}
+    <div class="pestañas">
+        <button>Materiales</button>
+        <button>Transacciones</button>
+        <button>Empleados</button>
+    </div>
+{% endblock tabs %}

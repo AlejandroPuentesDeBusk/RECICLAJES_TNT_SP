@@ -1,0 +1,37 @@
+Hay que tener instalado
+
+django
+mysql connector
+python-decouple (para establecer variables de entorno y no tener problemas en settings asi hacen su archivo 
+                .env literal asi le ponen y adentro ponen 
+                
+                PASS= US CONTRASEÑA DE LA BASE DA DATOS
+                USUARIO= SU USUARIO DE LA BASE DE DATOS)
+
+                CON ESO YA NO VA A HABER CAMBIOS EN EL SETTINGS.PY
+
+#este es para las que jale ImageFiled en models.py
+pillow 
+al hacer un git push hacerlo como
+
+git push https://github.com/IngRamirezJezhuah/RECICLAJES_TNT_SP.git
+
+____________________BASE DE DATOS INERTAR________________________
+Agregar la siguientes consultas a la base de datos:
+
+INSERT INTO mainapp_material (id, Material_Type, Wholesale_Purchase_Price, Wholesale_Sale_Price, Retail_Purchase_Price, Retail_Sale_Price, image) VALUES (1, 'Cobre 1ra', 100.00, 110.00, 120.00, 130.00, 'img/materiales/cobre_1ra.jpeg');
+INSERT INTO mainapp_material (id, Material_Type, Wholesale_Purchase_Price, Wholesale_Sale_Price, Retail_Purchase_Price, Retail_Sale_Price, image) VALUES (2, 'Aluminio delgado', 17.00, 30.00, 40.00, 50.00, 'img/materiales/aluminio_delgado.jpg');
+INSERT INTO mainapp_material (id, Material_Type, Wholesale_Purchase_Price, Wholesale_Sale_Price, Retail_Purchase_Price, Retail_Sale_Price, image) VALUES (3, 'Aluminio bote', 26.00, 30.00, 40.00, 50.00, 'img/materiales/aluminio_bote.jpeg');
+INSERT INTO mainapp_material (id, Material_Type, Wholesale_Purchase_Price, Wholesale_Sale_Price, Retail_Purchase_Price, Retail_Sale_Price, image) VALUES (4, 'Aluminio perfil', 22.00, 30.00, 40.00, 50.00, 'img/materiales/aluminio_perfil.jpeg');
+INSERT INTO mainapp_material (id, Material_Type, Wholesale_Purchase_Price, Wholesale_Sale_Price, Retail_Purchase_Price, Retail_Sale_Price, image) VALUES (5, 'Aluminio rin', 25.00, 30.00, 40.00, 50.00, 'img/materiales/aluminio_rin.jpeg');
+INSERT INTO mainapp_material (id, Material_Type, Wholesale_Purchase_Price, Wholesale_Sale_Price, Retail_Purchase_Price, Retail_Sale_Price, image) VALUES (6, 'Rvc', 35.00, 30.00, 40.00, 50.00, 'img/materiales/rvc.jpeg');
+INSERT INTO mainapp_material (id, Material_Type, Wholesale_Purchase_Price, Wholesale_Sale_Price, Retail_Purchase_Price, Retail_Sale_Price, image) VALUES (7, 'Antimonio', 10.00, 30.00, 40.00, 50.00, 'img/materiales/antimonio.jpeg');
+INSERT INTO mainapp_material (id, Material_Type, Wholesale_Purchase_Price, Wholesale_Sale_Price, Retail_Purchase_Price, Retail_Sale_Price, image) VALUES (8, 'Aluminio radiador', 13.00, 30.00, 40.00, 50.00, 'img/materiales/aluminio_radeador.jpeg');
+INSERT INTO mainapp_material (id, Material_Type, Wholesale_Purchase_Price, Wholesale_Sale_Price, Retail_Purchase_Price, Retail_Sale_Price, image) VALUES (9, 'Aluminio desodorante', 20.00, 30.00, 40.00, 50.00, 'img/materiales/aluminio_desodorante.jpeg');
+INSERT INTO mainapp_material (id, Material_Type, Wholesale_Purchase_Price, Wholesale_Sale_Price, Retail_Purchase_Price, Retail_Sale_Price, image) VALUES (10, 'Aluminio piston', 15.00, 30.00, 40.00, 50.00, 'img/materiales/aluminio_piston.jpeg');
+INSERT INTO mainapp_material (id, Material_Type, Wholesale_Purchase_Price, Wholesale_Sale_Price, Retail_Purchase_Price, Retail_Sale_Price, image) VALUES (11, 'Fierro', 3.20, 30.00, 40.00, 50.00, 'img/materiales/fierro.jpeg');
+INSERT INTO mainapp_material (id, Material_Type, Wholesale_Purchase_Price, Wholesale_Sale_Price, Retail_Purchase_Price, Retail_Sale_Price, image) VALUES (12, 'Lamina', 3.10, 30.00, 40.00, 50.00, 'img/materiales/lamina.jpeg');
+INSERT INTO mainapp_material (id, Material_Type, Wholesale_Purchase_Price, Wholesale_Sale_Price, Retail_Purchase_Price, Retail_Sale_Price, image) VALUES (13, 'Papel', 2.00, 30.00, 40.00, 50.00, 'img/materiales/papel.jpeg');
+INSERT INTO mainapp_material (id, Material_Type, Wholesale_Purchase_Price, Wholesale_Sale_Price, Retail_Purchase_Price, Retail_Sale_Price, image) VALUES (14, 'Carton', 1.50, 30.00, 40.00, 50.00, 'img/materiales/carton.jpg');
+INSERT INTO mainapp_material (id, Material_Type, Wholesale_Purchase_Price, Wholesale_Sale_Price, Retail_Purchase_Price, Retail_Sale_Price, image) VALUES (15, 'Cobre 2da', 90.00, 100.00, 110.00, 120.00, 'img/materiales/cobre_2da.jpg');
+
