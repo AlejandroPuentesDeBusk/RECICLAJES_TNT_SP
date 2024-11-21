@@ -1,4 +1,26 @@
-<!--ESTO ES PARA CARGAR LA PLANTILLA-->
+{% extends "layouts/blocks.html" %}
+
+{% block title %}
+    {{title}}    
+{% endblock title %}
+
+
+{% block section %}
+<h1>{{section}}</h1>
+{% endblock section %}
+
+
+{% block subsection %}
+    <h2>{{subsection}}</h2>
+{% endblock subsection %}
+
+
+{% block content_box %}
+
+{% endblock content_box %}
+
+
+{% comment %} <!--ESTO ES PARA CARGAR LA PLANTILLA-->
 {% extends 'base2.html' %}
 <!--CARGAR LOS ARCHIVOS DE LA CARPETA STATIC DONDE ESTAN LOS CSS ETC..-->
 {% load static %}
@@ -166,4 +188,4 @@
         </table>
     </section>
         <p>© 2024, made by bola de huevones</p>
-{% endblock %}
+{% endblock %} {% endcomment %}
