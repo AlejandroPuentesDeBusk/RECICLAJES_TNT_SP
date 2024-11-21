@@ -15,7 +15,55 @@
 {% endblock subsection %}
 
 
-{% block content_box %}{% endblock content_box %}
+{% block content_box %}
+<div class="transactions-container">
+    <h2 class="text-center">Ajustes de Transacciones</h2>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>N.</th>
+                    <th>Tipo</th>
+                    <th>Material</th>
+                    <th>Cantidad</th>
+                    <th>Precio</th>
+                    <th>Descripción</th>
+                    <th>Fecha</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for transaction in transactions %}
+                    {% for detail in transaction.details.all %}
+                    <tr>
+                        <td>{{ forloop.parentloop.counter }}</td>
+                        <td>{{ transaction.get_Transaction_Type_display }}</td>
+                        <td>{{ detail.Material.name }}</td>
+                        <td>{{ detail.Quantity }} kg</td>
+                        <td>${{ detail.Price }}</td>
+                        <td>{{ transaction.Description }}</td>
+                        <td>{{ transaction.Date|date:"d/m/Y" }}</td>
+                        <td>
+                            <span class="{% if transaction.Status == 'COMPLETED' %}text-success{% elif transaction.Status == 'PENDING' %}text-warning{% else %}text-danger{% endif %}">
+                                {{ transaction.get_Status_display }}
+                            </span>
+                        </td>
+                        <td>
+                            <button class="edit-btn">Editar</button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                {% empty %}
+                <tr>
+                    <td colspan="9" class="text-center">No hay transacciones disponibles.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock content_box %}
 
 
 

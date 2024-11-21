@@ -13,7 +13,7 @@ def transacciones(request):
     return render(request, 'transacciones.html', {
         'title': 'Panel de Control | Transacciones',
         'section': 'Panel de Control',
-        'subsection': 'Ajustes de Transacciones'
+        'subsection': 'Ajustes de Transacciones',
     })
 
 def materiales(request):
