@@ -1,4 +1,27 @@
-<!--ESTO ES PARA CARGAR LA PLANTILLA-->
+{% extends "layouts/blocks.html" %}
+
+{% block title %}
+    {{title}}    
+{% endblock title %}
+
+
+{% block section %}
+<h1>{{section}}</h1>
+{% endblock section %}
+
+
+{% block subsection %}
+    <h2>{{subsection}}</h2>
+{% endblock subsection %}
+
+
+{% block content_box %}{% endblock content_box %}
+
+
+
+
+
+{% comment %} <!--ESTO ES PARA CARGAR LA PLANTILLA-->
 {% extends 'base.html' %}
 <!--CARGAR LOS ARCHIVOS DE LA CARPETA STATIC DONDE ESTAN LOS CSS ETC..-->
 {% load static %}
@@ -41,4 +64,4 @@
 
 {% block content_2 %}
     <h2>Pan con leche</h2>
-{% endblock %}
+{% endblock %} {% endcomment %}
