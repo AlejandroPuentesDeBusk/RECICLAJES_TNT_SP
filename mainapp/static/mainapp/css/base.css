@@ -4,8 +4,8 @@
 }
 
 body{
-    background-color: whitesmoke;
-    font-family: Arial, Helvetica, sans-serif;
+    background-color: #F8F9FA;
+    font-family: sans-serif;
 }
 
 .container{
@@ -130,7 +130,7 @@ nav a.active {
 /*________________AJUSTES DE LOS TOP___________________*/
 
 #cont_t_1{
-    background-color: whitesmoke    ;
+    background-color: #F8F9FA    ;
     margin-top: 0rem;
     display: grid;
     gap: 0;
@@ -139,17 +139,22 @@ nav a.active {
 }
 
 #cont_t_2{
-    background-color: whitesmoke    ;
+    background-color: #F8F9FA    ;
     grid-gap: 0rem;
     margin-top: 0rem;
 
 }
 
 #cont_t_3{
-    background-color: whitesmoke    ;
+    background-color: #F8F9FA    ;
     grid-gap: 0rem;
     margin-top: 0rem;
     
 
 
 }
+
+/*___________________AYUDA________________*/
+
+
+  

@@ -1,3 +1,5 @@
+
+
 .compra .container{
     display: grid;
     grid-template-columns: 13rem 30% 50%;
@@ -8,12 +10,12 @@
 #texto_compra{
     margin-top: 1rem;
     padding-top: 1.5rem;
-    background-color: whitesmoke;
+    background-color: #F8F9FA;
     display: flex;
 }
 
 #dinero_caja{
-    background-color: whitesmoke;
+    background-color: #F8F9FA;
 }
 
 #dinero_caja_fondo{
@@ -29,11 +31,25 @@
 }
 
 
+#c_main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+#lista_material_comprar hr {
+    width: 80%; /* Ancho del 80% del contenedor */
+    margin: 0 auto; /* Centrar horizontalmente */
+
+}
+
+
 
 #top{
 
     top: 1rem;
-    padding-left: .5rem;
+    margin-left: 2vw;
 }
 
 table tr {
@@ -45,6 +61,11 @@ table tr {
 
 }
 
+hr{
+    background-color: rgb(234, 232, 232);
+    border: 0;
+    height: 2px;
+}
 
 
 
@@ -152,7 +173,7 @@ h3{
     height: 2.5rem;
     background-color: #A2B18A;
     color: white;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: sans-serif;
     border-radius: 1rem;
     text-align: center;
     font-weight: bold;
@@ -264,7 +285,7 @@ h3{
     height: 2.5rem;
     background-color: #395A3F;
     color: white;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: sans-serif;
     border-radius: 1rem;
     text-align: center;
     font-weight: bold;
