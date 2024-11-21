@@ -23,6 +23,10 @@
 <!--________bloque aqrriba a la izquierda______________-->
         <div id="cont_t_1">
 
+            <div class="logo">
+                <img src="{% static 'mainapp/img/tnt_logo.jpg' %}" alt="tnt_logo">
+            </div>
+
             {% block content_top_1 %}
             {% endblock %}
 
@@ -46,6 +50,8 @@
 <!--______________________________________MENU_______________________________________________-->
         <div id="cont_1">
 
+            <!--
+
             <h2 id="title">TNT Recyclajes</h2>
             <hr>
 
@@ -55,6 +61,49 @@
                 <li><a href="{% url 'ajustes_1' %}">Ajustes Caja</a></li>
                 <li><a href="{% url 'panel_control' %}">Panel de Control</a></li>
             </ul>
+
+            -->
+
+            <!--_________________________________________________________-->
+
+            <div class="sidebar">
+
+                <!--
+                <div class="logo">
+                    <img src="{% static 'mainapp/img/tnt_logo.jpg' %}" alt="tnt_logo">
+                </div>
+                -->
+        
+                <nav>
+                    <div class="nav-item">
+                        <div class="icon-home"></div>
+                        <a href="{% url 'dashboard'  %}">Dashboard</a>
+                    </div>
+                   <div class="nav-item">
+                        <div class="icon-banknote"></div>
+                        <a href="{% url 'compra_1'  %}">Compra - venta</a>
+                   </div>
+                   <div class="nav-item">
+                        <div class="icon-credit-card"></div>
+                        <a href="{% url 'ajustes_1'  %}">Ajuste de caja</a>
+                   </div>
+                   <div class="nav-item" >
+                        <div class="icon-cog"></div>
+                        <a href="{% url 'panel_control'  %}" class="active">Panel de Control</a>
+                   </div>
+                </nav>
+        
+                <div class="help">
+                    <p>¿Necesitas ayuda?<br>Revisa la documentación</p>
+                    <button>DOCUMENTACIÓN</button>
+                </div>
+            </div>
+
+            <!--______________________________-->
+
+
+
+
 
         </div>
 

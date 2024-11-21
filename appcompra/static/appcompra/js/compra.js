@@ -41,11 +41,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Crear o actualizar el elemento de lista
         let listItem = lista_Material.querySelector(`li[data-material="${material}"]`);
-        
+
         if (checkbox.checked) {
             if (!listItem) {
                 listItem = document.createElement('li');
                 listItem.setAttribute('data-material', material);
+                listItem.className = "list-item";
+        
                 lista_Material.appendChild(listItem);
             }
             listItem.innerHTML = `<span> <strong> ${material}</strong></span> 
