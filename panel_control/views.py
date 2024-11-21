@@ -10,10 +10,18 @@ def personal(request):
     return render(request, 'personal.html')
 
 def transacciones(request):
-    return render(request, 'transacciones.html')
+    return render(request, 'transacciones.html', {
+        'title': 'Panel de Control | Transacciones',
+        'section': 'Panel de Control',
+        'subsection': 'Ajustes de Transacciones'
+    })
 
 def materiales(request):
     return render (request, 'materiales.html')
 
 def cortes(request):
-    return render (request, 'cortes.html')
+    return render (request, 'cortes.html', {
+        'title': 'Panel de Control | Cortes',
+        'section': 'Panel de Control',
+        'subsection': 'Historial de Cortes'
+    })
