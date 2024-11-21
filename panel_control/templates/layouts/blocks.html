@@ -23,19 +23,19 @@
         <nav>
             <div class="nav-item">
                 <div class="icon-home"></div>
-                <a href="#">Dashboard</a>
+                <a href="{% url "dashboard" %}">Dashboard</a>
             </div>
            <div class="nav-item">
                 <div class="icon-banknote"></div>
-                <a href="#">Compra - venta</a>
+                <a href="{% url "compra_1" %}">Compra - venta</a>
            </div>
            <div class="nav-item">
                 <div class="icon-credit-card"></div>
-                <a href="#">Ajuste de caja</a>
+                <a href="{% url "ajustes_1" %}">Ajuste de caja</a>
            </div>
            <div class="nav-item" >
                 <div class="icon-cog"></div>
-                <a href="#" class="active">Panel de Control</a>
+                <a href="{% url "panel_control" %}" class="active">Panel de Control</a>
            </div>
         </nav>
 
