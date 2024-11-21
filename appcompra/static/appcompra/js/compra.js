@@ -6,6 +6,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const total_final = document.getElementById('total_general');
     const discount_int = document.getElementById('discount');
     const extra_charge_int = document.getElementById('extra_charge');
+    const realizarCompraBtn = document.getElementById('realizar_compra');
+
 
     // Obtener el precio según operación (compra/venta) y tipo de cargo (mayoreo/menudeo)
     function obtenerPrecio(materialCheckbox) {
