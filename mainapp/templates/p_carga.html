@@ -14,6 +14,12 @@
 <body>
     <h1>Cargando prros</h1>
     <div class="p_carga"></div>
+
+    <form method="POST" action="{% url "logout" %}">
+        {% csrf_token %}
+        <button type="submit" class="btn-logout">Cerras sesión</button>
+    </form>
+    {% comment %} PAra asegurarme rápido de que funcionara el cierre {% endcomment %}
     
 </body>
 </html>
