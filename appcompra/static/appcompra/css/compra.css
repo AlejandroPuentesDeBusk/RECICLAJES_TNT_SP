@@ -1,17 +1,21 @@
+
+
 .compra .container{
     display: grid;
-    grid-template-columns: 12rem 30% 50%;
+    grid-template-columns: 13rem 30% 50%;
     grid-gap: 1rem;
     min-width: 100%;
 }
 
 #texto_compra{
-    background-color: whitesmoke;
+    margin-top: 1rem;
+    padding-top: 1.5rem;
+    background-color: #F8F9FA;
     display: flex;
 }
 
 #dinero_caja{
-    background-color: whitesmoke;
+    background-color: #F8F9FA;
 }
 
 #dinero_caja_fondo{
@@ -27,11 +31,25 @@
 }
 
 
+#c_main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+#lista_material_comprar hr {
+    width: 80%; /* Ancho del 80% del contenedor */
+    margin: 0 auto; /* Centrar horizontalmente */
+
+}
+
+
 
 #top{
 
     top: 1rem;
-    padding-left: .5rem;
+    margin-left: 2vw;
 }
 
 table tr {
@@ -43,6 +61,11 @@ table tr {
 
 }
 
+hr{
+    background-color: rgb(234, 232, 232);
+    border: 0;
+    height: 2px;
+}
 
 
 
@@ -125,7 +148,7 @@ h3{
 
 .top_calculadora{
     display: grid;
-    grid-template-columns: 30% 30% 40%;
+    grid-template-columns: 30% 15% 40%;
     place-items: center;
     padding-top: 0rem;
 }
@@ -136,17 +159,27 @@ h3{
 }
     
 
-#tipo_cargo{
+#opcion_calculadora{
+    grid-template-columns: 50% 50%;
+    display: grid;
+    padding-right: 8rem;
+    margin: 0;
+    padding: 0;
+
+}
+
+#tipo_cargo, #tipo_operacion{
     width: 12rem;
     height: 2.5rem;
     background-color: #A2B18A;
     color: white;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: sans-serif;
     border-radius: 1rem;
     text-align: center;
     font-weight: bold;
     border: none;
     cursor: pointer;
+    margin-right: 1rem;
 }
 
 #material_comprar h3{
@@ -252,10 +285,13 @@ h3{
     height: 2.5rem;
     background-color: #395A3F;
     color: white;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: sans-serif;
     border-radius: 1rem;
     text-align: center;
     font-weight: bold;
     border: none;
     cursor: pointer;
 }
+
+/*________LISTA_______________*/
+

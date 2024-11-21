@@ -43,12 +43,16 @@
 
 {% block content_1 %}
 
+
+
     <div id="top">
         <h2>Comprar</h2>
         <br>
         <h3>Seleccionar Material a Comprar</h3>
 
     </div>
+
+<div id="c_main">
 
     <table class="materiales">
         <tr>
@@ -75,14 +79,22 @@
                     data-material="{{ material.Material_Type }}"
                     data-wholesale_purchase_price="{{ material.Wholesale_Purchase_Price }}"
                     data-retail_purchase_price="{{ material.Retail_Purchase_Price }}"
+                    data-wholesale_sale_price="{{ material.Wholesale_Sale_Price }}"
+                    data-retail_sale_price="{{ material.Retail_Sale_Price }}"
                     data-image="{{ material.image.url }}">
                     <span class="checkmark"></span>
                 </label>
             </td>
         </tr>
+        <tr>
+            <td colspan="3" >
+                <hr>
+            </td>
+        </tr>
         {% endfor %}
     </table>
 
+</div>
 
 
 
@@ -103,12 +115,29 @@
 
     <div id="opcion_calculadora">
 
-        <select id="tipo_cargo" name="tipo_cargo">
+        <div>
 
-            <option value="Wholesale_Purchase_Price">Precio Mayoreo</option>
-            <option value="Retail_Purchase_Price">Precio Menudeo</option>
+            <select id="tipo_operacion" name="tipo_operacion">
 
-        </select>
+                <option value="compra">Compra</option>
+                <option value="venta">Venta</option>
+    
+            </select>
+
+
+        </div>
+
+        <div>
+            <select id="tipo_cargo" name="tipo_cargo">
+
+                <option value="Wholesale_Purchase_Price">Precio Mayoreo</option>
+                <option value="Retail_Purchase_Price">Precio Menudeo</option>
+    
+            </select>
+
+        </div>
+
+
     </div>
 
 </div>
@@ -147,7 +176,7 @@
 
     <div id="final_btn">
 
-        <button type="button">Realizar Compra</button>
+        <button type="button" id="realizar_compra" disabled>Realizar Compra</button>
 
     </div>
 
