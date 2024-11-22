@@ -11,11 +11,13 @@
 {% endblock section %}
 
 {% block buscador %}
-<div class="search">
-    <input type="text" placeholder="Buscar...">
-    <span>10/20/2024 12:26 PM</span>
-    <a href="#"><div class="icon-user"></div></a>
-</div>
+<form method="GET" action="">
+    <div class="search">
+        <input type="text" name="search" placeholder="Buscar..." value="{{ search_query }}">
+        <span>{% now "Y-m-d H:i" %} </span>
+    </div>
+</form>
+
 {% endblock buscador %}
 
 {% block subsection %}
@@ -31,20 +33,43 @@
                 <th>Personal</th>
                 <th>Rol</th>
                 <th>Estado</th>
-                <th>fecha contratacion</th>
+                <th>Fecha Contratación</th>
             </tr>
         </thead>
         <tbody>
-            {% for empleado in Empleados  %}
-                {% for empleado in mainapp_users %}
+            {% for empleado in page_obj %}
                 <tr>
-                    <td>{{forloop.parentloop.counter}}</td>
-                    <td>{{ id }}</td>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ empleado.rol }}</td>
+                    <td>{{ empleado.estado }}</td>
+                    <td>{{ empleado.fecha_contratacion }}</td>
                 </tr>
-                {% endfor %}
+            {% empty %}
+                <tr>
+                    <td colspan="4">No hay empleados registrados.</td>
+                </tr>
             {% endfor %}
         </tbody>
     </table>
+
+    <!-- Paginación -->
+    <div>
+        <span>
+            {% if page_obj.has_previous %}
+                <a href="?page=1">&laquo; Primera</a>
+                <a href="?page={{ page_obj.previous_page_number }}">Anterior</a>
+            {% endif %}
+
+            <span>
+                Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
+            </span>
+
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">Siguiente</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}">Última &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
 </div>
 
 <!--
@@ -176,10 +201,10 @@
             </tbody>
         </table>
     </section>
-        <p>© 2024, made by bola de huevones</p>
-</div>
--->
-
+    </div>
+    -->
+    
+<p>© 2024, made by bola de huevones</p>
 {% endblock content_box %}
 
 

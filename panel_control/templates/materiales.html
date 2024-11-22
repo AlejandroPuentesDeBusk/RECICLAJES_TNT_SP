@@ -1,43 +1,49 @@
 {% extends "base2.html" %}
 
+
 {% block title %}
     {{title}}    
 {% endblock title %}
 
 
 {% block section %}
+<h1>Panel de Control</h1>
 <h1>{{section}}</h1>
 {% endblock section %}
 
 {% block buscador %}
-<div class="search">
-    <input type="text" placeholder="Buscar...">
-    <span>10/20/2024 12:26 PM</span>
-    <a href="#"><div class="icon-user"></div></a>
-</div>
+<span>{% now "Y-m-d H:i" %} </span>
 {% endblock buscador %}
 
 {% block subsection %}
     <h2>{{subsection}}</h2>
 {% endblock subsection %}
 
-{% block content_box %}
 
-{% if materials %}
+{% block content_box %}
+<h2>Lista de materiales</h2>
+<form method="GET" action="">
+    <div class="search">
+        <input type="text" name="search" placeholder="Buscar..." value="{{ search_query }}">
+        <a href="#"><div class="icon-user">buscador</div></a>
+    </div>
+</form>
+<div class="cuerpo">
+    {% if page_obj %}
         <table>
-            <thead>
-                <tr>
+            <thead class="tablas">
+                <tr class="tablas">
                     <th>Material</th>
                     <th>Tipo de Material</th>
                     <th>Precio Compra (Mayoreo)</th>
                     <th>Precio Venta (Mayoreo)</th>
                     <th>Precio Compra (Menudeo)</th>
                     <th>Precio Venta (Menudeo)</th>
-                    <th>editar</th>
+                    <th>Editar</th>
                 </tr>
             </thead>
             <tbody>
-                {% for material in materials %}
+                {% for material in page_obj %}
                     <tr>
                         <td>
                             {% if material.image %}
@@ -55,12 +61,34 @@
                             <a href=""><img class="lapiz" src="/static/panel_control/img/lapices.png" alt="lapiz"></a>
                         </td>
                     </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="7">No hay materiales registrados.</td>
+                    </tr>
                 {% endfor %}
             </tbody>
         </table>
+        <!-- Paginación que pidio michelle-->
+        <!--es un dolor de cabeza pero funciona necesitan aplicarla para tambien al usar el buscador aparesca-->
+        <div class="pagination">
+            <span class="step-links">
+                {% if page_obj.has_previous %}
+                    <a href="?page=1">&laquo; Primera</a>
+                    <a href="?page={{ page_obj.previous_page_number }}"> -  Anterior  -  </a>
+                {% endif %}
+                <span class="current">
+                    Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
+                </span>
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}">-  Siguiente  -</a>
+                    <a href="?page={{ page_obj.paginator.num_pages }}">Última &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
     {% else %}
         <p>No hay materiales registrados.</p>
     {% endif %}
+</div>
 {% endblock content_box %}
 
 
