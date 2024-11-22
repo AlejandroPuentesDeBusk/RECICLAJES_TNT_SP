@@ -53,11 +53,9 @@
                 {% block section %}
                 <h1>Panel de Control</h1>
                 {% endblock section %}
-                <div class="search">
-                    <input type="text" placeholder="Buscar...">
-                    <span>10/20/2024 12:26 PM</span>
-                    <a href="#"><div class="icon-user"></div></a>
-                </div>
+                {% block buscador %}
+                
+                {% endblock buscador %}
             </header>
             <div class="tabs">
                 <button><a href="{% url "materiales" %}">Materiales</a></button>

@@ -1,8 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from mainapp import views
 from django.contrib.auth import get_user_model
 from mainapp.models import Material
-
 
 Users = get_user_model()
 
@@ -14,6 +13,7 @@ def panel_control(request):
     return render(request, 'panel.html',{'materials': materials})
 
 def personal(request):
+
     return render(request, 'personal.html', {
         'title': 'Panel de Control | Personal',
         'section': 'Panel de Control',
@@ -42,3 +42,12 @@ def cortes(request):
         'section': 'Panel de Control',
         'subsection': 'Historial de Cortes'
     })
+
+def error404(request,exception):
+    return render(request, 'mainapp/404.html')
+
+def is_owner(users):
+    return users.is_active and users.is_superuser
+
+def is_employee(users):
+    return users.is_active 

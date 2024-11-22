@@ -1,5 +1,4 @@
-{% extends "layouts/blocks.html" %}
-
+{% extends "base2.html" %}
 
 
 {% block title %}
@@ -11,6 +10,13 @@
 <h1>{{section}}</h1>
 {% endblock section %}
 
+{% block buscador %}
+<div class="search">
+    <input type="text" placeholder="Buscar...">
+    <span>10/20/2024 12:26 PM</span>
+    <a href="#"><div class="icon-user"></div></a>
+</div>
+{% endblock buscador %}
 
 {% block subsection %}
     <h2>{{subsection}}</h2>
@@ -34,7 +40,6 @@
                 <tr>
                     <td>{{forloop.parentloop.counter}}</td>
                     <td>{{ id }}</td>
-                    
                 </tr>
                 {% endfor %}
             {% endfor %}
