@@ -1,294 +1,93 @@
-<!--ESTO ES PARA CARGAR LA PLANTILLA-->
-{% extends 'base2.html' %}
-<!--CARGAR LOS ARCHIVOS DE LA CARPETA STATIC DONDE ESTAN LOS CSS ETC..-->
-{% load static %}
-<!--TITULO DE LA VENTANA-->
-{% block title %} Panel  {% endblock %}
-<!--ESTE ES SU HEAD DE HTML PEUDEN METER LO MISMO QUE EN EL NORMAL-->
-{% block head %}
-    <link rel="stylesheet" href="{% static 'panel_control/css/panel.css' %}">
-    <script src="{% static 'main_app/java_script/resto de la ruta' %}"></script>
-{% endblock %}
-<!--AQUI EMPIEZA EL BODY-->
-{% block body %}commpra_venta{% endblock %}
-<!--______CONTENEDORES ARRIBA______-->
-{% block content_top_1 %}
-<div>
-    <img class="logo" src="{% static "panel_control/img/tnt_logo.jpg" %}" alt="Imagen tnt">
-</div>
-{% endblock %}
-{% block content_top_2 %}
-<div>
-    <h2>Panel de control</h2>
-    <div class="pestañas">
-        <button><a href="{% url "panel_control" %}">Materiales</a></button>
-        <button><a href="{% url "transacciones" %}">Transacciones</a></button>
-        <button><a href="{% url "personal" %}">Empleados</a></button>
-        <button><a href="{% url "cortes" %}">Cortes</a></button>
-    </div>
-</div>
-{% endblock %}
-{% block content_top_3 %}
-<div>
-    <h2>Block content top_3</h2>
-</div>
-{% endblock %}
-<!--______CONTENEDORES ABAJO______-->
-{% block content_1 %}
-    <div class="cuerpo">
-        <section class="materiales">
-            <h2>Ajustes de Materiales</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Material</th>
-                        <th>Stock</th>
-                        <th>Precio Compra</th>
-                        <th>Mayoreo</th>
-                        <th>Menudeo</th>
-                        <th>Precio venta</th>
-                        <th>Mayoreo</th>
-                        <th>Menudeo</th>
-                        <th>acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>
-                            <img id="imagen" src="/media/img/materiales/cobre_1ra.jpeg" alt="cobre" width="100" height="100">
-                            
-                            Cobre
-                        </td>
-                        <td> 1{{ material.wholesale_purchase_price }}</td>
-                        <td>$compra{{ material.retail_purchase_price }}</td>
-                        <td>${{ material.wholesale_sale_price }}</td>
-                        <td>${{ material.retail_sale_price }}</td>
-                        <td>$venta{{ material.retail_purchase_price }}</td>
-                        <td>${{ material.wholesale_sale_price }}</td>
-                        <td>${{ material.retail_sale_price }}</td>
-                        <td>
-                            <a href=""><img class="lapiz" src="/static/panel_control/img/lapices.png" alt="lapiz"></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <img id="imagen" src="/media/img/materiales/aluminio_delgado.jpg" alt="Aluminio delgado" width="100" height="100">
-                            Aluminio delgado
-                        </td>
-                        <td> 1{{ material.wholesale_purchase_price }}</td>
-                        <td>$compra{{ material.retail_purchase_price }}</td>
-                        <td>${{ material.wholesale_sale_price }}</td>
-                        <td>${{ material.retail_sale_price }}</td>
-                        <td>$venta{{ material.retail_purchase_price }}</td>
-                        <td>${{ material.wholesale_sale_price }}</td>
-                        <td>${{ material.retail_sale_price }}</td>
-                        <td>
-                            <a href=""><img class="lapiz" src="/static/panel_control/img/lapices.png" alt="lapiz"></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <img id="imagen" src="/media/img/materiales/aluminio_bote.jpeg" alt="Aluminio bote" width="100" height="100">
-                            Aluminio Bote
-                        </td>
-                        <td> 1{{ material.wholesale_purchase_price }}</td>
-                        <td>$compra{{ material.retail_purchase_price }}</td>
-                        <td>${{ material.wholesale_sale_price }}</td>
-                        <td>${{ material.retail_sale_price }}</td>
-                        <td>$venta{{ material.retail_purchase_price }}</td>
-                        <td>${{ material.wholesale_sale_price }}</td>
-                        <td>${{ material.retail_sale_price }}</td>
-                        <td>
-                            <a href=""><img class="lapiz" src="/static/panel_control/img/lapices.png" alt="lapiz"></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <img id="imagen" src="/media/img/materiales/aluminio_perfil.jpeg" alt="Aluminio perfil" width="100" height="100">
-                            Aluminio perfil
-                        </td>
-                        <td> 1{{ material.wholesale_purchase_price }}</td>
-                        <td>$compra{{ material.retail_purchase_price }}</td>
-                        <td>${{ material.wholesale_sale_price }}</td>
-                        <td>${{ material.retail_sale_price }}</td>
-                        <td>$venta{{ material.retail_purchase_price }}</td>
-                        <td>${{ material.wholesale_sale_price }}</td>
-                        <td>${{ material.retail_sale_price }}</td>
-                        <td>
-                            <a href=""><img class="lapiz" src="/static/panel_control/img/lapices.png" alt="lapiz"></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <img id="imagen" src="/media/img/materiales/aluminio_rin.jpeg" alt="Aluminio rin" width="100" height="100">
-                            Aluminio Rin
-                        </td>
-                        <td> 1{{ material.wholesale_purchase_price }}</td>
-                        <td>$compra{{ material.retail_purchase_price }}</td>
-                        <td>${{ material.wholesale_sale_price }}</td>
-                        <td>${{ material.retail_sale_price }}</td>
-                        <td>$venta{{ material.retail_purchase_price }}</td>
-                        <td>${{ material.wholesale_sale_price }}</td>
-                        <td>${{ material.retail_sale_price }}</td>
-                        <td>
-                            <a href=""><img class="lapiz" src="/static/panel_control/img/lapices.png" alt="lapiz"></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <img id="imagen" src="/media/img/materiales/rvc.jpeg" alt="Rvc" width="100" height="100">
-                            Rvc
-                        </td>
-                        <td> 1{{ material.wholesale_purchase_price }}</td>
-                        <td>$compra{{ material.retail_purchase_price }}</td>
-                        <td>${{ material.wholesale_sale_price }}</td>
-                        <td>${{ material.retail_sale_price }}</td>
-                        <td>$venta{{ material.retail_purchase_price }}</td>
-                        <td>${{ material.wholesale_sale_price }}</td>
-                        <td>${{ material.retail_sale_price }}</td>
-                        <td>
-                            <a href=""><img class="lapiz" src="/static/panel_control/img/lapices.png" alt="lapiz"></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <img id="imagen" src="/media/img/materiales/antimonio.jpeg" alt="Antimonio" width="100" height="100">
-                            Antimonio
-                        </td>
-                        <td> 1{{ material.wholesale_purchase_price }}</td>
-                        <td>$compra{{ material.retail_purchase_price }}</td>
-                        <td>${{ material.wholesale_sale_price }}</td>
-                        <td>${{ material.retail_sale_price }}</td>
-                        <td>$venta{{ material.retail_purchase_price }}</td>
-                        <td>${{ material.wholesale_sale_price }}</td>
-                        <td>${{ material.retail_sale_price }}</td>
-                        <td>
-                            <a href=""><img class="lapiz" src="/static/panel_control/img/lapices.png" alt="lapiz"></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <img id="imagen" src="/media/img/materiales/aluminio_radeador.jpeg" alt="Aluminio radiador" width="100" height="100">
-                            Aluminio Radeador
-                        </td>
-                        <td> 1{{ material.wholesale_purchase_price }}</td>
-                        <td>$compra{{ material.retail_purchase_price }}</td>
-                        <td>${{ material.wholesale_sale_price }}</td>
-                        <td>${{ material.retail_sale_price }}</td>
-                        <td>$venta{{ material.retail_purchase_price }}</td>
-                        <td>${{ material.wholesale_sale_price }}</td>
-                        <td>${{ material.retail_sale_price }}</td>
-                        <td>
-                            <a href=""><img class="lapiz" src="/static/panel_control/img/lapices.png" alt="lapiz"></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <img id="imagen" src="/media/img/materiales/aluminio_desodorante.jpeg" alt="Aluminio desodorante" width="100" height="100">
-                            aluminio Desodorante
-                        </td>
-                        <td> 1{{ material.wholesale_purchase_price }}</td>
-                        <td>$compra{{ material.retail_purchase_price }}</td>
-                        <td>${{ material.wholesale_sale_price }}</td>
-                        <td>${{ material.retail_sale_price }}</td>
-                        <td>$venta{{ material.retail_purchase_price }}</td>
-                        <td>${{ material.wholesale_sale_price }}</td>
-                        <td>${{ material.retail_sale_price }}</td>
-                        <td>
-                            <a href=""><img class="lapiz" src="/static/panel_control/img/lapices.png" alt="lapiz"></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <tr>
-                        <td>
-                            <img id="imagen" src="/media/img/materiales/fierro.jpeg" alt="Fierro" width="100" height="100">
-                            Fierro
-                        </td>
-                        <td> 1{{ material.wholesale_purchase_price }}</td>
-                        <td>$compra{{ material.retail_purchase_price }}</td>
-                        <td>${{ material.wholesale_sale_price }}</td>
-                        <td>${{ material.retail_sale_price }}</td>
-                        <td>$venta{{ material.retail_purchase_price }}</td>
-                        <td>${{ material.wholesale_sale_price }}</td>
-                        <td>${{ material.retail_sale_price }}</td>
-                        <td>
-                            <a href=""><img class="lapiz" src="/static/panel_control/img/lapices.png" alt="lapiz"></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <tr>
-                        <td>
-                            <img id="imagen" src="/media/img/materiales/lamina.jpeg" alt="Lamina" width="100" height="100">
-                            Lamina
-                        </td>
-                        <td> 1{{ material.wholesale_purchase_price }}</td>
-                        <td>$compra{{ material.retail_purchase_price }}</td>
-                        <td>${{ material.wholesale_sale_price }}</td>
-                        <td>${{ material.retail_sale_price }}</td>
-                        <td>$venta{{ material.retail_purchase_price }}</td>
-                        <td>${{ material.wholesale_sale_price }}</td>
-                        <td>${{ material.retail_sale_price }}</td>
-                        <td>
-                            <a href=""><img class="lapiz" src="/static/panel_control/img/lapices.png" alt="lapiz"></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <tr>
-                        <td>
-                            <img id="imagen" src="/media/img/materiales/papel.jpeg" alt="Papel" width="100" height="100">
-                            Papel
-                        </td>
-                        <td> 1{{ material.wholesale_purchase_price }}</td>
-                        <td>$compra{{ material.retail_purchase_price }}</td>
-                        <td>${{ material.wholesale_sale_price }}</td>
-                        <td>${{ material.retail_sale_price }}</td>
-                        <td>$venta{{ material.retail_purchase_price }}</td>
-                        <td>${{ material.wholesale_sale_price }}</td>
-                        <td>${{ material.retail_sale_price }}</td>
-                        <td>
-                            <a href=""><img class="lapiz" src="/static/panel_control/img/lapices.png" alt="lapiz"></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <img id="imagen" src="/media/img/materiales/carton.jpg" alt="Carton" width="100" height="100">
-                            Carton
-                        </td>
-                        <td> 1{{ material.wholesale_purchase_price }}</td>
-                        <td>$compra{{ material.retail_purchase_price }}</td>
-                        <td>${{ material.carton.wholesale_sale_price }}</td>
-                        <td>${{ material.retail_sale_price }}</td>
-                        <td>$venta{{ material.retail_purchase_price }}</td>
-                        <td>${{ material.wholesale_sale_price }}</td>
-                        <td>${{ material.retail_sale_price }}</td>
-                        <td>
-                            <a href=""><img class="lapiz" src="/static/panel_control/img/lapices.png" alt="lapiz"></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <tr>
-                        <td>
-                            <img id="imagen" src="/media/img/materiales/cobre_2da.jpg" alt="Cobre 2da" width="100" height="100">
-                            Cobre 2
-                        </td>
-                        <td> 1{{ material.wholesale_purchase_price }}</td>
-                        <td>$compra{{ material.retail_purchase_price }}</td>
-                        <td>${{ material.wholesale_sale_price }}</td>
-                        <td>${{ material.retail_sale_price }}</td>
-                        <td>$venta{{ material.retail_purchase_price }}</td>
-                        <td>${{ material.wholesale_sale_price }}</td>
-                        <td>${{ material.retail_sale_price }}</td>
-                        <td>
-                            <a href=""><img class="lapiz" src="/static/panel_control/img/lapices.png" alt="lapiz"></a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
-    </div>
-{% endblock %}
+{% extends "base2.html" %}
 
+{% block title %}
+    {{title}}    
+{% endblock title %}
+
+
+{% block section %}
+<h1>{{section}}</h1>
+{% endblock section %}
+
+
+{% block subsection %}
+    <h2>{{subsection}}</h2>
+{% endblock subsection %}
+
+{% block content_box %}
+
+
+</div>
+<table>
+    <tr>
+        <th>Material</th>
+        <th>Stock</th>
+        <th>Precio Compra</th>
+        <th>Mayoreo</th>
+        <th>Menudeo</th>
+        <th>Precio venta</th>
+        <th>Mayoreo</th>
+        <th>Menudeo</th>
+        <th>acciones</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>
+            <img id="imagen" src="/media/img/materiales/cobre_1ra.jpeg" alt="cobre" width="100" height="100">
+            
+            Cobre
+        </td>
+        <td> 1{{ material.wholesale_purchase_price }}</td>
+        <td>$compra{{ material.retail_purchase_price }}</td>
+        <td>${{ material.wholesale_sale_price }}</td>
+        <td>${{ material.retail_sale_price }}</td>
+        <td>$venta{{ material.retail_purchase_price }}</td>
+        <td>${{ material.wholesale_sale_price }}</td>
+        <td>${{ material.retail_sale_price }}</td>
+        <td>
+            <a href=""><img class="lapiz" src="/static/panel_control/img/lapices.png" alt="lapiz"></a>
+        </td>
+    </tr>
+</table>
+{% if materials %}
+        <table>
+            <thead>
+                <tr>
+                    <th>material</th>
+                    <th>Tipo de Material</th>
+                    <th>Precio Compra (Mayoreo)</th>
+                    <th>Precio Venta (Mayoreo)</th>
+                    <th>Precio Compra (Menudeo)</th>
+                    <th>Precio Venta (Menudeo)</th>
+                    <th>Imagen</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for material in materials %}
+                    <tr>
+                        <td>
+                            {% if material.image %}
+                                <img src="{{ material.image.url }}" alt="{{ material.Material_Type }}" width="100">
+                            {% else %}
+                                Sin imagen
+                            {% endif %}
+                        </td>
+                        <td>{{ material.Material_Type }}</td>
+                        <td>{{ material.Wholesale_Purchase_Price }}</td>
+                        <td>{{ material.Wholesale_Sale_Price }}</td>
+                        <td>{{ material.Retail_Purchase_Price }}</td>
+                        <td>{{ material.Retail_Sale_Price }}</td>
+                        <td>
+                            
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No hay materiales registrados.</p>
+    {% endif %}
+
+
+{% endblock content_box %}

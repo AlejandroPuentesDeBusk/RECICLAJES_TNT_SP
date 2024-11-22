@@ -1,79 +1,85 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Menu{% endblock %}</title>
-
-    {%load static%}
-
-    <link rel="stylesheet" href="{%static 'mainapp/css/base2.css'%}">
+    
+    <title>
+        {% block title %}
+        Panel de Control | Cortes
+        {% endblock title %}
+    </title>
+    
+    <link rel="stylesheet" href="{% static "panel_control/css/blocks.css" %}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
-
-    {% block head %}{% endblock %}
-
+    <link rel="stylesheet" href="{% static 'panel_control/css/personal.css' %}">
 </head>
-<body class="{% block body %}{% endblock %}">
-
-<!--__________________________PLANTILLA PRINCIPAL__________________________________________________-->
-    <div class="container">
-
-<!--________bloque aqrriba a la izquierda______________-->
-        <div id="cont_t_1">
-
-            {% block content_top_1 %}
-            {% endblock %}
-
+<body>
+    <div class="sidebar">
+        <div class="logo">
+            <img src="{% static "panel_control/img/tnt_logo.jpg" %}">
         </div>
 
-<!--________bloque aqrriba al centro______________-->
-        <div id="cont_t_2">
-            {% block content_top_2 %}
-            {% endblock %}
+        <nav>
+            <div class="nav-item">
+                <div class="icon-home"></div>
+                <a href="{% url "dashboard" %}">Dashboard</a>
+            </div>
+            <div class="nav-item">
+                <div class="icon-banknote"></div>
+                <a href="{% url "compra_1" %}">Compra - venta</a>
+            </div>
+            <div class="nav-item">
+                <div class="icon-credit-card"></div>
+                <a href="{% url "ajustes_1" %}">Ajuste de caja</a>
+            </div>
+            <div class="nav-item" >
+                <div class="icon-cog"></div>
+                <a href="{% url "panel_control" %}" class="active">Panel de Control</a>
+            </div>
+        </nav>
 
+        <div class="help">
+            <p>¿Necesitas ayuda?<br>Revisa la documentación</p>
+            <button>DOCUMENTACIÓN</button>
+        </div>
+    </div>
+    <div class="main-content">
+        <div id="cabecera">
+            <header>
+                {% block section %}
+                <h1>Panel de Control</h1>
+                {% endblock section %}
+                <div class="search">
+                    <input type="text" placeholder="Buscar...">
+                    <span>10/20/2024 12:26 PM</span>
+                    <a href="#"><div class="icon-user"></div></a>
+                </div>
+            </header>
+            <div class="tabs">
+                <button><a href="{% url "materiales" %}">Materiales</a></button>
+                <button><a href="{% url "transacciones" %}">Transacciones</a></button>
+                <button><a href="{% url "personal" %}">Personal</a></button>
+                <button><a href="{% url "cortes" %}">Cortes</a></button></div>
+            <h2>
+                {% block subsection %}
+                    aa
+                {% endblock subsection %}
+            </h2>
+            
         </div>
         
-<!--________bloque aqrriba a la derecha_____________-->
-        <div id="cont_t_3">
-
-            {% block content_top_3 %}
-            {% endblock %}
-
+        <div>
+            {% block content_box %}
+            <!-- Este es el bloque que `materiales.html` debería extender -->
+            {% endblock content_box %}
         </div>
-
-<!--______________________________________MENU_______________________________________________-->
-        <div id="cont_1">
-
-            <h2 id="title">TNT Recyclajes</h2>
-            <hr>
-
-            <ul>
-                <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
-                <li><a href="{% url 'compra_1' %}">Compra Venta</a></li>
-                <li><a href="{% url 'ajustes_1' %}">Ajustes Caja</a></li>
-                <li><a href="{% url 'panel_control' %}">Panel de Control</a></li>
-            </ul>
-
-        </div>
-        
-
-
-
-<!--______________________________________BLOQUE DEL CENTRO______________________________________________-->
-        <div id="cont_2">
-
-
-        {% block content_1 %}
-
-        <!-- hagan de cuenta que del css grid esta es la columan del medio donde por ejemplo en compras va la tabal con los materiales a elegir-->
-
-        {% endblock %}
-
-
-        </div>
-
-
+        <footer>
+            <p>© 2024, made by bola de huevones</p>
+        </footer>
+    </div>
 </body>
 </html>

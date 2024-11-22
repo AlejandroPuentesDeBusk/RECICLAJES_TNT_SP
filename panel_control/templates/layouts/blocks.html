@@ -4,15 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <title>
         {% block title %}
-            Panel de Control | Cortes
+        Panel de Control | Cortes
         {% endblock title %}
     </title>
+    
     <link rel="stylesheet" href="{% static "panel_control/css/blocks.css" %}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'panel_control/css/personal.css' %}">
 </head>
 <body>
     <div class="sidebar">
@@ -25,18 +28,18 @@
                 <div class="icon-home"></div>
                 <a href="{% url "dashboard" %}">Dashboard</a>
             </div>
-           <div class="nav-item">
+            <div class="nav-item">
                 <div class="icon-banknote"></div>
                 <a href="{% url "compra_1" %}">Compra - venta</a>
-           </div>
-           <div class="nav-item">
+            </div>
+            <div class="nav-item">
                 <div class="icon-credit-card"></div>
                 <a href="{% url "ajustes_1" %}">Ajuste de caja</a>
-           </div>
-           <div class="nav-item" >
+            </div>
+            <div class="nav-item" >
                 <div class="icon-cog"></div>
                 <a href="{% url "panel_control" %}" class="active">Panel de Control</a>
-           </div>
+            </div>
         </nav>
 
         <div class="help">
@@ -47,11 +50,9 @@
     <div class="main-content">
         <div id="cabecera">
             <header>
-                <h1>
-                    {% block section %}
-                    Panel de Control
-                    {% endblock section %}
-                </h1>
+                {% block section %}
+                <h1>Panel de Control</h1>
+                {% endblock section %}
                 <div class="search">
                     <input type="text" placeholder="Buscar...">
                     <span>10/20/2024 12:26 PM</span>
@@ -61,9 +62,8 @@
             <div class="tabs">
                 <button><a href="{% url "materiales" %}">Materiales</a></button>
                 <button><a href="{% url "transacciones" %}">Transacciones</a></button>
-                <button><a href="{% url "personal" %}"></a>Personal</button>
-                <button class="active"><a href="{% url "cortes" %}"></a>Cortes</button>
-            </div>
+                <button><a href="{% url "personal" %}">Personal</a></button>
+                <button><a href="{% url "cortes" %}">Cortes</a></button></div>
             <h2>
                 {% block subsection %}
                     Historial de Cortes

@@ -1,4 +1,4 @@
-{% extends "layouts/blocks.html" %}
+{% extends "base2.html" %}
 
 {% block title %}
     {{title}}    
@@ -14,11 +14,83 @@
     <h2>{{subsection}}</h2>
 {% endblock subsection %}
 
-
 {% block content_box %}
 
-{% endblock content_box %}
 
+</div>
+<table>
+    <tr>
+        <th>Material</th>
+        <th>Stock</th>
+        <th>Precio Compra</th>
+        <th>Mayoreo</th>
+        <th>Menudeo</th>
+        <th>Precio venta</th>
+        <th>Mayoreo</th>
+        <th>Menudeo</th>
+        <th>acciones</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>
+            <img id="imagen" src="/media/img/materiales/cobre_1ra.jpeg" alt="cobre" width="100" height="100">
+            
+            Cobre
+        </td>
+        <td> 1{{ material.wholesale_purchase_price }}</td>
+        <td>$compra{{ material.retail_purchase_price }}</td>
+        <td>${{ material.wholesale_sale_price }}</td>
+        <td>${{ material.retail_sale_price }}</td>
+        <td>$venta{{ material.retail_purchase_price }}</td>
+        <td>${{ material.wholesale_sale_price }}</td>
+        <td>${{ material.retail_sale_price }}</td>
+        <td>
+            <a href=""><img class="lapiz" src="/static/panel_control/img/lapices.png" alt="lapiz"></a>
+        </td>
+    </tr>
+</table>
+{% if materials %}
+        <table>
+            <thead>
+                <tr>
+                    <th>material</th>
+                    <th>Tipo de Material</th>
+                    <th>Precio Compra (Mayoreo)</th>
+                    <th>Precio Venta (Mayoreo)</th>
+                    <th>Precio Compra (Menudeo)</th>
+                    <th>Precio Venta (Menudeo)</th>
+                    <th>Imagen</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for material in materials %}
+                    <tr>
+                        <td>
+                            {% if material.image %}
+                                <img src="{{ material.image.url }}" alt="{{ material.Material_Type }}" width="100">
+                            {% else %}
+                                Sin imagen
+                            {% endif %}
+                        </td>
+                        <td>{{ material.Material_Type }}</td>
+                        <td>{{ material.Wholesale_Purchase_Price }}</td>
+                        <td>{{ material.Wholesale_Sale_Price }}</td>
+                        <td>{{ material.Retail_Purchase_Price }}</td>
+                        <td>{{ material.Retail_Sale_Price }}</td>
+                        <td>
+                            
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No hay materiales registrados.</p>
+    {% endif %}
+
+
+{% endblock content_box %}
 
 
 {% comment %} <!--ESTO ES PARA CARGAR LA PLANTILLA-->

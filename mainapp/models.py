@@ -13,6 +13,8 @@ class Material(models.Model):
     #image field checa que si sea un png o jpg y el upload es para que l imagen se valla ahi y no se guarde en bd
     image = models.ImageField(upload_to='img/materiales/', blank=True, null=True)
 
+    class Meta:
+        db_table= 'mainapp_material'
 
     @property 
     def Stock(self):

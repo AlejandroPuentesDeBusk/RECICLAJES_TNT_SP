@@ -1,10 +1,17 @@
 from django.shortcuts import render
-from mainapp.models import Transaction,Transaction_Details
+from mainapp import views
+from django.contrib.auth import get_user_model
+from mainapp.models import Material
+
+
+Users = get_user_model()
+
 # Create your views here.
 #esa es para importar la info de models de la base de datos 
-#solo debe haber una
+
 def panel_control(request):
-    return render(request, 'panel.html')
+    materials = Material.objects.all()
+    return render(request, 'panel.html',{'materials': materials})
 
 def personal(request):
     return render(request, 'personal.html', {
@@ -21,10 +28,12 @@ def transacciones(request):
     })
 
 def materiales(request):
+    materials = Material.objects.all()
     return render (request, 'materiales.html', {
         'title': 'Panel de Control | Materiales',
         'section': 'Panel de Control',
-        'subsection': 'Ajustes de Materiales'
+        'subsection': 'Ajustes de Materiales',
+        'materials': materials
     })
 
 def cortes(request):
