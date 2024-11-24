@@ -11,7 +11,7 @@ from django.contrib.auth import authenticate, login, logout
 #Para el update de las tablas
 from django.views.generic.edit import UpdateView
 from django.urls import reverse_lazy
-from .models import Material
+from .models import Material, Users
 
 Users = get_user_model()
 
@@ -61,9 +61,14 @@ def logout_view(request):
 class UpdateMaterial(UpdateView):
     model = Material
     fields = ['Material_Type', 'Wholesale_Purchase_Price', 'Wholesale_Sale_Price', 'Retail_Purchase_Price', 'Retail_Sale_Price', 'image' ]
-    template_name = 'update_material.html'
+    template_name = 'update/update_material.html'
     success_url = reverse_lazy('materiales')
 
+class UpdateUsers(UpdateView):
+    model = Users
+    fields = ['username', 'email', 'Name', 'Paternal_Surname', 'Maternal_Surname', 'Phone']
+    template_name = 'update/update_user.html'
+    success_url = reverse_lazy('personal')
 
 #def menu_cv(request):
  #   today_t = Transaction.objects.filter(Date__date= timezone.now().date())

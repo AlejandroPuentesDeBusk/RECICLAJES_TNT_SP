@@ -24,7 +24,10 @@ urlpatterns = [
 
     path('login/', views.login_view, name = 'login'),
     path('logout/', views.logout_view, name='logout'),
+
+    #URLs para los update
     path('material/<int:pk>/editar/', views.UpdateMaterial.as_view(), name='editar_material'),
+    path('personal/<int:pk>/editar/', views.UpdateUsers.as_view(), name='editar_personal'),
 ]
 
 handler404 = 'mainapp.views.error404'
