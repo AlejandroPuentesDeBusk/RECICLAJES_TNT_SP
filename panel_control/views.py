@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
 from mainapp import views
 from django.contrib.auth import get_user_model
-from mainapp.models import Material
+from mainapp.models import Material, Transaction, Day_Report
 from django.core.paginator import Paginator
+from django.db.models import Q
 
 Users = get_user_model()
 
@@ -22,10 +23,39 @@ def personal(request):
     })
 
 def transacciones(request):
+    search_query = request.GET.get('search', '').lower()  # Obtener lo que se ingreso en el elemento con el name "search", en minuscula para hacer el mapeo
+    # transactions = Transaction.objects.all()
+
+    transaction_type_mapping = {
+        'venta': 'SALE',
+        'compra': 'PURCHASE',
+        'inversión': 'INVESTMENT',
+        'gasto': 'EXPENSE'
+    }
+
+    # verifica las coincidencias de la busqueda y el mapeo
+    transaction_type = transaction_type_mapping.get(search_query)
+
+    #  para poner diferentes condiciones de filtro con Q
+    if transaction_type:
+        transactions = Transaction.objects.filter(
+            Q(Transaction_Type=transaction_type)
+        )
+    else:
+        # En caso de que no se encuentre un mapeo, buscar en otros campos
+        transactions = Transaction.objects.filter(
+            Q(Description__icontains=search_query) | 
+            Q(Total__icontains=search_query)  
+        )
+
+    if not search_query:
+        transactions = Transaction.objects.all()
+    
     return render(request, 'transacciones.html', {
         'title': 'Panel de Control | Transacciones',
         'section': 'Panel de Control',
         'subsection': 'Ajustes de Transacciones',
+        'transactions': transactions,
     })
 
 def materiales(request):
@@ -38,10 +68,21 @@ def materiales(request):
     })
 
 def cortes(request):
+    search_query = request.GET.get('search', '')  # Obtener lo que se busca
+    
+    if search_query:
+        reports = Day_Report.objects.filter(
+            Day__icontains=search_query  # O cualquier otro filtro relevante
+        )
+    else:
+        reports = Day_Report.objects.all()
+    reports = Day_Report.objects.all()
     return render (request, 'cortes.html', {
         'title': 'Panel de Control | Cortes',
         'section': 'Panel de Control',
-        'subsection': 'Historial de Cortes'
+        'subsection': 'Historial de Cortes',
+        'reports': reports,
+        'search_query': search_query,
     })
 
 def error404(request,exception):

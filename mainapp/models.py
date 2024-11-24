@@ -47,6 +47,8 @@ class Transaction (models.Model):
     TRANSACTION_TYPES = (
         ('SALE', 'Venta'),
         ('PURCHASE', 'Compra'),
+        ('INVESTMENT', 'Inversión'),
+        ('EXPENSE', 'Gasto')
     )
 
     User = models.ForeignKey(Users, on_delete=models.SET_NULL, null=True)
