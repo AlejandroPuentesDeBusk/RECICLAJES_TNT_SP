@@ -8,6 +8,11 @@ from .forms import loginn
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 
+#Para el update de las tablas
+from django.views.generic.edit import UpdateView
+from django.urls import reverse_lazy
+from .models import Material
+
 Users = get_user_model()
 
 
@@ -52,6 +57,13 @@ def logout_view(request):
     messages.success(request, "Sesión cerrada")
     return redirect('login')
 #___________YA LO MOVI A APPCOMPRA___________________CRUD MENU CV_____________________________________________________
+
+class UpdateMaterial(UpdateView):
+    model = Material
+    fields = ['Material_Type', 'Wholesale_Purchase_Price', 'Wholesale_Sale_Price', 'Retail_Purchase_Price', 'Retail_Sale_Price', 'image' ]
+    template_name = 'update_material.html'
+    success_url = reverse_lazy('materiales')
+
 
 #def menu_cv(request):
  #   today_t = Transaction.objects.filter(Date__date= timezone.now().date())

@@ -58,7 +58,9 @@
                         <td>${{ material.Retail_Purchase_Price }}</td>
                         <td>${{ material.Retail_Sale_Price }}</td>
                         <td>
-                            <a href=""><img class="lapiz" src="/static/panel_control/img/lapices.png" alt="lapiz"></a>
+                            <a href="{% url "editar_material" material.pk %}">
+                                <img class="lapiz" src="/static/panel_control/img/lapices.png" alt="lapiz">
+                            </a>
                         </td>
                     </tr>
                 {% empty %}

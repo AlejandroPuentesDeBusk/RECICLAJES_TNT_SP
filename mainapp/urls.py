@@ -23,7 +23,8 @@ urlpatterns = [
 #    path('panel_control_transacciones', views.panel_control_transacciones, name='transacciones'),
 
     path('login/', views.login_view, name = 'login'),
-    path('logout/', views.logout_view, name='logout')
+    path('logout/', views.logout_view, name='logout'),
+    path('material/<int:pk>/editar/', views.UpdateMaterial.as_view(), name='editar_material'),
 ]
 
 handler404 = 'mainapp.views.error404'
