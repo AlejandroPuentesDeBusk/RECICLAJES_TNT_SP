@@ -14,13 +14,17 @@
     <h2>{{subsection}}</h2>
 {% endblock subsection %}
 
+{% block botones %}
+
+{% endblock botones %}
+
 
 {% block content_box %}
 {% csrf_token %}
 <form method="GET" action="">
     <div class="search">
         <input type="text" name="search" placeholder="Buscar..." value="{{ search_query }}">
-        <a href="#"><div class="icon-user">buscador</div></a>
+        <button type="submit">Buscar</button>
     </div>
 </form>
 <div class="transactions-container">

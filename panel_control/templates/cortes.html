@@ -29,10 +29,10 @@
                 <tr>
                     <th>N.</th>
                     <th>Fecha de Inicio</th>
-                    <th>Dinero Inicial</th>
-                    <th>Gastos</th>
-                    <th>Obtenido</th>
-                    <th>Dinero Final</th>
+                    <th>Saldo Inicial</th>
+                    <th>Ingresos</th>
+                    <th>Egresos</th>
+                    <th>Saldo Final</th>
                 </tr>
             </thead>
             <tbody>
@@ -41,8 +41,8 @@
                         <td>{{ forloop.counter }}</td>
                         <td>{{ report.Day|date:"d/m/Y" }}</td>
                         <td>${{ report.Initial_Money }}</td>
-                        <td>${{ report.Spent }}</td>
                         <td>${{ report.Obtained }}</td>
+                        <td>${{ report.Spent }}</td>
                         <td>${{ report.Final_Money }}</td>
                     </tr>
                 {% empty %}

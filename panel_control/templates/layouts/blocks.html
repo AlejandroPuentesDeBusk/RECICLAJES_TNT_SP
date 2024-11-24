@@ -24,17 +24,17 @@
         </div>
 
         <nav>
-            <div class="nav-item">
+            <div class="nav-item" {% if active_item == 'panelcontrol' %}active{% endif %}>
                 <a href="{% url "dashboard" %}">Dashboard</a>
             </div>
-            <div class="nav-item">
+            <div class="nav-item" {% if active_item == 'panelcontrol' %}active{% endif %}>
                 <div class="icon-banknote"></div>
                 <a href="{% url "cv" %}">Compra - venta</a>
             </div>
-            <div class="nav-item">
+            <div class="nav-item" {% if active_item == 'panelcontrol' %}active{% endif %}>
                 <a href="{% url "ajustes_1" %}">Ajuste de caja</a>
             </div>
-            <div class="nav-item" >
+            <div class="nav-item" {% if active_item == 'panelcontrol' %}active{% endif %}>
                 <a href="{% url "panel_control" %}" class="active">Panel de Control</a>
             </div>
         </nav>
@@ -55,18 +55,20 @@
                 {% endblock buscador %}
             </header>
             <div class="tabs">
-                <button><a href="{% url "materiales" %}">Materiales</a></button>
-                <button><a href="{% url "transacciones" %}">Transacciones</a></button>
-                <button><a href="{% url "personal" %}">Personal</a></button>
-                <button><a href="{% url "cortes" %}">Cortes</a></button></div>
+                <button class="tab {% if active_tab == 'materials' %}active{% endif %}"><a href="{% url "materiales" %}">Materiales</a></button>
+                <button class="tab {% if active_tab == 'transactions' %}active{% endif %}"><a href="{% url "transacciones" %}">Transacciones</a></button>
+                <button class="tab {% if active_tab == 'personnel' %}active{% endif %}"><a href="{% url "personal" %}">Personal</a></button>
+                <button class="tab {% if active_tab == 'reports' %}active{% endif %}"><a href="{% url "cortes" %}">Cortes</a></button></div>
             <h2>
                 {% block subsection %}
                     Historial de Cortes
                 {% endblock subsection %}
             </h2>
             <div id="botones">
-                <button class="btns" id="filter-btn">Filter</button>
-                <button class="btns" id="add-btn">Añadir</button>
+                {% block botones %}
+                    <button class="btns" id="filter-btn">Filter</button>
+                    <button class="btns" id="add-btn">Añadir</button>
+                {% endblock botones %}
             </div>
         </div>
         
