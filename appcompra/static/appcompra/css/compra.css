@@ -1,8 +1,8 @@
 
 
-.compra .container{
+.container{
     display: grid;
-    grid-template-columns: 13rem 30% 50%;
+    grid-template-columns: 45% 50%;
     grid-gap: 1rem;
     min-width: 100%;
 }
@@ -133,6 +133,8 @@ hr{
 #material_compar h3{
     padding-left: 1rem;
     margin-left: 1rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
 }
 
 h2{
@@ -240,6 +242,7 @@ h3{
 }
 
 .descuento, .extra{
+    margin-top: 1rem;
     display: flex;
     align-items: center;
 }
@@ -250,10 +253,12 @@ h3{
     display: grid;
     grid-template-columns: 33% 33% 33%;
     place-items: center;
+    margin-top: 2rem;
 }
 
 
 #final_texto textarea{
+
     width: 15vw;
     height: 5vw;
     border-radius: .5rem;
