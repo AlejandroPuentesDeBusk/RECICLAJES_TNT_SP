@@ -60,3 +60,21 @@ class Transaction_Details(models.Model):
     Price =  models.DecimalField(max_digits=10, decimal_places=2)
     Subtotal = models.DecimalField(max_digits=10, decimal_places=2)
     Quantity = models.DecimalField(max_digits= 10, decimal_places= 2)
+
+class Day_Report(models.Model):
+    Report_ID = models.AutoField(primary_key=True)
+    Day = models.DateField(auto_now_add= True)
+    Initial_Money = models.DecimalField(max_digits= 10, decimal_places=2)
+    Spent = models.DecimalField(max_digits=10, decimal_places=2)
+    Obtained = models.DecimalField(max_digits=10, decimal_places=2)
+    Final_Money = models.DecimalField(max_digits=10, decimal_places=2)
+    Details = models.ManyToManyField(Material, through='Report_Details', related_name='reports')
+
+class Report_Details(models.Model):
+    Detail_ID = models.AutoField(primary_key=True)
+    Report_ID = models.ForeignKey(Day_Report, on_delete=models.SET_NULL, null=True)
+    Material_ID = models.ForeignKey(Material, on_delete=models.SET_NULL, null=True)
+    Initial_Stock = models.DecimalField(max_digits=10, decimal_places=2)
+    Final_Stock = models.DecimalField(max_digits=10, decimal_places=2)
+    Sales_Generated = models.DecimalField(max_digits=10, decimal_places=2)
+    Purchases_Spent = models.DecimalField(max_digits=10, decimal_places=2)
