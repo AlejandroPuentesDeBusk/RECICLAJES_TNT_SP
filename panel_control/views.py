@@ -100,6 +100,7 @@ def materiales(request):
     page_number = request.GET.get('page')  # Obtener el número de página desde la URL es un dolor de huevos
     page_obj = paginator.get_page(page_number)  # Obtener la página solicitada que jode
     search_query = request.GET.get('search','')
+    
     # Filtrar los materiales según el término de búsqueda
     if search_query:
         materials_list = Material.objects.filter(Material_Type__icontains=search_query)
@@ -115,3 +116,4 @@ def materiales(request):
         'page_obj': page_obj,
         'search_query': search_query
         })
+
