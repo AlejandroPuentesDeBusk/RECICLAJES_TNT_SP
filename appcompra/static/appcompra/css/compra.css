@@ -2,7 +2,8 @@
 
 .container{
     display: grid;
-    grid-template-columns: 45% 50%;
+    grid-template-columns: 45% 45%;
+    grid-template-rows: auto 1fr auto;
     grid-gap: 1rem;
     min-width: 100%;
 }
@@ -11,19 +12,23 @@
     margin-top: 1rem;
     padding-top: 1.5rem;
     background-color: #F8F9FA;
-    display: flex;
+   
 }
 
 #dinero_caja{
     background-color: #F8F9FA;
+    margin-right: 10%;
+
 }
 
 #dinero_caja_fondo{
+    
     background-color: white;
-    width: 16rem;
+    width: 10rem;
     height: 4rem;
     text-align: center;
-    margin-left: 60%;
+    box-shadow: 3px 3px 3px #888888;
+    border-radius: .5rem;
 }
 
 #dinero_caja_fondo h3{
@@ -35,7 +40,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    position: sticky;
+    height: 60vh;
 
+
+}
+
+#c_second{
+    overflow-y: auto;
 }
 
 #lista_material_comprar hr {
@@ -150,7 +162,7 @@ h3{
 
 .top_calculadora{
     display: grid;
-    grid-template-columns: 30% 15% 40%;
+    grid-template-columns: 35% 20% 40%;
     place-items: center;
     padding-top: 0rem;
 }
@@ -251,7 +263,7 @@ h3{
 
 .final{
     display: grid;
-    grid-template-columns: 33% 33% 33%;
+    grid-template-columns: 33% 45% 23%;
     place-items: center;
     margin-top: 2rem;
 }
@@ -300,3 +312,7 @@ h3{
 
 /*________LISTA_______________*/
 
+.pagination{
+    height: 3rem;
+ 
+}

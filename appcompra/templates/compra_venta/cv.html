@@ -93,7 +93,7 @@
         
                 <!-- ME VOY A METER A BAÑAR-->
         
-                {% for material in materials %}
+                {% for material in show_page %}
                 <tr>
                     <td id="nombre">{{ material.Material_Type }}</td>
                     <td>
@@ -123,6 +123,35 @@
                 </tr>
                 {% endfor %}
             </table>
+
+
+
+<!--______________para cambiar de pagina____________________________-->
+            <div class="pagination">
+                <span class="step-links">
+                    {% if show_page.has_previous %}
+                        <a href="?page=1">&laquo; first</a>
+                        <a href="?page={{ show_page.previous_page_number }}">previous</a>
+                    {% endif %}
+            
+                    <span class="current">
+                        Page {{ show_page.number }} of {{ show_page.paginator.num_pages }}.
+                    </span>
+            
+                    {% if show_page.has_next %}
+                        <a href="?page={{ show_page.next_page_number }}">next</a>
+                        <a href="?page={{ show_page.paginator.num_pages }}">last &raquo;</a>
+                    {% endif %}
+                </span>
+            </div>
+
+
+
+
+
+
+
+
         
         </div>
 
