@@ -8,78 +8,101 @@ document.addEventListener('DOMContentLoaded', function () {
     const extra_charge_int = document.getElementById('extra_charge');
     const realizar_compra_btn = document.getElementById('realizar_compra');
 
-    const selectedMaterialsKey = 'selectedMaterials'; // Clave global para almacenar la selección en localStorage
+    let tipoOperacionSeleccionado = false; // Banderas para verificar interacción
+    let tipoCargoSeleccionado = false;
 
-    // Cargar las selecciones guardadas de localStorage
+    const selectedMaterialsKey = 'selectedMaterials'; // Clave global para almacenar la selección en localStorage
     let savedSelections = JSON.parse(localStorage.getItem(selectedMaterialsKey)) || [];
+
+    // Validar si los selects han sido configurados manualmente
+    function areSelectionsValid() {
+        return tipoOperacionSeleccionado && tipoCargoSeleccionado;
+    }
+
+    // Mostrar un mensaje de error si no se han seleccionado los valores
+    function showSelectionError() {
+        alert("Por favor, selecciona el tipo de operación y el tipo de cargo antes de agregar materiales.");
+    }
+
+    // Manejar cambios en los selects
+    tipoOperacionSelect.addEventListener('change', function () {
+        tipoOperacionSeleccionado = true; // Marca que el usuario ha interactuado
+    });
+
+    tipoCargoSelect.addEventListener('change', function () {
+        tipoCargoSeleccionado = true; // Marca que el usuario ha interactuado
+    });
+
+    // Manejar eventos de selección de los checkboxes
+    checkboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', () => {
+            if (!areSelectionsValid()) {
+                showSelectionError();
+                checkbox.checked = false; // Desmarcar el checkbox si no está permitido
+                return;
+            }
+
+            const materialId = checkbox.getAttribute('data-material');
+            const materialName = checkbox.getAttribute('data-material-name');
+            const price = obtenerPrecio(checkbox);
+            const image = checkbox.getAttribute('data-image');
+
+            if (checkbox.checked) {
+                const materialData = { materialId, materialName, price, image, cantidad: 0 };
+                guardarSeleccion(materialData);
+                actualizarMaterialEnCalculadora(materialData);
+            } else {
+                const listItem = lista_Material.querySelector(`li[data-material="${materialId}"]`);
+                if (listItem) {
+                    lista_Material.removeChild(listItem);
+                }
+                guardarSeleccion({ materialId, cantidad: 0 });
+            }
+
+            actualizar_total();
+        });
+    });
+
+    function obtenerPrecio(checkbox) {
+        const operacion = tipoOperacionSelect.value;
+        const tipoCargo = tipoCargoSelect.value;
+        return operacion === 'compra'
+            ? parseFloat(checkbox.getAttribute(`data-${tipoCargo}`))
+            : parseFloat(checkbox.getAttribute(`data-${tipoCargo.replace('Purchase', 'Sale')}`));
+    }
 
     // Restaurar selección desde localStorage
     function restoreSelections() {
-        console.log('Restaurando selecciones:', savedSelections);
-
-        // Limpiar la lista actual de materiales seleccionados en la calculadora
         lista_Material.innerHTML = '';
 
-        // Iterar sobre las selecciones guardadas
         savedSelections.forEach(savedItem => {
             const materialId = savedItem.materialId;
             const checkbox = document.querySelector(`.cajita[data-material="${materialId}"]`);
             if (checkbox) {
                 checkbox.checked = true;
-            } else {
-                // Si el checkbox no está en la página actual, no podemos marcarlo
-                console.log(`El material ID ${materialId} no está en esta página`);
             }
-            // Agregar o actualizar el material en la calculadora
             actualizarMaterialEnCalculadora(savedItem);
         });
 
         actualizar_total();
     }
 
-    // Guardar el estado actual en localStorage
     function guardarSeleccion(materialData) {
         const index = savedSelections.findIndex(item => item.materialId === materialData.materialId);
 
         if (materialData.cantidad > 0) {
             if (index > -1) {
-                savedSelections[index] = materialData; // Actualizar si ya existe
+                savedSelections[index] = materialData;
             } else {
-                savedSelections.push(materialData); // Agregar nuevo material
+                savedSelections.push(materialData);
             }
         } else if (index > -1) {
-            savedSelections.splice(index, 1); // Eliminar si la cantidad es 0
+            savedSelections.splice(index, 1);
         }
 
-        localStorage.setItem(selectedMaterialsKey, JSON.stringify(savedSelections)); // Guardar en localStorage
+        localStorage.setItem(selectedMaterialsKey, JSON.stringify(savedSelections));
     }
 
-    // Obtener el precio según operación y tipo de cargo
-    function obtenerPrecio(checkbox) {
-        const operacion = tipoOperacionSelect.value; // "compra" o "venta"
-        const tipoCargo = tipoCargoSelect.value; // "Wholesale_Purchase_Price" o "Retail_Purchase_Price"
-        return operacion === 'compra'
-            ? parseFloat(checkbox.getAttribute(`data-${tipoCargo}`))
-            : parseFloat(checkbox.getAttribute(`data-${tipoCargo.replace('Purchase', 'Sale')}`));
-    }
-
-    // Actualizar el total
-    function actualizar_total() {
-        let total_general = 0;
-        lista_Material.querySelectorAll('.precio_total').forEach(span => {
-            total_general += parseFloat(span.textContent) || 0;
-        });
-
-        const discount = parseFloat(discount_int.value) || 0;
-        const extra_charge = parseFloat(extra_charge_int.value) || 0;
-        const total_con_descuento = total_general - discount + extra_charge;
-        total_final.textContent = `${total_con_descuento.toFixed(2)} MXN`;
-
-        // Habilitar o deshabilitar el botón de compra
-        realizar_compra_btn.disabled = total_con_descuento <= 0;
-    }
-
-    // Agregar o actualizar un material en la calculadora
     function actualizarMaterialEnCalculadora(materialData) {
         const { materialId, materialName, price, image, cantidad } = materialData;
 
@@ -103,10 +126,9 @@ document.addEventListener('DOMContentLoaded', function () {
             listItem.querySelector('.precio_total').textContent = (nuevaCantidad * price).toFixed(2);
 
             const updatedMaterialData = { materialId, materialName, price, image, cantidad: nuevaCantidad };
-            guardarSeleccion(updatedMaterialData); // Guardar la cantidad actualizada
+            guardarSeleccion(updatedMaterialData);
 
             if (nuevaCantidad <= 0) {
-                // Si la cantidad es 0 o menos, eliminar de la calculadora y desmarcar el checkbox
                 lista_Material.removeChild(listItem);
                 const checkbox = document.querySelector(`.cajita[data-material="${materialId}"]`);
                 if (checkbox) {
@@ -118,52 +140,21 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Manejar eventos de selección de los checkboxes
-    checkboxes.forEach(checkbox => {
-        checkbox.addEventListener('change', () => {
-            const materialId = checkbox.getAttribute('data-material');
-            const materialName = checkbox.getAttribute('data-material-name');
-            const price = obtenerPrecio(checkbox);
-            const image = checkbox.getAttribute('data-image');
-
-            if (checkbox.checked) {
-                const materialData = { materialId, materialName, price, image, cantidad: 0 };
-                guardarSeleccion(materialData);
-                actualizarMaterialEnCalculadora(materialData);
-            } else {
-                // Eliminar material de la calculadora y de las selecciones
-                const listItem = lista_Material.querySelector(`li[data-material="${materialId}"]`);
-                if (listItem) {
-                    lista_Material.removeChild(listItem);
-                }
-                guardarSeleccion({ materialId, cantidad: 0 });
-            }
-
-            actualizar_total();
+    function actualizar_total() {
+        let total_general = 0;
+        lista_Material.querySelectorAll('.precio_total').forEach(span => {
+            total_general += parseFloat(span.textContent) || 0;
         });
-    });
 
-    // Restaurar selección al cargar la página
-    restoreSelections();
+        const discount = parseFloat(discount_int.value) || 0;
+        const extra_charge = parseFloat(extra_charge_int.value) || 0;
+        const total_con_descuento = total_general - discount + extra_charge;
+        total_final.textContent = `${total_con_descuento.toFixed(2)} MXN`;
 
-    // Actualizar precios al cambiar el tipo de operación o tipo de cargo
-    function actualizarPrecios() {
-        savedSelections.forEach(item => {
-            const checkbox = document.querySelector(`.cajita[data-material="${item.materialId}"]`);
-            const price = obtenerPrecio(checkbox || { getAttribute: () => item.price });
-            item.price = price;
-            actualizarMaterialEnCalculadora(item);
-            guardarSeleccion(item);
-        });
-        actualizar_total();
+        realizar_compra_btn.disabled = total_con_descuento <= 0;
     }
 
-    tipoCargoSelect.addEventListener('change', actualizarPrecios);
-    tipoOperacionSelect.addEventListener('change', actualizarPrecios);
-
-    // Eventos para actualizar el total con descuento y cargos extras
-    discount_int.addEventListener('input', actualizar_total);
-    extra_charge_int.addEventListener('input', actualizar_total);
+    restoreSelections();
 });
 
 

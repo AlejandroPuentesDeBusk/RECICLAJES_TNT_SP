@@ -4,7 +4,7 @@
     display: grid;
     grid-template-columns: 45% 45%;
     grid-template-rows: auto 1fr auto;
-    grid-gap: 1rem;
+    grid-gap: 2%;
     min-width: 100%;
 }
 
@@ -13,6 +13,11 @@
     padding-top: 1.5rem;
     background-color: #F8F9FA;
    
+}
+
+#titulo_c{
+    background-color: white;
+
 }
 
 #dinero_caja{
@@ -37,21 +42,25 @@
 
 
 #c_main{
-    display: flex;
+    margin: 0 auto;
+    display: block;
+    text-align: center;
     justify-content: center;
     align-items: center;
     position: sticky;
-    height: 60vh;
+    height: 100%;
+    width: 100%;
+    
 
 
 }
 
 #c_second{
-    overflow-y: auto;
+    margin-top: 5rem;
 }
 
 #lista_material_comprar hr {
-    width: 80%; /* Ancho del 80% del contenedor */
+    width: 100%; /* Ancho del 80% del contenedor */
     margin: 0 auto; /* Centrar horizontalmente */
 
 }
@@ -87,13 +96,25 @@ hr{
     font-weight: bold;
 }
 
+.materiales{
+    text-align: center;
+    width: 100%;
+}
+
+
+#lineas_m{
+    width: 80%;
+}
+
 
 
 
 .materiales td,  .materiales th{
     padding: .5rem;
-    text-align: left;
+    text-align: center;
     font-size: 1vw;
+    vertical-align: middle;
+
 
 
 }
@@ -107,7 +128,7 @@ hr{
 }
 
 .cajitas{
-    float: right;
+    float: center;
 }
 
 .cajita {
@@ -199,6 +220,8 @@ h3{
 #material_comprar h3{
     padding-left: 1rem;
     margin-left: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 }
 
 
@@ -287,12 +310,10 @@ h3{
     padding-top: 1rem;
 }
 
-#final_monto{
-    display: flex;
 
-}
 
 #final_monto h3{
+    display: inline-block;
     padding-right: 1rem;
 }
 
