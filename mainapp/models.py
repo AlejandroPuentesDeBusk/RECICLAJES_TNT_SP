@@ -53,7 +53,7 @@ class Transaction (models.Model):
 
     User = models.ForeignKey(Users, on_delete=models.SET_NULL, null=True)
     Total = models.DecimalField(max_digits=10, decimal_places=2)
-    Discount = models.DecimalField(max_digits=10, decimal_places=2)
+    Discount = models.DecimalField(max_digits=10, decimal_places=2,  null=True)
     Date = models.DateTimeField(auto_now=True)
     Status = models.CharField(max_length= 10,choices= STATUS, default='Completada')
     Transaction_Type = models.CharField(max_length=10,choices= TRANSACTION_TYPES)
