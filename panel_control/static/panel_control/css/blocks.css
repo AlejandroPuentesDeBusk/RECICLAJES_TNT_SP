@@ -161,8 +161,12 @@ header h1 {
 
 .tabs button.active {
     background: rgba(163, 177, 138, 0.6);
+}
+
+.tabs button.active a {
     color: #2D3748;
 }
+
 
 .transactions-table {
     /* margin-top: 20px; */

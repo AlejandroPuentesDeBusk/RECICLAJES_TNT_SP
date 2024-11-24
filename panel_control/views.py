@@ -19,7 +19,8 @@ def personal(request):
     return render(request, 'personal.html', {
         'title': 'Panel de Control | Personal',
         'section': 'Panel de Control',
-        'subsection': 'Ajustes de Personal'
+        'subsection': 'Ajustes de Personal',
+        'active_tab': 'personnel'
     })
 
 def transacciones(request):
@@ -56,6 +57,7 @@ def transacciones(request):
         'section': 'Panel de Control',
         'subsection': 'Ajustes de Transacciones',
         'transactions': transactions,
+        'active_tab': 'transactions'
     })
 
 def materiales(request):
@@ -64,7 +66,8 @@ def materiales(request):
         'title': 'Panel de Control | Materiales',
         'section': 'Panel de Control',
         'subsection': 'Ajustes de Materiales',
-        'materials': materials
+        'materials': materials,
+        'active_tab': 'materials'
     })
 
 def cortes(request):
@@ -83,6 +86,7 @@ def cortes(request):
         'subsection': 'Historial de Cortes',
         'reports': reports,
         'search_query': search_query,
+        'active_tab': 'reports'
     })
 
 def error404(request,exception):

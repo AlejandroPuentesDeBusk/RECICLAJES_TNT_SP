@@ -34,7 +34,7 @@
             <div class="nav-item">
                 <a href="{% url "ajustes_1" %}">Ajuste de caja</a>
             </div>
-            <div class="nav-item" >
+            <div class="nav-item">
                 <a href="{% url "panel_control" %}" class="active">Panel de Control</a>
             </div>
         </nav>
@@ -55,10 +55,10 @@
                 {% endblock buscador %}
             </header>
             <div class="tabs">
-                <button><a href="{% url "materiales" %}">Materiales</a></button>
-                <button><a href="{% url "transacciones" %}">Transacciones</a></button>
-                <button><a href="{% url "personal" %}">Personal</a></button>
-                <button><a href="{% url "cortes" %}">Cortes</a></button></div>
+                <button class="tab {% if active_tab == 'materials' %}active{% endif %}"><a href="{% url "materiales" %}">Materiales</a></button>
+                <button class="tab {% if active_tab == 'transactions' %}active{% endif %}"><a href="{% url "transacciones" %}">Transacciones</a></button>
+                <button class="tab {% if active_tab == 'personnel' %}active{% endif %}"><a href="{% url "personal" %}">Personal</a></button>
+                <button class="tab {% if active_tab == 'reports' %}active{% endif %}"><a href="{% url "cortes" %}">Cortes</a></button></div>
             <h2>
                 {% block subsection %}
                     Historial de Cortes
