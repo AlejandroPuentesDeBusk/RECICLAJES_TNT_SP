@@ -28,3 +28,7 @@ def venta_1(request):
     return render(request, 'compra_venta/venta.html')
 
 
+
+def cv(request):
+    materials = Material.objects.all()
+    return render(request, 'compra_venta/cv.html', {'materials': materials})
