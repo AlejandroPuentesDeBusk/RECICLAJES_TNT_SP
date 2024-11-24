@@ -55,7 +55,7 @@
     <div class="main-content">
         <div id="cabecera">
             <header>
-                <div id="titulo"><h1>Compra venta</h1></div>
+                <div id="titulo_c"><h1>Compra venta</h1></div>
                 <div id="dinero_caja">
                     <div id="dinero_caja_fondo">
                         <h3>Dinero en caja</h3>
@@ -102,7 +102,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="3">
+                        <td colspan="3" id="lineas_m">
                             <hr>
                         </td>
                     </tr>
@@ -127,6 +127,7 @@
                     <div id="opcion_calculadora">
                         <div>
                             <select id="tipo_operacion" name="tipo_operacion">
+                                <option value="compra">Operacion</option>
                                 <option value="compra">Compra</option>
                                 <option value="venta">Venta</option>
                             </select>
@@ -134,6 +135,7 @@
 
                         <div>
                             <select id="tipo_cargo" name="tipo_cargo">
+                                <option value="Wholesale_Purchase_Price">Tipo Precio</option>
                                 <option value="Wholesale_Purchase_Price">Precio Mayoreo</option>
                                 <option value="Retail_Purchase_Price">Precio Menudeo</option>
                             </select>
@@ -165,6 +167,7 @@
 
                     <div id="final_monto">
                         <h3>Total Compra</h3>
+                        <br>
                         <h4 id="total_general">0 MXN</h4>
                     </div>
 
