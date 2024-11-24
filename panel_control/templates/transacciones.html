@@ -16,16 +16,20 @@
 
 
 {% block content_box %}
+{% csrf_token %}
+<form method="GET" action="">
+    <div class="search">
+        <input type="text" name="search" placeholder="Buscar..." value="{{ search_query }}">
+        <a href="#"><div class="icon-user">buscador</div></a>
+    </div>
+</form>
 <div class="transactions-container">
-    <h2 class="text-center">Ajustes de Transacciones</h2>
     <div class="table-responsive">
         <table class="table">
             <thead>
                 <tr>
                     <th>N.</th>
                     <th>Tipo</th>
-                    <th>Material</th>
-                    <th>Cantidad</th>
                     <th>Precio</th>
                     <th>Descripción</th>
                     <th>Fecha</th>
@@ -35,13 +39,10 @@
             </thead>
             <tbody>
                 {% for transaction in transactions %}
-                    {% for detail in transaction.details.all %}
                     <tr>
-                        <td>{{ forloop.parentloop.counter }}</td>
+                        <td>{{ forloop.counter }}</td>
                         <td>{{ transaction.get_Transaction_Type_display }}</td>
-                        <td>{{ detail.Material.name }}</td>
-                        <td>{{ detail.Quantity }} kg</td>
-                        <td>${{ detail.Price }}</td>
+                        <td>${{ transaction.Total }}</td>
                         <td>{{ transaction.Description }}</td>
                         <td>{{ transaction.Date|date:"d/m/Y" }}</td>
                         <td>
@@ -53,63 +54,13 @@
                             <button class="edit-btn">Editar</button>
                         </td>
                     </tr>
-                    {% endfor %}
                 {% empty %}
-                <tr>
-                    <td colspan="9" class="text-center">No hay transacciones disponibles.</td>
-                </tr>
+                    <tr>
+                        <td colspan="7" class="text-center">No hay transacciones disponibles.</td>
+                    </tr>
                 {% endfor %}
             </tbody>
         </table>
     </div>
 </div>
 {% endblock content_box %}
-
-
-
-
-
-{% comment %} <!--ESTO ES PARA CARGAR LA PLANTILLA-->
-{% extends 'base.html' %}
-<!--CARGAR LOS ARCHIVOS DE LA CARPETA STATIC DONDE ESTAN LOS CSS ETC..-->
-{% load static %}
-<!--TITULO DE LA VENTANA-->
-{% block title %} Panel  {% endblock %}
-<!--ESTE ES SU HEAD DE HTML PEUDEN METER LO MISMO QUE EN EL NORMAL-->
-{% block head %}
-    <link rel="stylesheet" href="{% static 'panel_control/css/panel.css' %}">
-    <script src="{% static 'main_app/java_script/resto de la ruta' %}"></script>
-{% endblock %}
-<!--AQUI EMPIEZA EL BODY-->
-{% block body %}commpra_venta{% endblock %}
-
-<!--CONTENEDORES ARRIBA-->
-{% block content_top_1 %}
-<div>
-    <img class="logo" src="{% static "panel_control/img/tnt_logo.jpg" %}" alt="Imagen tnt">
-</div>
-{% endblock %}
-{% block content_top_2 %}
-<div>
-    <h2>Panel de control</h2>
-    <div class="pestañas">
-        <button><a href="{% url "panel_control" %}">Materiales</a></button>
-        <button><a href="{% url "transacciones" %}">Transacciones</a></button>
-        <button><a href="{% url "personal" %}">Empleados</a></button>
-        <button><a href="{% url "cortes" %}">Cortes</a></button>
-    </div>
-</div>
-{% endblock %}
-{% block content_top_3 %}
-<div>
-    <h2>Block content top_3</h2>
-</div>
-{% endblock %}
-
-{% block content_1 %}
-        <h2>mermelada</h2>
-{% endblock %}
-
-{% block content_2 %}
-    <h2>Pan con leche</h2>
-{% endblock %} {% endcomment %}
