@@ -13,6 +13,8 @@ class Material(models.Model):
     #image field checa que si sea un png o jpg y el upload es para que l imagen se valla ahi y no se guarde en bd
     image = models.ImageField(upload_to='img/materiales/', blank=True, null=True)
 
+    class Meta:
+        db_table= 'mainapp_material'
 
     @property 
     def Stock(self):
@@ -21,6 +23,9 @@ class Material(models.Model):
         sales = Transaction_Details.objects.filter(Material = self, Transaction__Transaction_Type = 'SALE').aggregate(total_sold = models.Sum('Quantity'))['total_sold'] or 0
         
         return purchases - sales
+    
+    def __str__(self): #Esto es para que los los objetos de este clase tengan esta representación legible
+        return self.Material_Type
 
 class Users(AbstractUser):
     first_name = None #Es para que no se generen estos campos
@@ -42,15 +47,22 @@ class Transaction (models.Model):
     TRANSACTION_TYPES = (
         ('SALE', 'Venta'),
         ('PURCHASE', 'Compra'),
+        ('INVESTMENT', 'Inversión'),
+        ('EXPENSE', 'Gasto')
     )
 
     User = models.ForeignKey(Users, on_delete=models.SET_NULL, null=True)
     Total = models.DecimalField(max_digits=10, decimal_places=2)
+    Discount = models.DecimalField(max_digits=10, decimal_places=2,  null=True)
     Date = models.DateTimeField(auto_now=True)
     Status = models.CharField(max_length= 10,choices= STATUS, default='Completada')
     Transaction_Type = models.CharField(max_length=10,choices= TRANSACTION_TYPES)
     Description = models.CharField(max_length= 100)
     Details = models.ManyToManyField(Material, through='Transaction_Details', related_name='transactions')
+    
+    def __str__(self): #Para que su represenación sea legible para el humano 
+        return f"{self.Transaction_Type} hecha por {self.User.username}"
+
 
 class Transaction_Details(models.Model):
     Material = models.ForeignKey(Material, on_delete= models.SET_NULL , null=True)
@@ -58,3 +70,28 @@ class Transaction_Details(models.Model):
     Price =  models.DecimalField(max_digits=10, decimal_places=2)
     Subtotal = models.DecimalField(max_digits=10, decimal_places=2)
     Quantity = models.DecimalField(max_digits= 10, decimal_places= 2)
+
+    def __str__(self): #Para que su represenación sea legible para el humano 
+        return f"Detalle de {self.Transaction.Transaction_Type} - {self.Transaction.id}"
+
+class Day_Report(models.Model):
+    Day = models.DateField(auto_now_add= True)
+    Initial_Money = models.DecimalField(max_digits= 10, decimal_places=2)
+    Spent = models.DecimalField(max_digits=10, decimal_places=2)
+    Obtained = models.DecimalField(max_digits=10, decimal_places=2)
+    Final_Money = models.DecimalField(max_digits=10, decimal_places=2)
+    Details = models.ManyToManyField(Material, through='Report_Details', related_name='reports')
+
+    def __str__(self): #Para que su represenación sea legible para el humano 
+        return f"Reporte del {self.Day} - {self.id}"
+
+class Report_Details(models.Model):
+    Report_ID = models.ForeignKey(Day_Report, on_delete=models.SET_NULL, null=True)
+    Material_ID = models.ForeignKey(Material, on_delete=models.SET_NULL, null=True)
+    Initial_Stock = models.DecimalField(max_digits=10, decimal_places=2)
+    Final_Stock = models.DecimalField(max_digits=10, decimal_places=2)
+    Sales_Generated = models.DecimalField(max_digits=10, decimal_places=2)
+    Purchases_Spent = models.DecimalField(max_digits=10, decimal_places=2)
+
+    def __str__(self): #Para que su represenación sea legible para el humano 
+        return f"Detalles del reporte del {self.Report_ID.Day} - {self.Report_ID.id}"

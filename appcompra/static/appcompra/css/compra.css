@@ -1,9 +1,10 @@
 
 
-.compra .container{
+.container{
     display: grid;
-    grid-template-columns: 13rem 30% 50%;
-    grid-gap: 1rem;
+    grid-template-columns: 48% 49%;
+    grid-template-rows: auto 1fr auto;
+    grid-gap: 2%;
     min-width: 100%;
 }
 
@@ -11,19 +12,28 @@
     margin-top: 1rem;
     padding-top: 1.5rem;
     background-color: #F8F9FA;
-    display: flex;
+   
+}
+
+#titulo_c{
+    background-color: white;
+
 }
 
 #dinero_caja{
     background-color: #F8F9FA;
+    margin-right: 10%;
+
 }
 
 #dinero_caja_fondo{
+    
     background-color: white;
-    width: 16rem;
+    width: 10rem;
     height: 4rem;
     text-align: center;
-    margin-left: 60%;
+    box-shadow: 3px 3px 3px #888888;
+    border-radius: .5rem;
 }
 
 #dinero_caja_fondo h3{
@@ -32,14 +42,25 @@
 
 
 #c_main{
-    display: flex;
+    margin: 0 auto;
+    display: block;
+    text-align: center;
     justify-content: center;
     align-items: center;
+    position: sticky;
+    height: 100%;
+    width: 100%;
+    
+
 
 }
 
+#c_second{
+    margin-top: 5rem;
+}
+
 #lista_material_comprar hr {
-    width: 80%; /* Ancho del 80% del contenedor */
+    width: 100%; /* Ancho del 80% del contenedor */
     margin: 0 auto; /* Centrar horizontalmente */
 
 }
@@ -75,13 +96,25 @@ hr{
     font-weight: bold;
 }
 
+.materiales{
+    text-align: center;
+    width: 100%;
+}
+
+
+#lineas_m{
+    width: 80%;
+}
+
 
 
 
 .materiales td,  .materiales th{
     padding: .5rem;
-    text-align: left;
+    text-align: center;
     font-size: 1vw;
+    vertical-align: middle;
+
 
 
 }
@@ -95,7 +128,7 @@ hr{
 }
 
 .cajitas{
-    float: right;
+    float: center;
 }
 
 .cajita {
@@ -133,6 +166,8 @@ hr{
 #material_compar h3{
     padding-left: 1rem;
     margin-left: 1rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
 }
 
 h2{
@@ -143,12 +178,12 @@ h2{
 
 h3{
     color: #A0AEC0;
-    font-size: .8rem;
+    font-size: 1rem;
 }
 
 .top_calculadora{
     display: grid;
-    grid-template-columns: 30% 15% 40%;
+    grid-template-columns: 35% 20% 40%;
     place-items: center;
     padding-top: 0rem;
 }
@@ -185,6 +220,8 @@ h3{
 #material_comprar h3{
     padding-left: 1rem;
     margin-left: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 }
 
 
@@ -235,11 +272,13 @@ h3{
     border-radius: .5rem;
     border: none;
     background-color: #D9D9D9;
-    margin-left: 1rem;
+    margin-left: 1vw;
+    text-align: center;
 
 }
 
 .descuento, .extra{
+    margin-top: 1rem;
     display: flex;
     align-items: center;
 }
@@ -248,18 +287,25 @@ h3{
 
 .final{
     display: grid;
-    grid-template-columns: 33% 33% 33%;
+    grid-template-columns: 33% 45% 23%;
     place-items: center;
+    margin-top: 2rem;
 }
 
 
+
+
 #final_texto textarea{
+
     width: 15vw;
     height: 5vw;
+    line-height: 2.5vw;
+    font-family: Arial, Helvetica, sans-serif;
     border-radius: .5rem;
     background-color: #D9D9D9;
     border: none;
     text-align: center;
+    align-items: center;
     margin-left: 1rem;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
 
@@ -270,12 +316,10 @@ h3{
     padding-top: 1rem;
 }
 
-#final_monto{
-    display: flex;
 
-}
 
 #final_monto h3{
+    display: inline-block;
     padding-right: 1rem;
 }
 
@@ -295,3 +339,7 @@ h3{
 
 /*________LISTA_______________*/
 
+.pagination{
+    height: 3rem;
+ 
+}

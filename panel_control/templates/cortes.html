@@ -15,53 +15,47 @@
 {% endblock subsection %}
 
 
-{% block content_box %}{% endblock content_box %}
-
-
-
-{% comment %} PROPUESTA ANTERIOR {% endcomment %}
-{% comment %} <!--ESTO ES PARA CARGAR LA PLANTILLA-->
-{% extends 'base.html' %}
-<!--CARGAR LOS ARCHIVOS DE LA CARPETA STATIC DONDE ESTAN LOS CSS ETC..-->
-{% load static %}
-<!--TITULO DE LA VENTANA-->
-{% block title %} Panel  {% endblock %}
-<!--ESTE ES SU HEAD DE HTML PEUDEN METER LO MISMO QUE EN EL NORMAL-->
-{% block head %}
-    <link rel="stylesheet" href="{% static 'panel_control/css/panel.css' %}">
-    <script src="{% static 'main_app/java_script/resto de la ruta' %}"></script>
-{% endblock %}
-<!--AQUI EMPIEZA EL BODY-->
-{% block body %}commpra_venta{% endblock %}
-
-<!--CONTENEDORES ARRIBA-->
-{% block content_top_1 %}
-<div>
-    <img class="logo" src="{% static "panel_control/img/tnt_logo.jpg" %}" alt="Imagen tnt">
-</div>
-{% endblock %}
-{% block content_top_2 %}
-<div>
-    <h2>Panel de control</h2>
-    <div class="pestañas">
-        <button><a href="{% url "panel_control" %}">Materiales</a></button>
-        <button><a href="{% url "transacciones" %}">Transacciones</a></button>
-        <button><a href="{% url "personal" %}">Empleados</a></button>
-        <button><a href="{% url "cortes" %}">Cortes</a></button>
+{% block content_box %}
+<form method="GET" action="">
+    <div class="search">
+        <input type="text" name="search" placeholder="Buscar..." value="{{ search_query }}">
+        <button type="submit">Buscar</button>
+    </div>
+</form>
+<div class="transactions-container">
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>N.</th>
+                    <th>Fecha de Inicio</th>
+                    <th>Saldo Inicial</th>
+                    <th>Ingresos</th>
+                    <th>Egresos</th>
+                    <th>Saldo Final</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for report in reports %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ report.Day|date:"d/m/Y" }}</td>
+                        <td>${{ report.Initial_Money }}</td>
+                        <td>${{ report.Obtained }}</td>
+                        <td>${{ report.Spent }}</td>
+                        <td>${{ report.Final_Money }}</td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="6" class="text-center">No hay transacciones disponibles.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
 </div>
-{% endblock %}
-{% block content_top_3 %}
-<div>
-    <h2>Block content top_3</h2>
-</div>
-{% endblock %}
-<!--CONTENEDORES ABAJO-->
+{% endblock content_box %}
 
-{% block content_1 %}
-        <h2>mermelada</h2>
-{% endblock %}
 
-{% block content_2 %}
-    <h2>Pan con leche</h2>
-{% endblock %} {% endcomment %}
+
+

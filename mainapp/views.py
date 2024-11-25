@@ -1,8 +1,17 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth import get_user_model
 from.models import Material, Transaction
 from django.utils import timezone
+
+from .forms import loginn
+from django.contrib import messages
+from django.contrib.auth import authenticate, login, logout
+
+#Para el update de las tablas
+from django.views.generic.edit import UpdateView
+from django.urls import reverse_lazy
+from .models import Material, Users
 
 Users = get_user_model()
 
@@ -17,17 +26,49 @@ def is_employee(users):
 def index(request):
     return render(request, 'index.html')
 
-#@login_required
+@login_required
 def pantalla_carga(request):
     return render(request, 'p_carga.html')
 
 def error404(request,exception):
     return render(request, 'mainapp/404.html')
 
+def login_view(request):
+    if request.method == 'POST':
+        form = loginn(request.POST) 
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+                login(request, user)
+                return redirect('pantalla_carga')
+            else:
+                messages.error(request, "Credenciales no válidas")
+        else:
+            messages.error(request, "Formulario no válido")
+    else:
+        form=loginn()
+    return render(request, 'Loginn.html', {'form': form})
 
 
-
+def logout_view(request):
+    logout(request)
+    messages.success(request, "Sesión cerrada")
+    return redirect('login')
 #___________YA LO MOVI A APPCOMPRA___________________CRUD MENU CV_____________________________________________________
+
+class UpdateMaterial(UpdateView):
+    model = Material
+    fields = ['Material_Type', 'Wholesale_Purchase_Price', 'Wholesale_Sale_Price', 'Retail_Purchase_Price', 'Retail_Sale_Price', 'image' ]
+    template_name = 'update/update_material.html'
+    success_url = reverse_lazy('materiales')
+
+class UpdateUsers(UpdateView):
+    model = Users
+    fields = ['username', 'email', 'Name', 'Paternal_Surname', 'Maternal_Surname', 'Phone']
+    template_name = 'update/update_user.html'
+    success_url = reverse_lazy('personal')
 
 #def menu_cv(request):
  #   today_t = Transaction.objects.filter(Date__date= timezone.now().date())

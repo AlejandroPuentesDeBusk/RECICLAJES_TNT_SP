@@ -8,7 +8,8 @@
 */
 a{
     text-decoration: none;
-    color: #849255;
+    color: #7c7c79;
+
 }
 .lapiz{
     margin: 1rem;
@@ -67,35 +68,15 @@ a{
     margin-bottom: 10px;
 }
 
-tbody td {
+tbody td .tablas{
     padding: 10px;
-    border-top: 1px solid #e0e0e0;
+    border-top: 2px solid #1f1a1a;
 }
 
-tbody tr:nth-child(even) {
-    background-color: #fafafa;
+tbody tr.tablas :nth-child(even) {
+    background-color: #3c3c3c;
 }
-/*
-.editar_boton {
-    width: 70px;
-    height: 40px;
-    background-color: #3d5c4e;
-    border: none;
-    border-radius: 15%;
-    cursor: pointer;
-}
-/*
-.edit-button:hover {
-    background-color: #2e4c3e;
-}
-/*
-.imagen{
-    margin-top: 0%;
-    height: 32px;
-}/*
-.logo{
-    padding-left: 1rem;
-    margin: 1rem;
-    height: 120px;
-    border-radius: 15%;
+
+.links{
+    color: aqua;
 }

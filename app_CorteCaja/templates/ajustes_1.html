@@ -7,13 +7,138 @@
 
     {%load static%}
 
-    <link rel="stylesheet" href="{%static 'mainapp/css/ajustes_caja/ajustes.css' %}">
+    {% block head %}
+        <link rel="stylesheet" href="{%static 'ajustes_caja/css/caja.css' %}">
+        <script src="{% static 'ajustes_caja/js/caja.js' %}"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+    {% endblock %}
     
 
 </head>
 <body>
 
-    <h1>AHHHHH</h1>
+    <h1>Ajustes de caja</h1>
+    <div class="sidebar">
+        <div class="logo">
+            <img src="{%static 'ajustes_caja/img/tnt.jpeg' %}" alt="TNT">
+          </div>
+        <nav>
+            <div class="nav-item">
+                <div class="icon-home"></div>
+                <a href="#">Dashboard</a>
+            </div>
+           <div class="nav-item">
+                <div class="icon-banknote"></div>
+                <a href="#">Compra - venta</a>
+           </div>
+           <div class="nav-item">
+                <div class="icon-credit-card"></div>
+                <a href="#">Ajuste de caja</a>
+           </div>
+           <div class="nav-item" >
+                <div class="icon-cog"></div>
+                <a href="#" class="active">Panel de Control</a>
+           </div>
+        </nav>
+
+        <div class="help">
+            <p>¿Necesitas ayuda?<br>Revisa la documentación</p>
+            <button>DOCUMENTACIÓN</button>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <header>
+            <h1>AJUSTES DE CAJA</h1>
+            <div class="search">
+                <input type="text" placeholder="Buscar...">
+                <span>10/20/2024 12:26 PM</span>
+                <a href="#"><div class="icon-user"></div></a>
+            </div>
+        </header>
+
+        <section class="contenido">
+            <div class="left-half">
+    
+                <div class="panel_dinero">
+                    <div class="icono">
+                        <img src="{%static 'ajustes_caja/img/cartera.png' %}" alt="💼">
+                    </div>
+                    <p class="dinero_en_caja">Dinero en caja:</p>
+                    <p class="caja_total">Total:</p>
+                    <p class="caja_cantidad">+ $53,000</p>
+                </div>
+
+                <!-- Salto de linea-->
+                <br>
+
+                <!-- Sección de Añadir Transacciones -->
+                <div class="anadir_transacciones">
+                    <h2>Añadir Transacciones: </h2>
+                    <div class="anadir_botones">
+                        <div  class="boton_añadir">
+                            <h3>Gasto</h3>
+                            <button onclick="mostrarSeleccion('Gasto')">
+                                <img src="{%static 'ajustes_caja/img/suma.png' %}" alt="+">
+                            </button>
+                        </div>
+                        <div  class="boton_añadir">
+                            <h3>Inversion</h3>
+                            <button onclick="mostrarSeleccion('Inversion')">
+                                <img src="{%static 'ajustes_caja/img/suma.png' %}" alt="+">
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <br>
+                                
+                <!-- Historial de Gastos/Inversiones -->
+                <div class="historial">
+                    <h3>Historial de Gastos/Inversiones</h3>
+                    <ul class="lista_historial">
+                        <li>
+                            <div class="elemento_historial">
+                                <img src="flecha_transaccion.png" alt="↑">
+                                <h3>Gasto</h3>
+                                <p class="fecha">27 March 2024, at 12:40 PM</p>
+                                <p class="monto_elemento_historial">-$2500</p>
+                            </div>
+                        </li>
+            
+                    </ul>
+                </div>
+                <div class="detalles_ajustes">
+                </div>
+            </div>
+
+            <div class="right-half">
+                <h2>Detalles de transaccion: </h2>
+                <div class="tipo_transaccion">
+                    <p>Tipo de transaccion</p>
+                    <input type="text" id="transaccion_seleccionada" readonly>
+                </div>  
+                <br>
+                <div class="descripcion_transaccion">
+                    <p>Descripcion</p>
+                    <input type="text" id="descripcion" name="entrada_descripcion" placeholder="Añade una descripcion">
+                </div>
+               
+                <div class="total">
+                    <h2>Total: </h2>
+                        <span>$</span>
+                        <input type="number" placeholder="3400">
+                        <a href="pop_1.html">
+                            <button>Guardar</button>
+                        </a>
+                        
+                </div>
+            
+            </div>
+        </section>
+    </div>
     
 </body>
 </html>

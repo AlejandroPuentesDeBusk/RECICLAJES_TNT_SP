@@ -13,11 +13,16 @@
 </head>
 <body>
 
-    <script src = "{%static 'mainapp/JS/login.js' %}"></script>
+    {% comment %} <script src = "{%static 'mainapp/JS/login.js' %}"></script> {% endcomment %}
 
     <h1>Hola mundo</h1>
+    
+    <script>
+        alert('Esta pagina es desconocida, parece que has perdido, te mandaremos de regreso al inicio ──★ ˙  !!');
+        location.href='{% url "login" %}'
+    </script> 
+    {% comment %} puse esto acá para hacer pruebas {% endcomment %}
 
-    
-    
+
 </body>
 </html>

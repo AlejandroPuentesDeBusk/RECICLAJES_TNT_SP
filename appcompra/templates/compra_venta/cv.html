@@ -1,0 +1,252 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>
+
+        Compra venta
+ 
+    </title>
+    
+    <link rel="stylesheet" href="{% static 'panel_control/css/blocks.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'panel_control/css/personal.css' %}">
+
+
+    <link rel="stylesheet" href="{% static 'appcompra/css/compra.css' %}">
+    <script src="{% static 'appcompra/js/compra.js' %}"></script>
+
+
+
+</head>
+
+<body>
+    <div class="sidebar">
+        <div class="logo">
+            <img src="{% static 'panel_control/img/tnt_logo.jpg' %}">
+        </div>
+
+        <nav>
+            <div class="nav-item">
+                <div class="icon-home"></div>
+                <a href="{% url 'dashboard' %}">Dashboard</a>
+            </div>
+            <div class="nav-item">
+                <div class="icon-banknote"></div>
+                <a href="{% url 'cv' %}">Compra - venta</a>
+            </div>
+            <div class="nav-item">
+                <div class="icon-credit-card"></div>
+                <a href="{% url 'ajustes_1' %}">Ajuste de caja</a>
+            </div>
+            <div class="nav-item" >
+                <div class="icon-cog"></div>
+                <a href="{% url 'panel_control' %}" class="active">Panel de Control</a>
+            </div>
+        </nav>
+
+        <div class="help">
+            <p>¿Necesitas ayuda?<br>Revisa la documentación</p>
+            <button>DOCUMENTACIÓN</button>
+        </div>
+    </div>
+    <div class="main-content">
+        <div id="cabecera">
+            <header>
+
+                <div id="titulo"><h1>Compra venta</h1></div>
+
+
+
+                <div id="dinero_caja">
+                    <div id="dinero_caja_fondo">
+                        <h3>Dinero en caja</h3>
+                        <h4>$53,000</h4>
+                    </div>
+                </div>
+
+            </header>
+
+        
+    </div>
+
+
+    <div>Hola como estas</div>
+
+    <div class="container">
+
+
+
+        <div id="c_main">
+
+            <table class="materiales">
+                <tr>
+                    <th>Material</th>
+                    <th></th>
+                    <th>Seleccionar</th>
+                </tr>
+        
+                <!-- ME VOY A METER A BAÑAR-->
+        
+                {% for material in show_page %}
+                <tr>
+                    <td id="nombre">{{ material.Material_Type }}</td>
+                    <td>
+                        {% if material.image %}
+                        <img class="imagen" src="{{ material.image.url }}" alt="{{ material.Material_Type }}" width="100" height="100">
+                        {% else %}
+                            <p>No hay hahahary</p>
+                        {% endif %}
+                    </td>
+                    <td class="cajitas">
+                        <label class="check">
+                            <input type="checkbox" class="cajita" 
+                            data-material="{{ material.Material_Type }}"
+                            data-wholesale_purchase_price="{{ material.Wholesale_Purchase_Price }}"
+                            data-retail_purchase_price="{{ material.Retail_Purchase_Price }}"
+                            data-wholesale_sale_price="{{ material.Wholesale_Sale_Price }}"
+                            data-retail_sale_price="{{ material.Retail_Sale_Price }}"
+                            data-image="{{ material.image.url }}">
+                            <span class="checkmark"></span>
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3" >
+                        <hr>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+
+
+
+<!--______________para cambiar de pagina____________________________-->
+            <div class="pagination">
+                <span class="step-links">
+                    {% if show_page.has_previous %}
+                        <a href="?page=1">&laquo; first</a>
+                        <a href="?page={{ show_page.previous_page_number }}">previous</a>
+                    {% endif %}
+            
+                    <span class="current">
+                        Page {{ show_page.number }} of {{ show_page.paginator.num_pages }}.
+                    </span>
+            
+                    {% if show_page.has_next %}
+                        <a href="?page={{ show_page.next_page_number }}">next</a>
+                        <a href="?page={{ show_page.paginator.num_pages }}">last &raquo;</a>
+                    {% endif %}
+                </span>
+            </div>
+
+
+
+
+
+
+
+
+        
+        </div>
+
+
+<div>
+
+
+
+        <div class="top_calculadora">
+
+            <div id="text_calcualdora">
+                <h2>Calculadora</h2>
+        
+            </div>
+        
+            <div id="nothing_calculadora">
+        
+            </div>
+        
+            <div id="opcion_calculadora">
+        
+                <div>
+        
+                    <select id="tipo_operacion" name="tipo_operacion">
+        
+                        <option value="compra">Compra</option>
+                        <option value="venta">Venta</option>
+            
+                    </select>
+        
+        
+                </div>
+        
+                <div>
+                    <select id="tipo_cargo" name="tipo_cargo">
+        
+                        <option value="Wholesale_Purchase_Price">Precio Mayoreo</option>
+                        <option value="Retail_Purchase_Price">Precio Menudeo</option>
+            
+                    </select>
+        
+                </div>
+        
+        
+            </div>
+        
+        </div>
+
+        <div id="material_comprar">
+            <h3>Materiales Seleccionados</h3>
+            <ul id="lista_material_comprar"></ul>
+        </div>
+        
+        <div class="extras">
+            <div class="descuento">
+                <h2>Desucento</h2>
+                <input type="number" id="discount" min="0" step="10">
+            </div>
+        
+            <div class="extra">
+                <h2>Cargo Extra</h2>
+                <input type="number" id="extra_charge" min="0" step="10">
+            </div>
+        </div>
+
+
+        <div class="final">
+
+            <div id="final_texto">
+                <textarea placeholder="Añadir descripción de compra"></textarea>
+        
+            </div>
+        
+            <div id="final_monto">
+                <h3>Total Compra</h3>
+                <h4 id="total_general">0 MXN</h4>
+        
+            </div>
+        
+            <div id="final_btn">
+        
+                <button type="button" id="realizar_compra" disabled>Realizar Compra</button>
+        
+            </div>
+        
+        </div>
+
+    </div>
+
+
+
+    </div>
+
+
+
+
+</body>
+</html>

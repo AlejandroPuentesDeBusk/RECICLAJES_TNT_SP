@@ -7,6 +7,6 @@ from django.conf.urls import handler404
 
 urlpatterns = [
 
-    path('ajustes_1', views.ajustes_1, name = 'ajustes_1'),
+    path('ajustes_caja/ajustes_1', views.ajustes_1, name = 'ajustes_1'),
     
     ]
