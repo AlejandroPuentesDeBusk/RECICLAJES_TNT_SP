@@ -1,5 +1,4 @@
-{% extends "base2.html" %}
-
+{% extends "layouts/blocks.html" %}
 
 {% block title %}
     {{title}}    
@@ -10,6 +9,7 @@
 <h1>{{section}}</h1>
 {% endblock section %}
 
+
 {% block buscador %}
 <form method="GET" action="">
     <div class="search">
@@ -17,232 +17,86 @@
         <span>{% now "Y-m-d H:i" %} </span>
     </div>
 </form>
-
 {% endblock buscador %}
+
 
 {% block subsection %}
     <h2>{{subsection}}</h2>
 {% endblock subsection %}
 
 
+{% block botones %}
+    <button class="btns" id="filter-btn">Filter</button>
+    <button class="btns" id="add-btn">Añadir</button>
+{% endblock botones %}
+
+
 {% block content_box %}
-<div class="cuerpo">
-    <table>
-        <thead>
-            <tr>
-                <th>Personal</th>
-                <th>Rol</th>
-                <th>Estado</th>
-                <th>Fecha Contratación</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for empleado in page_obj %}
-                <tr>
-                    <td>{{ forloop.counter }}</td>
-                    <td>{{ empleado.rol }}</td>
-                    <td>{{ empleado.estado }}</td>
-                    <td>{{ empleado.fecha_contratacion }}</td>
-                </tr>
-            {% empty %}
-                <tr>
-                    <td colspan="4">No hay empleados registrados.</td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-
-    <!-- Paginación -->
-    <div>
-        <span>
-            {% if page_obj.has_previous %}
-                <a href="?page=1">&laquo; Primera</a>
-                <a href="?page={{ page_obj.previous_page_number }}">Anterior</a>
-            {% endif %}
-
-            <span>
-                Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
-            </span>
-
-            {% if page_obj.has_next %}
-                <a href="?page={{ page_obj.next_page_number }}">Siguiente</a>
-                <a href="?page={{ page_obj.paginator.num_pages }}">Última &raquo;</a>
-            {% endif %}
-        </span>
+<form method="GET" action="">
+    <div class="search">
+        <input type="text" name="search" placeholder="Buscar..." value="{{ search_query }}">
+        <button type="submit">Buscar</button>
     </div>
-</div>
+</form>
 
-    
-<p>© 2024, made by bola de huevones</p>
-{% endblock content_box %}
-
-
-{% comment %} <!--ESTO ES PARA CARGAR LA PLANTILLA-->
-{% extends 'base2.html' %}
-<!--CARGAR LOS ARCHIVOS DE LA CARPETA STATIC DONDE ESTAN LOS CSS ETC..-->
-{% load static %}
-<!--TITULO DE LA VENTANA-->
-{% block title %} Panel  {% endblock %}
-<!--ESTE ES SU HEAD DE HTML PEUDEN METER LO MISMO QUE EN EL NORMAL-->
-{% block head %}
-    <link rel="stylesheet" href="{% static 'panel_control/css/personal.css' %}">
-    <script src="{% static 'main_app/java_script/resto de la ruta' %}"></script>
-{% endblock %}
-<!--AQUI EMPIEZA EL BODY-->
-{% block body %}commpra_venta{% endblock %}
-
-<!--CONTENEDORES ARRIBA-->
-{% block content_top_1 %}
-<div>
-    <img class="logo" src="{% static "panel_control/img/tnt_logo.jpg" %}" alt="Imagen tnt">
-</div>
-{% endblock %}
-{% block content_top_2 %}
-<div>
-    <h2>Panel de control</h2>
-    <div class="pestañas">
-        <button><a href="{% url "panel_control" %}">Materiales</a></button>
-        <button><a href="{% url "transacciones" %}">Transacciones</a></button>
-        <button><a href="{% url "personal" %}">Empleados</a></button>
-        <button><a href="{% url "cortes" %}">Cortes</a></button>
-    </div>
-</div>
-{% endblock %}
-{% block content_top_3 %}
-<div>
-    <h2>Block content top_3</h2>
-</div>
-{% endblock %}
-<!--CONTENEDORES ABAJO-->
-
-{% block content_1 %}
-<div class="cuerpo">
-    <section class="materiales">
-        <h2>Ajustes de Materiales</h2>
-        <table>
+<div class="transactions-container">
+    <div class="table-responsive">
+        <table class="table">
             <thead>
                 <tr>
-                    <th>Personal</th>
-                    <th>Rol</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Nombre Completo</th>
                     <th>Estado</th>
-                    <th>fecha contratacion</th>
+                    <th>Teléfono</th>
+                    <th>Fecha de Registro</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
-                <tr >
-                    <td class="tabla_personal">
-                        <strong>Juan López</strong><br>juan@lopez.com
-                    </td>
-                    <td class="tabla_personal">
-                        <strong>Encargado</strong><br> Planta
-                    </td>
-                    <td class="tabla_personal"><button class="estado"><span class="estatus activo">Activo</span></button></td>
-                    <td>14/06/24</td>
-                    <td><div class="editar" ><a href="#"><div class="icon-pencil"></div></a></td></div>
-                    <td>
-                        <a href=""><img class="lapiz" src="/static/panel_control/img/lapices.png" alt="lapiz"></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <strong>Juan López</strong><br> juan@lopez.com
-                    </td>
-                    <td>
-                        <strong>Encargado</strong><br> Planta
-                    </td>
-                    <td><button class="estado"><span class="estatus activo">Activo</span></button></td>
-                    <td>14/06/24</td>
-                    <td><div class="editar" ><a href="#"><div class="icon-pencil"></div></a></td></div>
-                    <td>
-                        <a href=""><img class="lapiz" src="/static/panel_control/img/lapices.png" alt="lapiz"></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <strong>Juan López</strong><br>juan@lopez.com
-                    </td>
-                    <td>
-                        <strong>Encargado</strong><br> Planta
-                    </td>
-                    <td><button class="estado"><span class="estatus activo">Activo</span></button></td>
-                    <td>14/06/24</td>
-                    <td><div class="editar" ><a href="#"><div class="icon-pencil"></div></a></td></div>
-                    <td>
-                        <a href=""><img class="lapiz" src="/static/panel_control/img/lapices.png" alt="lapiz"></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <strong>Juan López</strong><br> juan@lopez.com
-                    </td>
-                    <td>
-                        <strong>Encargado</strong><br> Planta
-                    </td>
-                    <td><button class="estado"><span class="estatus activo">Activo</span></button></td>
-                    <td>14/06/24</td>
-                    <td><div class="editar" ><a href="#"><div class="icon-pencil"></div></a></td></div>
-                    <td>
-                        <a href=""><img class="lapiz" src="/static/panel_control/img/lapices.png" alt="lapiz"></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <strong>Juan López</strong><br>juan@lopez.com
-                    </td>
-                    <td>
-                        <strong>Encargado</strong><br> Planta
-                    </td>
-                    <td><button class="estado"><span class="estatus activo">Activo</span></button></td>
-                    <td>14/06/24</td>
-                    <td><div class="editar" ><a href="#"><div class="icon-pencil"></div></a></td></div>
-                    <td>
-                        <a href=""><img class="lapiz" src="/static/panel_control/img/lapices.png" alt="lapiz"></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <strong>Juan López</strong><br> juan@lopez.com
-                    </td>
-                    <td>
-                        <strong>Encargado</strong><br> Planta
-                    </td>
-                    <td><button class="estado"><span class="estatus activo">Activo</span></button></td>
-                    <td>14/06/24</td>
-                    <td><div class="editar" ><a href="#"><div class="icon-pencil"></div></a></td></div>
-                    <td>
-                        <a href=""><img class="lapiz" src="/static/panel_control/img/lapices.png" alt="lapiz"></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <strong>Juan López</strong><br>juan@lopez.com
-                    </td>
-                    <td>
-                        <strong>Encargado</strong><br> Planta
-                    </td>
-                    <td><button class="estado"><span class="estatus activo">Activo</span></button></td>
-                    <td>14/06/24</td>
-                    <td><div class="editar" ><a href="#"><div class="icon-pencil"></div></a></td></div>
-                    <td>
-                        <a href=""><img class="lapiz" src="/static/panel_control/img/lapices.png" alt="lapiz"></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <strong>Juan López</strong><br> juan@lopez.com
-                    </td>
-                    <td>
-                        <strong>Encargado</strong><br> Planta
-                    </td>
-                    <td><button class="estado"><span class="estatus activo">Activo</span></button></td>
-                    <td>14/06/24</td>
-                    <td><div class="editar" ><a href="#"><div class="icon-pencil"></div></a></td></div>
-                    <td>
-                        <a href=""><img class="lapiz" src="/static/panel_control/img/lapices.png" alt="lapiz"></a>
-                    </td>
-                </tr>
+                {% for user in users %}
+                    <tr>
+                        <td>{{ user.username }}</td>
+                        <td>{{ user.email }}</td>
+                        <td>{{ user.Name }} {{ user.Paternal_Surname }} {{ user.Maternal_Surname }}</td>
+                        <td>
+                            <span class="status {% if user.is_active %}online{% else %}offline{% endif %}">
+                                {% if user.is_active %}Activo{% else %}Inactivo{% endif %}
+                            </span>
+                        </td>
+                        <td>{{ user.Phone }}</td>
+                        <td>{{ user.date_joined|date:"d/m/Y" }}</td>
+                        <td>
+                            <button class="edit-btn">Editar</button>
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="6">No hay usuarios disponibles.</td>
+                    </tr>
+                {% endfor %}
             </tbody>
         </table>
-    </section>
-        <p>© 2024, made by bola de huevones</p>
-{% endblock %} {% endcomment %}
+    </div>
+
+    <!-- Paginación -->
+    <div class="pagination">
+        {% if page_obj.has_other_pages %}
+            <ul class="pagination-list">
+                {% if page_obj.has_previous %}
+                    <li><a href="?page=1{% if search_query %}&search={{ search_query }}{% endif %}">&laquo; Primera</a></li>
+                    <li><a href="?page={{ page_obj.previous_page_number }}{% if search_query %}&search={{ search_query }}{% endif %}">Anterior</a></li>
+                {% endif %}
+
+                <li>Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}</li>
+
+                {% if page_obj.has_next %}
+                    <li><a href="?page={{ page_obj.next_page_number }}{% if search_query %}&search={{ search_query }}{% endif %}">Siguiente</a></li>
+                    <li><a href="?page={{ page_obj.paginator.num_pages }}{% if search_query %}&search={{ search_query }}{% endif %}">Última &raquo;</a></li>
+                {% endif %}
+            </ul>
+        {% endif %}
+    </div>
+</div>
+{% endblock content_box %}
+
