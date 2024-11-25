@@ -81,6 +81,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
 
             actualizar_total();
+            checkCartAndToggleSelects(); // Update the select elements based on cart contents
         });
     });
 
@@ -105,6 +106,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 
         actualizar_total();
+        checkCartAndToggleSelects(); // Update the select elements based on cart contents
     }
 
     function guardarSeleccion(materialData) {
@@ -144,11 +146,13 @@ document.addEventListener('DOMContentLoaded', function () {
             const updatedMaterialData = { materialId, materialName, price, image, cantidad: nuevaCantidad };
             guardarSeleccion(updatedMaterialData);
 
-            // No longer removing the material when quantity is zero
-
             actualizar_total();
         });
     }
+
+    // Add event listeners to discount and extra charge inputs to update total when they change
+    discount_int.addEventListener('input', actualizar_total);
+    extra_charge_int.addEventListener('input', actualizar_total);
 
     function actualizar_total() {
         let total_general = 0;
@@ -159,7 +163,23 @@ document.addEventListener('DOMContentLoaded', function () {
             total_general += cantidad * price;
         });
 
-        const discount = parseFloat(discount_int.value) || 0;
+        // Calculate the maximum allowed discount (5% of total_general)
+        const max_discount = total_general * 0.05;
+
+        // Update the 'max' attribute of the discount input field
+        discount_int.max = max_discount.toFixed(2);
+
+        // Get the discount value entered by the user
+        let discount = parseFloat(discount_int.value) || 0;
+
+        // Validate and adjust the discount
+        if (discount > max_discount) {
+            discount = max_discount;
+            discount_int.value = discount.toFixed(2);
+            // Optionally, display a message to the user
+            alert('El descuento no puede ser mayor al 5% del total. Se ha ajustado al máximo permitido.');
+        }
+
         const extra_charge = parseFloat(extra_charge_int.value) || 0;
         const total_con_descuento = total_general - discount + extra_charge;
         total_final.textContent = `${total_con_descuento.toFixed(2)} MXN`;
@@ -167,8 +187,26 @@ document.addEventListener('DOMContentLoaded', function () {
         realizar_compra_btn.disabled = total_con_descuento <= 0;
     }
 
+    // Function to check if cart is empty and toggle the select elements
+    function checkCartAndToggleSelects() {
+        const hasMaterialsInCart = savedSelections.length > 0;
+
+        // If there are materials in the cart, disable the select elements
+        if (hasMaterialsInCart) {
+            tipoOperacionSelect.disabled = true;
+            tipoCargoSelect.disabled = true;
+        } else {
+            tipoOperacionSelect.disabled = false;
+            tipoCargoSelect.disabled = false;
+        }
+    }
+
+    // Initial check on page load
+    checkCartAndToggleSelects();
+
     restoreSelections();
 });
+
 
 
 
