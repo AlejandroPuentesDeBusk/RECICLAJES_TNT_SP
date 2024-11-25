@@ -42,7 +42,7 @@ def realizar_compra(request):
         try:
             data = json.loads(request.body)
 
-            # Extraer datos del request
+            # Sacamos los datos del java con get porque esta en el carrito de compras
             materials = data.get('materials', [])
             tipo_operacion = data.get('tipoOperacion')
             tipo_cargo = data.get('tipoCargo')
@@ -51,11 +51,11 @@ def realizar_compra(request):
             total = data.get('total', 0)
             description = data.get('description', '')
 
-            # Validar datos
+        
             if not materials or not tipo_operacion or not tipo_cargo:
                 return JsonResponse({'success': False, 'message': 'Datos incompletos.'})
 
-            # Crear la transacción
+         
             transaction = Transaction.objects.create(
                 User=request.user,
                 Total=total,
@@ -65,13 +65,13 @@ def realizar_compra(request):
                 Status='COMPLETED'  # O según tu lógica
             )
 
-            # Crear los detalles de la transacción
+            # Estos son los detalles, porque por cada transaccion hay varios detalles 
             for item in materials:
                 material_id = item.get('materialId')
                 quantity = item.get('quantity', 0)
                 price = item.get('price', 0)
 
-                # Obtener instancia de Material
+           
                 try:
                     material = Material.objects.get(id=material_id)
                 except Material.DoesNotExist:
@@ -79,7 +79,7 @@ def realizar_compra(request):
 
                 subtotal = float(quantity) * float(price)
 
-                # Crear Transaction_Details
+                # Mandamos a detalles
                 Transaction_Details.objects.create(
                     Material=material,
                     Transaction=transaction,

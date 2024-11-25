@@ -1,9 +1,9 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // Detectar si la página fue recargada
+   
     const navigationEntry = performance.getEntriesByType("navigation")[0];
 
     if (navigationEntry.type === 'reload') {
-        // La página fue recargada, limpiar el localStorage
+      
         localStorage.removeItem('selectedMaterials');
         localStorage.removeItem('tipoOperacionSeleccionado');
         localStorage.removeItem('tipoCargoSeleccionado');
@@ -21,7 +21,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const selectedMaterialsKey = 'selectedMaterials';
     let savedSelections = JSON.parse(localStorage.getItem(selectedMaterialsKey)) || [];
 
-    // Restaurar selecciones al cargar la página
+    // lo reseteamos
+    //que si no se queda guardado y no deja hacer varios cambios y es un rollo
     let savedTipoOperacion = localStorage.getItem('tipoOperacionSeleccionado');
     let savedTipoCargo = localStorage.getItem('tipoCargoSeleccionado');
 
@@ -71,7 +72,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (listItem) {
                     lista_Material.removeChild(listItem);
                 }
-                // Eliminar material de savedSelections
+         
                 const index = savedSelections.findIndex(item => item.materialId === materialId);
                 if (index > -1) {
                     savedSelections.splice(index, 1);
@@ -80,7 +81,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
 
             actualizar_total();
-            checkCartAndToggleSelects(); // Actualizar los selectores basados en el carrito
+            checkCartAndToggleSelects(); 
         });
     });
 
@@ -157,29 +158,34 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Agregar eventos a los campos de descuento y cargo extra para actualizar el total
+    // Ocupamos estar checando cada cosa porque si no no se actualizan los precios
+
     discount_int.addEventListener('input', actualizar_total);
     extra_charge_int.addEventListener('input', actualizar_total);
 
     function actualizar_total() {
+
         let total_general = 0;
         lista_Material.querySelectorAll('li').forEach(listItem => {
+
             const cantidadInput = listItem.querySelector('.cant_total');
             const cantidad = parseFloat(cantidadInput.value) || 0;
             const price = parseFloat(cantidadInput.getAttribute('data-price')) || 0;
             total_general += cantidad * price;
+
         });
 
-        // Calcular el descuento máximo permitido (5% del total general)
+
         const max_discount = total_general * 0.05;
 
-        // Actualizar el atributo 'max' del campo de descuento
+        
         discount_int.max = max_discount.toFixed(2);
 
-        // Obtener el valor del descuento ingresado por el usuario
+        
+
         let discount = parseFloat(discount_int.value) || 0;
 
-        // Validar y ajustar el descuento
+        // las alertas del descuento mis chavos
         if (discount > max_discount) {
             discount = max_discount;
             discount_int.value = discount.toFixed(2);
@@ -195,6 +201,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Función para verificar si el carrito está vacío y deshabilitar los selectores
     function checkCartAndToggleSelects() {
+
+
         const hasMaterialsInCart = savedSelections.length > 0;
 
         if (hasMaterialsInCart) {
@@ -221,6 +229,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }));
 
         const data = {
+
             materials: materials,
             tipoOperacion: tipoOperacionSelect.value,
             tipoCargo: tipoCargoSelect.value,
@@ -228,6 +237,7 @@ document.addEventListener('DOMContentLoaded', function () {
             extra_charge: parseFloat(extra_charge_int.value) || 0,
             total: parseFloat(total_final.textContent) || 0,
             description: document.querySelector('#final_texto textarea').value
+
         };
 
         // Validar que las cantidades sean mayores a cero
@@ -256,7 +266,11 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(result => {
             if (result.success) {
                 alert('Compra realizada con éxito.');
-                // Limpiar selecciones y recargar la página
+                
+
+
+                //Lo del local storage es para que se valla al navegador, que luego el paginado lo borro y ya no jala
+
                 localStorage.removeItem('selectedMaterials');
                 localStorage.removeItem('tipoOperacionSeleccionado');
                 localStorage.removeItem('tipoCargoSeleccionado');
@@ -271,7 +285,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // Ya no es necesario obtener el token CSRF desde las cookies, ya que lo estamos pasando desde el HTML
 });
 
 
