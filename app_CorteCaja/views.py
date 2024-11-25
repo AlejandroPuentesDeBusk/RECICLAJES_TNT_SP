@@ -9,12 +9,8 @@ from django.utils import timezone
 
 #@login_required
 def ajustes_1(request):
-<<<<<<< HEAD
-    return render(request, 'ajustes_1.html')
-=======
     money= Day_Report.objects.latest('Day')
     final_money= money.Final_Money
->>>>>>> refs/remotes/origin/main
 
     box_money = {'final_money': final_money}
 
