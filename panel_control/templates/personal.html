@@ -11,12 +11,7 @@
 
 
 {% block buscador %}
-<form method="GET" action="">
-    <div class="search">
-        <input type="text" name="search" placeholder="Buscar..." value="{{ search_query }}">
-        <span>{% now "Y-m-d H:i" %} </span>
-    </div>
-</form>
+
 {% endblock buscador %}
 
 
@@ -32,6 +27,7 @@
 
 
 {% block content_box %}
+{% csrf_token %}
 <form method="GET" action="">
     <div class="search">
         <input type="text" name="search" placeholder="Buscar..." value="{{ search_query }}">
@@ -44,18 +40,20 @@
         <table class="table">
             <thead>
                 <tr>
+                    <th>N.</th>
                     <th>Username</th>
                     <th>Email</th>
                     <th>Nombre Completo</th>
                     <th>Estado</th>
                     <th>Teléfono</th>
                     <th>Fecha de Registro</th>
-                    <th></th>
+                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
-                {% for user in users %}
+                {% for user in entity %}
                     <tr>
+                        <td>{{ user.id }}</td>
                         <td>{{ user.username }}</td>
                         <td>{{ user.email }}</td>
                         <td>{{ user.Name }} {{ user.Paternal_Surname }} {{ user.Maternal_Surname }}</td>
@@ -72,31 +70,17 @@
                     </tr>
                 {% empty %}
                     <tr>
-                        <td colspan="6">No hay usuarios disponibles.</td>
+                        <td colspan="8" class="text-center">No hay usuarios disponibles.</td>
                     </tr>
                 {% endfor %}
             </tbody>
         </table>
     </div>
+</div>
 
-    <!-- Paginación -->
-    <div class="pagination">
-        {% if page_obj.has_other_pages %}
-            <ul class="pagination-list">
-                {% if page_obj.has_previous %}
-                    <li><a href="?page=1{% if search_query %}&search={{ search_query }}{% endif %}">&laquo; Primera</a></li>
-                    <li><a href="?page={{ page_obj.previous_page_number }}{% if search_query %}&search={{ search_query }}{% endif %}">Anterior</a></li>
-                {% endif %}
-
-                <li>Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}</li>
-
-                {% if page_obj.has_next %}
-                    <li><a href="?page={{ page_obj.next_page_number }}{% if search_query %}&search={{ search_query }}{% endif %}">Siguiente</a></li>
-                    <li><a href="?page={{ page_obj.paginator.num_pages }}{% if search_query %}&search={{ search_query }}{% endif %}">Última &raquo;</a></li>
-                {% endif %}
-            </ul>
-        {% endif %}
-    </div>
+<div>
+    {% include "paginator.html" %}
 </div>
 {% endblock content_box %}
+
 
