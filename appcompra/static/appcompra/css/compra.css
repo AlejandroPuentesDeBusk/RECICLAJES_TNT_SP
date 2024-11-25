@@ -6,7 +6,10 @@
     grid-template-rows: auto 1fr auto;
     grid-gap: 2%;
     min-width: 100%;
+    
 }
+
+
 
 #texto_compra{
     margin-top: 1rem;
@@ -50,7 +53,14 @@
     position: sticky;
     height: 100%;
     width: 100%;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+
+    border-radius: .5rem;
     
+#top_tr{
+    background-color: whitesmoke;
+}
+
 
 
 }
@@ -99,6 +109,7 @@ hr{
 .materiales{
     text-align: center;
     width: 100%;
+ 
 }
 
 
@@ -114,6 +125,7 @@ hr{
     text-align: center;
     font-size: 1vw;
     vertical-align: middle;
+    border: none;
 
 
 
