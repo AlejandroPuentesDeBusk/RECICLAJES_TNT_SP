@@ -5,6 +5,7 @@ from mainapp.models import Material, Transaction, Day_Report, Users
 from django.core.paginator import Paginator, EmptyPage
 from django.db.models import Q
 from django.http import Http404
+from django.contrib.auth.decorators import login_required
 
 Users = get_user_model()
 
@@ -15,6 +16,7 @@ Users = get_user_model()
 #     materials = Material.objects.all()
 #     return render(request, 'panel.html',{'materials': materials})
 
+@login_required
 def personal(request):
     search_query = request.GET.get('search', '').lower()
 

@@ -43,7 +43,11 @@ def login_view(request):
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request, user)
-                return redirect('pantalla_carga')
+                next_url = request.GET.get('next')
+                if next_url:
+                    return redirect(next_url)
+                else:
+                    return redirect('dashboard')
             else:
                 messages.error(request, "Credenciales no válidas")
         else:
