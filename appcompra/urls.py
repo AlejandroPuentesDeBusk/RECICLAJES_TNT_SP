@@ -6,7 +6,9 @@ from django.conf.urls import handler404
 
 
 
+
 urlpatterns = [
-    path('cv', views.cv, name= 'cv'),
+    path('cv/', views.cv, name= 'cv'),
+    path('realizar-compra/', views.realizar_compra, name='realizar_compra'),
     ]
 
