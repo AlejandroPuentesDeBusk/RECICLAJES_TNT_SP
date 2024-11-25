@@ -6,14 +6,13 @@
 
 
 {% block section %}
-<h1>Panel de Control</h1>
 <h1>{{section}}</h1>
 {% endblock section %}
 
-
+{% comment %} 
 {% block buscador %}
-<span>{% now "Y-m-d H:i" %} </span>
-{% endblock buscador %}
+    <span>{% now "Y-m-d H:i" %} </span>
+{% endblock buscador %} {% endcomment %}
 
 
 {% block subsection %}

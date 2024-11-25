@@ -35,7 +35,7 @@
                 <a href="{% url "ajustes_1" %}">Ajuste de caja</a>
             </div>
             <div class="nav-item {% if active_nav == "panel_control" %}active{% endif %}">
-                <a href="{% url "materiales" %}" class="active">Panel de Control</a>
+                <a href="{% url "materiales" %}">Panel de Control</a>
             </div>
         </nav>
 
@@ -50,11 +50,17 @@
                 {% block section %}
                 <h1>Panel de Control</h1>
                 {% endblock section %}
+
                 {% block buscador %}
-                
+                    <span>{% now "Y-m-d H:i" %} </span>
                 {% endblock buscador %}
             </header>
             <div class="tabs">
+                {% comment %} <a href="{% url "materiales" %}"><button class="tab {% if active_tab == 'materials' %}active{% endif %}">Materiales</button></a>
+                <a href="{% url "transacciones" %}"><button class="tab {% if active_tab == 'transactions' %}active{% endif %}">Transacciones</button></a>
+                <a href="{% url "personal" %}"><button class="tab {% if active_tab == 'personnel' %}active{% endif %}">Personal</button></a>
+                <a href="{% url "cortes" %}"><button class="tab {% if active_tab == 'reports' %}active{% endif %}">Cortes</button></a> {% endcomment %}
+
                 <button class="tab {% if active_tab == 'materials' %}active{% endif %}"><a href="{% url "materiales" %}">Materiales</a></button>
                 <button class="tab {% if active_tab == 'transactions' %}active{% endif %}"><a href="{% url "transacciones" %}">Transacciones</a></button>
                 <button class="tab {% if active_tab == 'personnel' %}active{% endif %}"><a href="{% url "personal" %}">Personal</a></button>
