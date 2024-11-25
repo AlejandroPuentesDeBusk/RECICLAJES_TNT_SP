@@ -10,9 +10,9 @@ Users = get_user_model()
 # Create your views here.
 #esa es para importar la info de models de la base de datos 
 
-def panel_control(request):
-    materials = Material.objects.all()
-    return render(request, 'panel.html',{'materials': materials})
+# def panel_control(request):
+#     materials = Material.objects.all()
+#     return render(request, 'panel.html',{'materials': materials})
 
 def personal(request):
     search_query = request.GET.get('search', '').lower()
