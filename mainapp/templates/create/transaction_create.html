@@ -1,0 +1,54 @@
+{% comment %} <h1>Crear transacción</h1>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Crear</button>
+
+</form> {% endcomment %}
+
+<h1>Crear transacción</h1>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    
+    <h3>Detalles de la transacción</h3>
+    <table id="details">
+        {{ formset.management_form }}
+        {% for form in formset %}
+        <tr>
+            <td>{{ form.Material }}</td>
+            <td>{{ form.Quantity }}</td>
+            <td>{{ form.Price }}</td>
+            <td><a href="#" class="delete-row">Eliminar</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <button type="button" id="add-row">Agregar Detalle</button>
+    <br><br>
+    <button type="submit">Crear Transacción</button>
+</form>
+
+<script>
+    const table = document.getElementById('details');
+    const addRowBtn = document.getElementById('add-row');
+
+    addRowBtn.addEventListener('click', function() {
+        const newRow = table.insertRow();
+        newRow.innerHTML = `
+            <td><select name="Material"><option value="">Seleccionar...</option></select></td>
+            <td><input type="number" name="Quantity" min="1"></td>
+            <td><input type="number" name="Price" step="0.01"></td>
+            <td><a href="#" class="delete-row">Eliminar</a></td>
+        `;
+    });
+
+    table.addEventListener('click', function(e) {
+        if (e.target.classList.contains('delete-row')) {
+            e.target.closest('tr').remove();
+        }
+    });
+</script>
+

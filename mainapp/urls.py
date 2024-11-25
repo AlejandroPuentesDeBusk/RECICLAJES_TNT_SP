@@ -29,6 +29,9 @@ urlpatterns = [
     path('material/<int:pk>/editar/', views.UpdateMaterial.as_view(), name='editar_material'),
     path('personal/<int:pk>/editar/', views.UpdateUsers.as_view(), name='editar_personal'),
     path('transacciones/<int:pk>/editar/', views.UpdateTransaction.as_view(), name='editar_transaccion'),
+
+    #URL para crar
+    path('crear/', views.TransactionCreateView.as_view(), name='crear_trans')
 ]
 
 handler404 = 'mainapp.views.error404'
