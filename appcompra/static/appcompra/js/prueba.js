@@ -1,4 +1,15 @@
 document.addEventListener('DOMContentLoaded', function () {
+    // Detect if the page was reloaded via the browser's reload button
+    const navigationEntry = performance.getEntriesByType("navigation")[0];
+
+    if (navigationEntry.type === 'reload') {
+        // The page was reloaded via the reload button or location.reload()
+        // Clear the localStorage
+        localStorage.removeItem('selectedMaterials');
+        localStorage.removeItem('tipoOperacionSeleccionado');
+        localStorage.removeItem('tipoCargoSeleccionado');
+    }
+
     const checkboxes = document.querySelectorAll('.cajita');
     const lista_Material = document.getElementById('lista_material_comprar');
     const tipoCargoSelect = document.getElementById('tipo_cargo');
@@ -8,37 +19,42 @@ document.addEventListener('DOMContentLoaded', function () {
     const extra_charge_int = document.getElementById('extra_charge');
     const realizar_compra_btn = document.getElementById('realizar_compra');
 
-    let tipoOperacionSeleccionado = false; // Banderas para verificar interacción
-    let tipoCargoSeleccionado = false;
-
-    const selectedMaterialsKey = 'selectedMaterials'; // Clave global para almacenar la selección en localStorage
+    const selectedMaterialsKey = 'selectedMaterials';
     let savedSelections = JSON.parse(localStorage.getItem(selectedMaterialsKey)) || [];
 
-    // Validar si los selects han sido configurados manualmente
-    function areSelectionsValid() {
-        return tipoOperacionSeleccionado && tipoCargoSeleccionado;
+    // Restore selections on page load
+    let savedTipoOperacion = localStorage.getItem('tipoOperacionSeleccionado');
+    let savedTipoCargo = localStorage.getItem('tipoCargoSeleccionado');
+
+    if (savedTipoOperacion) {
+        tipoOperacionSelect.value = savedTipoOperacion;
     }
 
-    // Mostrar un mensaje de error si no se han seleccionado los valores
+    if (savedTipoCargo) {
+        tipoCargoSelect.value = savedTipoCargo;
+    }
+
+    function areSelectionsValid() {
+        return tipoOperacionSelect.value !== "" && tipoCargoSelect.value !== "";
+    }
+
     function showSelectionError() {
         alert("Por favor, selecciona el tipo de operación y el tipo de cargo antes de agregar materiales.");
     }
 
-    // Manejar cambios en los selects
     tipoOperacionSelect.addEventListener('change', function () {
-        tipoOperacionSeleccionado = true; // Marca que el usuario ha interactuado
+        localStorage.setItem('tipoOperacionSeleccionado', tipoOperacionSelect.value);
     });
 
     tipoCargoSelect.addEventListener('change', function () {
-        tipoCargoSeleccionado = true; // Marca que el usuario ha interactuado
+        localStorage.setItem('tipoCargoSeleccionado', tipoCargoSelect.value);
     });
 
-    // Manejar eventos de selección de los checkboxes
     checkboxes.forEach(checkbox => {
         checkbox.addEventListener('change', () => {
             if (!areSelectionsValid()) {
                 showSelectionError();
-                checkbox.checked = false; // Desmarcar el checkbox si no está permitido
+                checkbox.checked = false;
                 return;
             }
 
@@ -56,7 +72,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (listItem) {
                     lista_Material.removeChild(listItem);
                 }
-                guardarSeleccion({ materialId, cantidad: 0 });
+                // Remove material from savedSelections
+                const index = savedSelections.findIndex(item => item.materialId === materialId);
+                if (index > -1) {
+                    savedSelections.splice(index, 1);
+                    localStorage.setItem(selectedMaterialsKey, JSON.stringify(savedSelections));
+                }
             }
 
             actualizar_total();
@@ -71,7 +92,6 @@ document.addEventListener('DOMContentLoaded', function () {
             : parseFloat(checkbox.getAttribute(`data-${tipoCargo.replace('Purchase', 'Sale')}`));
     }
 
-    // Restaurar selección desde localStorage
     function restoreSelections() {
         lista_Material.innerHTML = '';
 
@@ -90,14 +110,10 @@ document.addEventListener('DOMContentLoaded', function () {
     function guardarSeleccion(materialData) {
         const index = savedSelections.findIndex(item => item.materialId === materialData.materialId);
 
-        if (materialData.cantidad > 0) {
-            if (index > -1) {
-                savedSelections[index] = materialData;
-            } else {
-                savedSelections.push(materialData);
-            }
-        } else if (index > -1) {
-            savedSelections.splice(index, 1);
+        if (index > -1) {
+            savedSelections[index] = materialData;
+        } else {
+            savedSelections.push(materialData);
         }
 
         localStorage.setItem(selectedMaterialsKey, JSON.stringify(savedSelections));
@@ -116,7 +132,7 @@ document.addEventListener('DOMContentLoaded', function () {
         listItem.innerHTML = `
             <strong>${materialName}</strong> - ${price} MXN
             ${image ? `<img src="${image}" class="imagen" alt="${materialName}">` : ''}
-            <input type="number" class="cant_total" min="0" placeholder="Cantidad" value="${cantidad}">
+            <input type="number" class="cant_total" min="0" placeholder="Cantidad" value="${cantidad}" data-price="${price}">
             <span class="precio_total">${(cantidad * price).toFixed(2)}</span> MXN
         `;
 
@@ -128,13 +144,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const updatedMaterialData = { materialId, materialName, price, image, cantidad: nuevaCantidad };
             guardarSeleccion(updatedMaterialData);
 
-            if (nuevaCantidad <= 0) {
-                lista_Material.removeChild(listItem);
-                const checkbox = document.querySelector(`.cajita[data-material="${materialId}"]`);
-                if (checkbox) {
-                    checkbox.checked = false;
-                }
-            }
+            // No longer removing the material when quantity is zero
 
             actualizar_total();
         });
@@ -142,8 +152,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function actualizar_total() {
         let total_general = 0;
-        lista_Material.querySelectorAll('.precio_total').forEach(span => {
-            total_general += parseFloat(span.textContent) || 0;
+        lista_Material.querySelectorAll('li').forEach(listItem => {
+            const cantidadInput = listItem.querySelector('.cant_total');
+            const cantidad = parseFloat(cantidadInput.value) || 0;
+            const price = parseFloat(cantidadInput.getAttribute('data-price')) || 0;
+            total_general += cantidad * price;
         });
 
         const discount = parseFloat(discount_int.value) || 0;
@@ -156,6 +169,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     restoreSelections();
 });
+
+
+
 
 
 
