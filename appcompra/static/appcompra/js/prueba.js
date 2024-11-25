@@ -1,10 +1,9 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // Detect if the page was reloaded via the browser's reload button
+    // Detectar si la página fue recargada
     const navigationEntry = performance.getEntriesByType("navigation")[0];
 
     if (navigationEntry.type === 'reload') {
-        // The page was reloaded via the reload button or location.reload()
-        // Clear the localStorage
+        // La página fue recargada, limpiar el localStorage
         localStorage.removeItem('selectedMaterials');
         localStorage.removeItem('tipoOperacionSeleccionado');
         localStorage.removeItem('tipoCargoSeleccionado');
@@ -22,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const selectedMaterialsKey = 'selectedMaterials';
     let savedSelections = JSON.parse(localStorage.getItem(selectedMaterialsKey)) || [];
 
-    // Restore selections on page load
+    // Restaurar selecciones al cargar la página
     let savedTipoOperacion = localStorage.getItem('tipoOperacionSeleccionado');
     let savedTipoCargo = localStorage.getItem('tipoCargoSeleccionado');
 
@@ -72,7 +71,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (listItem) {
                     lista_Material.removeChild(listItem);
                 }
-                // Remove material from savedSelections
+                // Eliminar material de savedSelections
                 const index = savedSelections.findIndex(item => item.materialId === materialId);
                 if (index > -1) {
                     savedSelections.splice(index, 1);
@@ -81,16 +80,24 @@ document.addEventListener('DOMContentLoaded', function () {
             }
 
             actualizar_total();
-            checkCartAndToggleSelects(); // Update the select elements based on cart contents
+            checkCartAndToggleSelects(); // Actualizar los selectores basados en el carrito
         });
     });
 
     function obtenerPrecio(checkbox) {
         const operacion = tipoOperacionSelect.value;
         const tipoCargo = tipoCargoSelect.value;
-        return operacion === 'compra'
-            ? parseFloat(checkbox.getAttribute(`data-${tipoCargo}`))
-            : parseFloat(checkbox.getAttribute(`data-${tipoCargo.replace('Purchase', 'Sale')}`));
+
+        let priceAttr = '';
+
+        if (operacion === 'compra') {
+            priceAttr = tipoCargo.toLowerCase();
+        } else if (operacion === 'venta') {
+            // Reemplazar 'purchase' por 'sale' en el tipo de cargo
+            priceAttr = tipoCargo.replace('Purchase', 'Sale').toLowerCase();
+        }
+
+        return parseFloat(checkbox.getAttribute(`data-${priceAttr}`)) || 0;
     }
 
     function restoreSelections() {
@@ -106,7 +113,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 
         actualizar_total();
-        checkCartAndToggleSelects(); // Update the select elements based on cart contents
+        checkCartAndToggleSelects(); // Actualizar los selectores basados en el carrito
     }
 
     function guardarSeleccion(materialData) {
@@ -150,7 +157,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Add event listeners to discount and extra charge inputs to update total when they change
+    // Agregar eventos a los campos de descuento y cargo extra para actualizar el total
     discount_int.addEventListener('input', actualizar_total);
     extra_charge_int.addEventListener('input', actualizar_total);
 
@@ -163,20 +170,19 @@ document.addEventListener('DOMContentLoaded', function () {
             total_general += cantidad * price;
         });
 
-        // Calculate the maximum allowed discount (5% of total_general)
+        // Calcular el descuento máximo permitido (5% del total general)
         const max_discount = total_general * 0.05;
 
-        // Update the 'max' attribute of the discount input field
+        // Actualizar el atributo 'max' del campo de descuento
         discount_int.max = max_discount.toFixed(2);
 
-        // Get the discount value entered by the user
+        // Obtener el valor del descuento ingresado por el usuario
         let discount = parseFloat(discount_int.value) || 0;
 
-        // Validate and adjust the discount
+        // Validar y ajustar el descuento
         if (discount > max_discount) {
             discount = max_discount;
             discount_int.value = discount.toFixed(2);
-            // Optionally, display a message to the user
             alert('El descuento no puede ser mayor al 5% del total. Se ha ajustado al máximo permitido.');
         }
 
@@ -187,11 +193,10 @@ document.addEventListener('DOMContentLoaded', function () {
         realizar_compra_btn.disabled = total_con_descuento <= 0;
     }
 
-    // Function to check if cart is empty and toggle the select elements
+    // Función para verificar si el carrito está vacío y deshabilitar los selectores
     function checkCartAndToggleSelects() {
         const hasMaterialsInCart = savedSelections.length > 0;
 
-        // If there are materials in the cart, disable the select elements
         if (hasMaterialsInCart) {
             tipoOperacionSelect.disabled = true;
             tipoCargoSelect.disabled = true;
@@ -201,12 +206,73 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    // Initial check on page load
+    // Verificación inicial al cargar la página
     checkCartAndToggleSelects();
 
     restoreSelections();
-});
 
+    // Evento para el botón "Realizar Compra"
+    realizar_compra_btn.addEventListener('click', function () {
+        // Recolectar datos necesarios
+        const materials = savedSelections.map(item => ({
+            materialId: item.materialId,
+            quantity: parseFloat(item.cantidad) || 0,
+            price: parseFloat(item.price) || 0
+        }));
+
+        const data = {
+            materials: materials,
+            tipoOperacion: tipoOperacionSelect.value,
+            tipoCargo: tipoCargoSelect.value,
+            discount: parseFloat(discount_int.value) || 0,
+            extra_charge: parseFloat(extra_charge_int.value) || 0,
+            total: parseFloat(total_final.textContent) || 0,
+            description: document.querySelector('#final_texto textarea').value
+        };
+
+        // Validar que las cantidades sean mayores a cero
+        for (let material of materials) {
+            if (material.quantity <= 0) {
+                alert('La cantidad de cada material debe ser mayor a cero.');
+                return;
+            }
+        }
+
+        // Enviar datos al servidor
+        fetch(realizarCompraUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrftoken
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Error en la respuesta del servidor.');
+            }
+            return response.json();
+        })
+        .then(result => {
+            if (result.success) {
+                alert('Compra realizada con éxito.');
+                // Limpiar selecciones y recargar la página
+                localStorage.removeItem('selectedMaterials');
+                localStorage.removeItem('tipoOperacionSeleccionado');
+                localStorage.removeItem('tipoCargoSeleccionado');
+                window.location.reload();
+            } else {
+                alert('Error al realizar la compra: ' + result.message);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Ocurrió un error al procesar la solicitud: ' + error.message);
+        });
+    });
+
+    // Ya no es necesario obtener el token CSRF desde las cookies, ya que lo estamos pasando desde el HTML
+});
 
 
 
