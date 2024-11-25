@@ -26,9 +26,10 @@
         {% endfor %}
     </table>
 
-    <button type="button" id="add-row">Agregar Detalle</button>
+    {% comment %} <button type="button" id="add-row">Agregar Detalle</button> {% endcomment %}
     <br><br>
     <button type="submit">Crear Transacción</button>
+    <button type="button" onclick="window.history.back()">Regresar</button>
 </form>
 
 <script>
