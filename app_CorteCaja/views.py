@@ -9,5 +9,5 @@ from django.utils import timezone
 
 #@login_required
 def ajustes_1(request):
-    return render(request, 'ajustes_caja/ajustes_1.html')
+    return render(request, 'ajustes_1.html')
 
