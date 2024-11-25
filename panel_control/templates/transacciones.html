@@ -42,9 +42,9 @@
                 </tr>
             </thead>
             <tbody>
-                {% for transaction in transactions %}
+                {% for transaction in entity %}
                     <tr>
-                        <td>{{ forloop.counter }}</td>
+                        <td>{{ transaction.id }}</td>
                         <td>{{ transaction.get_Transaction_Type_display }}</td>
                         <td>${{ transaction.Total }}</td>
                         <td>{{ transaction.Description }}</td>
@@ -66,5 +66,8 @@
             </tbody>
         </table>
     </div>
+</div>
+<div>
+    {% include "paginator.html" %}
 </div>
 {% endblock content_box %}

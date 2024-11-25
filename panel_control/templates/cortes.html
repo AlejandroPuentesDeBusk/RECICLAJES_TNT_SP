@@ -14,6 +14,11 @@
     <h2>{{subsection}}</h2>
 {% endblock subsection %}
 
+{% block botones %}
+    <button class="btns" id="filter-btn">Filter</button>
+    <button class="btns" id="add-btn">Añadir</button>
+{% endblock botones %}
+
 
 {% block content_box %}
 <form method="GET" action="">
@@ -36,9 +41,9 @@
                 </tr>
             </thead>
             <tbody>
-                {% for report in reports %}
+                {% for report in entity %}
                     <tr>
-                        <td>{{ forloop.counter }}</td>
+                        <td>{{ report.id }}</td>
                         <td>{{ report.Day|date:"d/m/Y" }}</td>
                         <td>${{ report.Initial_Money }}</td>
                         <td>${{ report.Obtained }}</td>
@@ -53,6 +58,9 @@
             </tbody>
         </table>
     </div>
+</div>
+<div>
+    {% include "paginator.html" %}
 </div>
 {% endblock content_box %}
 

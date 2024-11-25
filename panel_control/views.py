@@ -4,6 +4,7 @@ from django.contrib.auth import get_user_model
 from mainapp.models import Material, Transaction, Day_Report, Users
 from django.core.paginator import Paginator
 from django.db.models import Q
+from django.http import Http404
 
 Users = get_user_model()
 
@@ -70,15 +71,25 @@ def transacciones(request):
 
     if not search_query:
         transactions = Transaction.objects.all()
-    
-    return render(request, 'transacciones.html', {
+        page = request.GET.get('page', 1)
+
+        try:
+            paginator = Paginator(transactions, 5)
+            transactions = paginator.page(page)
+        except:
+            raise Http404
+
+    context = {
         'title': 'Panel de Control | Transacciones',
         'section': 'Panel de Control',
         'subsection': 'Ajustes de Transacciones',
-        'transactions': transactions,
+        'entity': transactions,
+        'paginator': paginator,
         'active_tab': 'transactions',
         'active_nav': 'panel_control'
-    })
+    }
+    
+    return render(request, 'transacciones.html', context)
 
 def materiales(request):
     materials = Material.objects.all()
@@ -93,7 +104,7 @@ def materiales(request):
 
 def cortes(request):
     search_query = request.GET.get('search', '')  # Obtener lo que se busca
-    
+
     if search_query:
         reports = Day_Report.objects.filter(
             Day__icontains=search_query  # O cualquier otro filtro relevante
@@ -101,15 +112,26 @@ def cortes(request):
     else:
         reports = Day_Report.objects.all()
     reports = Day_Report.objects.all()
-    return render (request, 'cortes.html', {
+    page = request.GET.get('page', 1)
+
+    try:
+        paginator = Paginator(reports, 5)
+        reports = paginator.page(page)
+    except:
+        raise Http404
+    
+    context = {
         'title': 'Panel de Control | Cortes',
         'section': 'Panel de Control',
         'subsection': 'Historial de Cortes',
-        'reports': reports,
+        'entity': reports,
+        'paginator': paginator,
         'search_query': search_query,
         'active_tab': 'reports',
         'active_nav': 'panel_control'
-    })
+    }
+
+    return render (request, 'cortes.html', context)
 
 def error404(request,exception):
     return render(request, 'mainapp/404.html')
