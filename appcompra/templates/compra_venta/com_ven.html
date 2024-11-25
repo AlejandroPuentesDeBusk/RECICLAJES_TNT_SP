@@ -42,7 +42,7 @@
             </div>
             <div class="nav-item">
                 <div class="icon-cog"></div>
-                <a href="{% url 'panel_control' %}" class="active">Panel de Control</a>
+                <a href="{% url 'materiales' %}" class="active">Panel de Control</a>
             </div>
         </nav>
 
@@ -68,7 +68,7 @@
         <div class="container">
             <div id="c_main">
                 <table class="materiales">
-                    <tr>
+                    <tr id="top_tr">
                         <th>Material</th>
                         <th></th>
                         <th>Seleccionar</th>
@@ -108,6 +108,24 @@
                     </tr>
                     {% endfor %}
                 </table>
+<!--__________________________CONTROL DE LA PAGINACION_________________________________________________-->
+                <div class="pagination">
+                    <span class="step-links">
+                        {% if show_page.has_previous %}
+                            <a href="?page=1">&laquo; Primera</a>
+                            <a href="?page={{ show_page.previous_page_number }}">Anterior</a>
+                        {% endif %}
+    
+                        <span class="current">
+                            Página {{ show_page.number }} de {{ show_page.paginator.num_pages }}.
+                        </span>
+    
+                        {% if show_page.has_next %}
+                            <a href="?page={{ show_page.next_page_number }}">Siguiente</a>
+                            <a href="?page={{ show_page.paginator.num_pages }}">Última &raquo;</a>
+                        {% endif %}
+                    </span>
+                </div>
 
                 <!-- Paginación -->
 
@@ -177,28 +195,6 @@
                     </div>
                 </div>
             </div>
-
-
-<!--__________________________CONTROL DE LA PAGINACION_________________________________________________-->
-            <div class="pagination">
-                <span class="step-links">
-                    {% if show_page.has_previous %}
-                        <a href="?page=1">&laquo; Primera</a>
-                        <a href="?page={{ show_page.previous_page_number }}">Anterior</a>
-                    {% endif %}
-
-                    <span class="current">
-                        Página {{ show_page.number }} de {{ show_page.paginator.num_pages }}.
-                    </span>
-
-                    {% if show_page.has_next %}
-                        <a href="?page={{ show_page.next_page_number }}">Siguiente</a>
-                        <a href="?page={{ show_page.paginator.num_pages }}">Última &raquo;</a>
-                    {% endif %}
-                </span>
-            </div>
-
-
 
         </div>
     </div>
