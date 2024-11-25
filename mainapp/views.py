@@ -168,6 +168,11 @@ class SignupCreateView(CreateView):
         user.save()
         return super().form_valid(form)
 
+class MaterialCreateView(CreateView):
+    model = Material
+    fields = ['Material_Type', 'Wholesale_Purchase_Price', 'Wholesale_Sale_Price', 'Retail_Purchase_Price', 'Retail_Sale_Price', 'image' ]
+    template_name = 'create/mat_create.html'
+    success_url = reverse_lazy('materiales')
 
 
 
