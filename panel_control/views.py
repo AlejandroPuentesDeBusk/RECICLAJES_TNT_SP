@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from mainapp import views
 from django.contrib.auth import get_user_model
-from mainapp.models import Material, Transaction, Day_Report
+from mainapp.models import Material, Transaction, Day_Report, Users
 from django.core.paginator import Paginator
 from django.db.models import Q
 
@@ -10,17 +10,36 @@ Users = get_user_model()
 # Create your views here.
 #esa es para importar la info de models de la base de datos 
 
-def panel_control(request):
-    materials = Material.objects.all()
-    return render(request, 'panel.html',{'materials': materials})
+# def panel_control(request):
+#     materials = Material.objects.all()
+#     return render(request, 'panel.html',{'materials': materials})
 
 def personal(request):
+    search_query = request.GET.get('search', '').lower()
+    usuarios = Users.objects.all()
+
+    if search_query:
+        usuarios = Users.objects.filter(
+            Q(Name__icontains = search_query) |
+            Q(Paternal_Surname__icontains = search_query) |
+            Q(Maternal_Surname__icontains = search_query) |
+            Q(Phone__icontains = search_query)
+        )
+
+    # Paginación
+    paginator = Paginator(usuarios, 5)  
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
 
     return render(request, 'personal.html', {
         'title': 'Panel de Control | Personal',
         'section': 'Panel de Control',
         'subsection': 'Ajustes de Personal',
-        'active_tab': 'personnel'
+        'users': page_obj,  
+        'page_obj': page_obj,
+        'search_query': search_query,
+        'active_tab': 'personnel',
+        'active_nav': 'panel_control'
     })
 
 def transacciones(request):
@@ -57,7 +76,8 @@ def transacciones(request):
         'section': 'Panel de Control',
         'subsection': 'Ajustes de Transacciones',
         'transactions': transactions,
-        'active_tab': 'transactions'
+        'active_tab': 'transactions',
+        'active_nav': 'panel_control'
     })
 
 def materiales(request):
@@ -67,7 +87,8 @@ def materiales(request):
         'section': 'Panel de Control',
         'subsection': 'Ajustes de Materiales',
         'materials': materials,
-        'active_tab': 'materials'
+        'active_tab': 'materials',
+        'active_nav': 'panel_control'
     })
 
 def cortes(request):
@@ -86,7 +107,8 @@ def cortes(request):
         'subsection': 'Historial de Cortes',
         'reports': reports,
         'search_query': search_query,
-        'active_tab': 'reports'
+        'active_tab': 'reports',
+        'active_nav': 'panel_control'
     })
 
 def error404(request,exception):

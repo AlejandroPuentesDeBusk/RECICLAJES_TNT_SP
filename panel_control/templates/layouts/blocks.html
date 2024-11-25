@@ -24,18 +24,18 @@
         </div>
 
         <nav>
-            <div class="nav-item" {% if active_item == 'panelcontrol' %}active{% endif %}>
+            <div class="nav-item {% if active_nav == "dashboard" %}active{% endif %}">
                 <a href="{% url "dashboard" %}">Dashboard</a>
             </div>
-            <div class="nav-item" {% if active_item == 'panelcontrol' %}active{% endif %}>
+            <div class="nav-item {% if active_nav == "compraventa" %}active{% endif %}">
                 <div class="icon-banknote"></div>
                 <a href="{% url "cv" %}">Compra - venta</a>
             </div>
-            <div class="nav-item" {% if active_item == 'panelcontrol' %}active{% endif %}>
+            <div class="nav-item {% if active_nav == "ajustecaja" %}active{% endif %}">
                 <a href="{% url "ajustes_1" %}">Ajuste de caja</a>
             </div>
-            <div class="nav-item" {% if active_item == 'panelcontrol' %}active{% endif %}>
-                <a href="{% url "panel_control" %}" class="active">Panel de Control</a>
+            <div class="nav-item {% if active_nav == "panel_control" %}active{% endif %}">
+                <a href="{% url "materiales" %}" class="active">Panel de Control</a>
             </div>
         </nav>
 
@@ -66,8 +66,9 @@
             </h2>
             <div id="botones">
                 {% block botones %}
-                    <button class="btns" id="filter-btn">Filter</button>
-                    <button class="btns" id="add-btn">Añadir</button>
+                    {% comment %} 
+                        Botones de añadir o de filtrado, dependiendo de la tab 
+                    {% endcomment %}
                 {% endblock botones %}
             </div>
         </div>

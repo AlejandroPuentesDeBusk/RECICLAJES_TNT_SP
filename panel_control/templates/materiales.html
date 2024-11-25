@@ -1,6 +1,5 @@
 {% extends "base2.html" %}
 
-
 {% block title %}
     {{title}}    
 {% endblock title %}
@@ -11,13 +10,22 @@
 <h1>{{section}}</h1>
 {% endblock section %}
 
+
 {% block buscador %}
 <span>{% now "Y-m-d H:i" %} </span>
 {% endblock buscador %}
 
+
 {% block subsection %}
     <h2>{{subsection}}</h2>
 {% endblock subsection %}
+
+
+{% block botones %}
+    <button class="btns" id="filter-btn">Filter</button>
+    <button class="btns" id="add-btn">Añadir</button>
+{% endblock botones %}
+
 
 
 {% block content_box %}
