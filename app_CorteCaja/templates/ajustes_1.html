@@ -8,18 +8,25 @@
     {%load static%}
 
     {% block head %}
+
         <link rel="stylesheet" href="{%static 'ajustes_caja/css/caja.css' %}">
         <script src="{% static 'ajustes_caja/js/caja.js' %}"></script>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
     {% endblock %}
+
+
+
+    <link rel="stylesheet" href="{% static 'panel_control/css/blocks.css' %}">
+    <link rel="stylesheet" href="{% static 'panel_control/css/personal.css' %}">
+    <link rel="stylesheet" href="{% static 'appcompra/css/compra.css' %}">
     
 
 </head>
 <body>
 
-    <h1>Ajustes de caja</h1>
+
     <div class="sidebar">
         <div class="logo">
             <img src="{%static 'ajustes_caja/img/tnt.jpeg' %}" alt="TNT">
@@ -27,19 +34,19 @@
         <nav>
             <div class="nav-item">
                 <div class="icon-home"></div>
-                <a href="#">Dashboard</a>
+                <a href="{% url 'dashboard' %}">Dashboard</a>
             </div>
            <div class="nav-item">
                 <div class="icon-banknote"></div>
-                <a href="#">Compra - venta</a>
+                <a href="{% url 'cv' %}">Compra - venta</a>
            </div>
            <div class="nav-item">
                 <div class="icon-credit-card"></div>
-                <a href="#">Ajuste de caja</a>
+                <a href="{% url 'ajustes_1' %}"">Ajuste de caja</a>
            </div>
            <div class="nav-item" >
                 <div class="icon-cog"></div>
-                <a href="#" class="active">Panel de Control</a>
+                <a href="{% url 'materiales' %}" class="active">Panel de Control</a>
            </div>
         </nav>
 
@@ -68,7 +75,7 @@
                     </div>
                     <p class="dinero_en_caja">Dinero en caja:</p>
                     <p class="caja_total">Total:</p>
-                    <p class="caja_cantidad">+ $53,000</p>
+                    <p class="caja_cantidad">+ {{ box_money.final_money }}</p>
                 </div>
 
                 <!-- Salto de linea-->
@@ -129,7 +136,7 @@
                 <div class="total">
                     <h2>Total: </h2>
                         <span>$</span>
-                        <input type="number" placeholder="3400">
+                        <input type="number" min="0" step="10">
                         <a href="pop_1.html">
                             <button>Guardar</button>
                         </a>
