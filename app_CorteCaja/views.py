@@ -12,10 +12,12 @@ def ajustes_1(request):
 
     today = timezone.now().date()
     money = Day_Report.objects.filter(Day=today)
+
+    money_all=Day_Report.objects.all()
     
     # Consolidar el dinero final (opcional)
     final_money = sum(report.Final_Money for report in money) if money else 0
 
     box_money = {'final_money': final_money}
     
-    return render(request, 'ajustes_1.html', {'box_money': box_money, 'money': money})
+    return render(request, 'ajustes_1.html', {'box_money': box_money, 'money_all': money_all})
