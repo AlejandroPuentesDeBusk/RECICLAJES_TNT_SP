@@ -22,72 +22,86 @@
 
 
 {% block botones %}
-    
     <select id="filter-btn" name="tipo_operacion">
         <option value="" disabled selected>Tipo</option>
         <option value="compra">Compra</option>
         <option value="venta">Venta</option>
     </select>
+
+    <button class="btns" id="add-btn">Añadir</button>
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const filterBtn = document.getElementById('filter-btn');
             const tableRows = document.querySelectorAll('#materials-table tr');
-    
+            const purchaseHeader = document.getElementById('price-purchase-header');
+            const saleHeader = document.getElementById('price-sale-header');
+
             filterBtn.addEventListener('change', () => {
-                const filterValue = filterBtn.value;
-    
+                const filterValue = filterBtn.value; 
+
                 tableRows.forEach(row => {
-                    if (filterValue === "" || row.dataset.operation === filterValue) {
-                        row.style.display = '';
+                    if (!filterValue || row.dataset.operation === filterValue) {
+                        row.style.display = ''; 
                     } else {
-                        row.style.display = 'none';
+                        row.style.display = 'none'; 
                     }
                 });
+
+                if (filterValue === 'compra') {
+                    purchaseHeader.textContent = 'Precio Compra Mayorista';
+                    saleHeader.textContent = 'Precio Venta Mayorista';
+                } else if (filterValue === 'venta') {
+                    purchaseHeader.textContent = 'Precio Compra Minorista';
+                    saleHeader.textContent = 'Precio Venta Minorista';
+                } else {
+                    purchaseHeader.textContent = 'Precio Compra';
+                    saleHeader.textContent = 'Precio Venta';
+                }
             });
         });
     </script>
-    
-    <button class="btns" id="add-btn">Añadir</button>
 {% endblock botones %}
 
 
 
 {% block content_box %}
-<h2>Lista de materiales</h2>
+{% csrf_token %}
 <form method="GET" action="">
     <div class="search">
         <input type="text" name="search" placeholder="Buscar..." value="{{ search_query }}">
-        <a href="#"><div class="icon-user">buscador</div></a>
+        <button type="submit">Buscar</button>
     </div>
 </form>
-<div class="cuerpo">
-    {% if page_obj %}
-        <table>
-            <thead class="tablas">
-                <tr class="tablas">
+
+<div class="transactions-container">
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
                     <th>Material</th>
                     <th>Tipo de Material</th>
-                    <th>Compra</th>
-                    <th>Venta</th>
-                    <th>Editar</th>
+                    <th id="price-purchase-header">Precio Compra</th>
+                    <th id="price-sale-header">Precio Venta</th>
+                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody id="materials-table">
-                {% for material in page_obj %}
+                {% for material in entity %}
                     <tr data-operation="compra">
                         <td>
                             {% if material.image %}
                                 <img id="imagen" src="{{ material.image.url }}" alt="{{ material.Material_Type }}" width="100">
                             {% else %}
-                                Sin imagen
+                                <span class="text-muted">Sin imagen</span>
                             {% endif %}
                         </td>
                         <td>{{ material.Material_Type }}</td>
                         <td>${{ material.Wholesale_Purchase_Price }}</td>
                         <td>${{ material.Wholesale_Sale_Price }}</td>
                         <td>
-                            <a href="{% url "editar_material" material.pk %}">
-                                <img class="lapiz" src="/static/panel_control/img/lapices.png" alt="lapiz">
+                            <a href="{% url 'editar_material' material.pk %}" class="btn btn-primary btn-sm">
+                                Editar
                             </a>
                         </td>
                     </tr>
@@ -96,91 +110,29 @@
                             {% if material.image %}
                                 <img id="imagen" src="{{ material.image.url }}" alt="{{ material.Material_Type }}" width="100">
                             {% else %}
-                                Sin imagen
+                                <span class="text-muted">Sin imagen</span>
                             {% endif %}
                         </td>
                         <td>{{ material.Material_Type }}</td>
                         <td>${{ material.Retail_Purchase_Price }}</td>
                         <td>${{ material.Retail_Sale_Price }}</td>
                         <td>
-                            <a href="{% url "editar_material" material.pk %}">
-                                <img class="lapiz" src="/static/panel_control/img/lapices.png" alt="lapiz">
+                            <a href="{% url 'editar_material' material.pk %}" class="btn btn-primary btn-sm">
+                                Editar
                             </a>
                         </td>
                     </tr>
                 {% empty %}
                     <tr>
-                        <td colspan="5">No hay materiales registrados.</td>
+                        <td colspan="5" class="text-center">No hay materiales registrados.</td>
                     </tr>
                 {% endfor %}
             </tbody>
         </table>
-        <!-- Paginación que pidio michelle-->
-        <!--es un dolor de cabeza pero funciona necesitan aplicarla para tambien al usar el buscador aparesca-->
-        <div class="pagination">
-            <span class="step-links">
-                {% if page_obj.has_previous %}
-                    <a href="?page=1">&laquo; Primera</a>
-                    <a href="?page={{ page_obj.previous_page_number }}"> -  Anterior  -  </a>
-                {% endif %}
-                <span class="current">
-                    Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
-                </span>
-                {% if page_obj.has_next %}
-                    <a href="?page={{ page_obj.next_page_number }}">-  Siguiente  -</a>
-                    <a href="?page={{ page_obj.paginator.num_pages }}">Última &raquo;</a>
-                {% endif %}
-            </span>
-        </div>
-    {% else %}
-        <p>No hay materiales registrados.</p>
-    {% endif %}
-</div>
-{% endblock content_box %}
-
-
-{% comment %} <!--ESTO ES PARA CARGAR LA PLANTILLA-->
-{% extends 'base2.html' %}
-<!--CARGAR LOS ARCHIVOS DE LA CARPETA STATIC DONDE ESTAN LOS CSS ETC..-->
-{% load static %}
-<!--TITULO DE LA VENTANA-->
-{% block title %} Panel  {% endblock %}
-<!--ESTE ES SU HEAD DE HTML PEUDEN METER LO MISMO QUE EN EL NORMAL-->
-{% block head %}
-    <link rel="stylesheet" href="{% static 'panel_control/css/panel.css' %}">
-    <script src="{% static 'main_app/java_script/resto de la ruta' %}"></script>
-{% endblock %}
-<!--AQUI EMPIEZA EL BODY-->
-{% block body %}commpra_venta{% endblock %}
-
-<!--CONTENEDORES ARRIBA-->
-{% block content_top_1 %}
-<div>
-    <img class="logo" src="{% static "panel_control/img/tnt_logo.jpg" %}" alt="Imagen tnt">
-</div>
-{% endblock %}
-{% block content_top_2 %}
-<div>
-    <h2>Panel de control</h2>
-    <div class="pestañas">
-        <button><a href="{% url "materiales" %}">Materiales</a></button>
-        <button><a href="{% url "transacciones" %}">Transacciones</a></button>
-        <button><a href="{% url "personal" %}">Empleados</a></button>
-        <button><a href="{% url "cortes" %}">Cortes</a></button>
     </div>
 </div>
-{% endblock %}
-{% block content_top_3 %}
 <div>
-    <h2>Block content top_3</h2>
+    {% include "paginator.html" %}
 </div>
-{% endblock %}
-<!--CONTENEDORES ABAJO-->
 
-{% block content_1 %}
-        <h2>mermelada</h2>
-{% endblock %}
-
-{% block content_2 %}
-    <h2>Pan con leche</h2>
-{% endblock %} {% endcomment %}
+{% endblock content_box %}

@@ -21,6 +21,7 @@
 
 
 {% block content_box %}
+{% csrf_token %}
 <form method="GET" action="">
     <div class="search">
         <input type="text" name="search" placeholder="Buscar..." value="{{ search_query }}">

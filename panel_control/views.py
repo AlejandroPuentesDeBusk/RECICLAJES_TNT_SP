@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from mainapp import views
 from django.contrib.auth import get_user_model
 from mainapp.models import Material, Transaction, Day_Report, Users
-from django.core.paginator import Paginator
+from django.core.paginator import Paginator, EmptyPage
 from django.db.models import Q
 from django.http import Http404
 
@@ -17,31 +17,41 @@ Users = get_user_model()
 
 def personal(request):
     search_query = request.GET.get('search', '').lower()
-    usuarios = Users.objects.all()
 
     if search_query:
         usuarios = Users.objects.filter(
             Q(Name__icontains = search_query) |
             Q(Paternal_Surname__icontains = search_query) |
             Q(Maternal_Surname__icontains = search_query) |
-            Q(Phone__icontains = search_query)
+            Q(Phone__icontains = search_query) |
+            Q(username__icontains = search_query)
         )
+    else:
+        usuarios = Users.objects.all()
+
 
     # Paginación
-    paginator = Paginator(usuarios, 5)  
-    page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
+    page = request.GET.get('page', 1)
 
-    return render(request, 'personal.html', {
-        'title': 'Panel de Control | Personal',
+    try:
+        paginator = Paginator(usuarios, 5)
+        usuarios = paginator.page(page)
+    except:
+        raise Http404
+
+    context = {
+         'title': 'Panel de Control | Personal',
         'section': 'Panel de Control',
         'subsection': 'Ajustes de Personal',
-        'users': page_obj,  
-        'page_obj': page_obj,
+        'entity': usuarios,
+        'paginator': paginator,  
         'search_query': search_query,
         'active_tab': 'personnel',
         'active_nav': 'panel_control'
-    })
+    }
+
+
+    return render(request, 'personal.html', context)
 
 def transacciones(request):
     search_query = request.GET.get('search', '').lower()  # Obtener lo que se ingreso en el elemento con el name "search", en minuscula para hacer el mapeo
@@ -71,6 +81,8 @@ def transacciones(request):
 
     if not search_query:
         transactions = Transaction.objects.all()
+        
+        # Paginación
         page = request.GET.get('page', 1)
 
         try:
@@ -92,15 +104,39 @@ def transacciones(request):
     return render(request, 'transacciones.html', context)
 
 def materiales(request):
-    materials = Material.objects.all()
-    return render (request, 'materiales.html', {
+    search_query = request.GET.get('search','')
+
+    # Filtrar los materiales según el término de búsqueda
+    if search_query:
+        materials_list = Material.objects.filter(Material_Type__icontains=search_query)
+    else:
+        materials_list = Material.objects.all()
+
+    # Paginación
+    page = request.GET.get('page', 1)
+    paginator = Paginator(materials_list, 5)
+
+
+    try:
+        paginator = Paginator(materials_list, 5)
+        materials_list = paginator.page(page)
+    except EmptyPage:
+        materials_list = paginator.page(paginator.num_pages)
+
+
+    context = {
         'title': 'Panel de Control | Materiales',
         'section': 'Panel de Control',
         'subsection': 'Ajustes de Materiales',
-        'materials': materials,
+        'entity': materials_list,
+        'paginator': paginator,
+        'search_query': search_query,
         'active_tab': 'materials',
         'active_nav': 'panel_control'
-    })
+    }
+
+
+    return render (request, 'materiales.html', context)
 
 def cortes(request):
     search_query = request.GET.get('search', '')  # Obtener lo que se busca
@@ -111,7 +147,8 @@ def cortes(request):
         )
     else:
         reports = Day_Report.objects.all()
-    reports = Day_Report.objects.all()
+
+    # Paginación
     page = request.GET.get('page', 1)
 
     try:
@@ -142,26 +179,26 @@ def is_owner(users):
 def is_employee(users):
     return users.is_active 
 
-def materiales(request):
-    material_list = Material.objects.all()  # Obtener todos los materiales de la mendiga tabla
-    paginator = Paginator(material_list, 5)  # 5 materiales por página es horrible tener muchas
-    page_number = request.GET.get('page')  # Obtener el número de página desde la URL es un dolor de huevos
-    page_obj = paginator.get_page(page_number)  # Obtener la página solicitada que jode
-    search_query = request.GET.get('search','')
+# def materiales(request):
+#     material_list = Material.objects.all()  # Obtener todos los materiales de la mendiga tabla
+#     paginator = Paginator(material_list, 5)  # 5 materiales por página es horrible tener muchas
+#     page_number = request.GET.get('page')  # Obtener el número de página desde la URL es un dolor de huevos
+#     page_obj = paginator.get_page(page_number)  # Obtener la página solicitada que jode
+#     search_query = request.GET.get('search','')
     
-    # Filtrar los materiales según el término de búsqueda
-    if search_query:
-        materials_list = Material.objects.filter(Material_Type__icontains=search_query)
-    else:
-        materials_list = Material.objects.all()
+#     # Filtrar los materiales según el término de búsqueda
+#     if search_query:
+#         materials_list = Material.objects.filter(Material_Type__icontains=search_query)
+#     else:
+#         materials_list = Material.objects.all()
     
-    # Configurar la paginación
-    paginator = Paginator(materials_list, 5)  # 5 materiales por página
-    page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
+#     # Configurar la paginación
+#     paginator = Paginator(materials_list, 5)  # 5 materiales por página
+#     page_number = request.GET.get('page')
+#     page_obj = paginator.get_page(page_number)
     
-    return render(request, 'materiales.html', {
-        'page_obj': page_obj,
-        'search_query': search_query
-        })
+#     return render(request, 'materiales.html', {
+#         'page_obj': page_obj,
+#         'search_query': search_query
+#         })
 
