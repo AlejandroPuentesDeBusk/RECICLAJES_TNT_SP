@@ -74,7 +74,7 @@ class UpdateMaterial(UpdateView):
 
 class UpdateUsers(UpdateView):
     model = Users
-    fields = ['username', 'email', 'Name', 'Paternal_Surname', 'Maternal_Surname', 'Phone']
+    fields = fields = ['username', 'email', 'Name', 'Paternal_Surname', 'Maternal_Surname', 'Phone', 'is_superuser', 'is_staff', 'is_active']
     template_name = 'update/update_user.html'
     success_url = reverse_lazy('personal')
 
@@ -156,6 +156,17 @@ class TransactionCreateView(CreateView):
 
         return super().form_valid(form)
 
+class SignupCreateView(CreateView):
+    model = Users
+    fields = ['username','password', 'email', 'Name', 'Paternal_Surname', 'Maternal_Surname', 'Phone', 'is_superuser', 'is_staff', 'is_active']
+    template_name = 'create/create_user.html'
+    success_url = reverse_lazy('personal')
+
+    def form_valid(self, form):
+        user = form.save(commit=False)
+        user.set_password(form.cleaned_data['password'])
+        user.save()
+        return super().form_valid(form)
 
 
 
