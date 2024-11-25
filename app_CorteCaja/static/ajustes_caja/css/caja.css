@@ -81,7 +81,7 @@ h3{
 {
     background-color: #a3b18a;
     width: 97%;
-    height: 40%;
+    height: 30%;
     padding: 20px;
     display: flex;  
     flex-direction: column;
@@ -264,12 +264,18 @@ anadir transacciones h2
     margin-bottom: 5%;
 }
 
+
+
+
+
 .tipo_transaccion
 {
     width: 90%;
     margin-left: 4%;
     height:3.5%;
     display: flex;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
 }
 
 .tipo_transaccion p
@@ -380,3 +386,53 @@ anadir transacciones h2
 }
 
 
+/*______________UNLTIMO________________*/
+.transaccion-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem; /* Espacio entre elementos */
+}
+
+#descripcion{
+    width: 40vw;
+}
+
+
+.transaccion-row select,
+.transaccion-row input,
+.transaccion-row textarea {
+    font-family: 'Outfit', sans-serif;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.transaccion-row select {
+    width: 15%;
+}
+
+.transaccion-row input {
+    width: 15%;
+}
+
+.transaccion-row textarea {
+    width: 40%;
+    height: 2.5rem;
+    resize: none;
+}
+
+.transaccion-row button {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    background-color: #3A5A40;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: not-allowed;
+}
+
+.transaccion-row button:enabled {
+    cursor: pointer;
+    background-color: #4CAF50;
+}

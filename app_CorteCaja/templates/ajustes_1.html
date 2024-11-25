@@ -81,28 +81,32 @@
   
 
             <div class="right-half">
-                <h2>Detalles de transaccion: </h2>
+
                 <div class="tipo_transaccion">
-                    <p>Tipo de transaccion</p>
-                    <input type="text" id="transaccion_seleccionada" readonly>
-                </div>  
-                <br>
-                <div class="descripcion_transaccion">
-                    <p>Descripcion</p>
-                    <input type="text" id="descripcion" name="entrada_descripcion" placeholder="Añade una descripcion">
+                    <form action="">
+                        <div class="opciones">
+                            <div class="transaccion-row">
+                                <select id="tipo_operacion" name="tipo_operacion">
+                                    <option value="" disabled selected>Operacion</option>
+                                    <option value="inversion">Inversion</option>
+                                    <option value="gasto">Gasto</option>
+                                </select>
+                
+                                <input type="number" id="cantidad" min="0" step="10" placeholder="Monto">
+                
+                                <textarea id="descripcion" placeholder="Añadir descripción"></textarea>
+                
+                                <button type="button" id="realizar_compra" disabled>Realizar</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-               
-                <div class="total">
-                    <h2>Total: </h2>
-                        <span>$</span>
-                        <input type="number" min="0" step="10">
-                        <a href="pop_1.html">
-                            <button>Guardar</button>
-                        </a>
-                        
-                </div>
-        
+                
             </div>
+
+
+
+            
 
             <div id="table-responsive">
 
@@ -117,7 +121,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% for dato in money %}
+                        {% for dato in money_all %}
                         <tr>
                             <td>{{ dato.Day }}</td>
                             <td>{{ dato.Initial_Money }}</td>
