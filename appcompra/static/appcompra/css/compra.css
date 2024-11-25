@@ -2,7 +2,7 @@
 
 .container{
     display: grid;
-    grid-template-columns: 45% 45%;
+    grid-template-columns: 48% 49%;
     grid-template-rows: auto 1fr auto;
     grid-gap: 2%;
     min-width: 100%;
@@ -272,7 +272,7 @@ h3{
     border-radius: .5rem;
     border: none;
     background-color: #D9D9D9;
-    margin-left: 1rem;
+    margin-left: 1vw;
     text-align: center;
 
 }
@@ -293,14 +293,19 @@ h3{
 }
 
 
+
+
 #final_texto textarea{
 
     width: 15vw;
     height: 5vw;
+    line-height: 2.5vw;
+    font-family: Arial, Helvetica, sans-serif;
     border-radius: .5rem;
     background-color: #D9D9D9;
     border: none;
     text-align: center;
+    align-items: center;
     margin-left: 1rem;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
 
