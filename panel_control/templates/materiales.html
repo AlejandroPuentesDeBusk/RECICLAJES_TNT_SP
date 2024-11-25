@@ -22,7 +22,12 @@
 
 
 {% block botones %}
-    <button class="btns" id="filter-btn">Filter</button>
+    
+    <select id="filter-btn" name="tipo_operacion">
+        <option value="" disabled selected>Tipo</option>
+        <option value="compra">Compra</option>
+        <option value="venta">Venta</option>
+    </select>
     <button class="btns" id="add-btn">Añadir</button>
 {% endblock botones %}
 
