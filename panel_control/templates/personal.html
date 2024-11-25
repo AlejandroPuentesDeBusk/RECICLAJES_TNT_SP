@@ -65,7 +65,7 @@
                         <td>{{ user.Phone }}</td>
                         <td>{{ user.date_joined|date:"d/m/Y" }}</td>
                         <td>
-                            <button class="edit-btn">Editar</button>
+                            <button class="edit-btn" onclick="window.location.href='{% url 'editar_personal' user.pk %}'">Editar</button>
                         </td>
                     </tr>
                 {% empty %}

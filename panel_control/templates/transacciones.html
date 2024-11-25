@@ -55,7 +55,7 @@
                             </span>
                         </td>
                         <td>
-                            <button class="edit-btn">Editar</button>
+                            <button class="edit-btn" onclick="window.location.href='{% url 'editar_transaccion' transaction.pk %}'">Editar</button>
                         </td>
                     </tr>
                 {% empty %}
