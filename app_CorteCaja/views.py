@@ -9,19 +9,13 @@ from django.utils import timezone
 
 #@login_required
 def ajustes_1(request):
-    money= Day_Report.objects.latest('Day')
-    final_money= money.Final_Money
+
+    today = timezone.now().date()
+    money = Day_Report.objects.filter(Day=today)
+    
+    # Consolidar el dinero final (opcional)
+    final_money = sum(report.Final_Money for report in money) if money else 0
 
     box_money = {'final_money': final_money}
-
-
-    return render(request, 'ajustes_1.html',{'box_money': box_money})
-
-    money= Day_Report.objects.latest('Day')
-    final_money= money.Final_Money
-
-
-    box_money = {'final_money': final_money}
-
-
-    return render(request, 'ajustes_1.html',{'box_money': box_money})
+    
+    return render(request, 'ajustes_1.html', {'box_money': box_money, 'money': money})

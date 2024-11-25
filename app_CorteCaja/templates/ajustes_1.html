@@ -42,7 +42,7 @@
            </div>
            <div class="nav-item">
                 <div class="icon-credit-card"></div>
-                <a href="{% url 'ajustes_1' %}"">Ajuste de caja</a>
+                <a href="{% url 'ajustes_1' %}">Ajuste de caja</a>
            </div>
            <div class="nav-item" >
                 <div class="icon-cog"></div>
@@ -78,48 +78,7 @@
                     <p class="caja_cantidad">+ {{ box_money.final_money }}</p>
                 </div>
 
-                <!-- Salto de linea-->
-                <br>
-
-                <!-- Sección de Añadir Transacciones -->
-                <div class="anadir_transacciones">
-                    <h2>Añadir Transacciones: </h2>
-                    <div class="anadir_botones">
-                        <div  class="boton_añadir">
-                            <h3>Gasto</h3>
-                            <button onclick="mostrarSeleccion('Gasto')">
-                                <img src="{%static 'ajustes_caja/img/suma.png' %}" alt="+">
-                            </button>
-                        </div>
-                        <div  class="boton_añadir">
-                            <h3>Inversion</h3>
-                            <button onclick="mostrarSeleccion('Inversion')">
-                                <img src="{%static 'ajustes_caja/img/suma.png' %}" alt="+">
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <br>
-                                
-                <!-- Historial de Gastos/Inversiones -->
-                <div class="historial">
-                    <h3>Historial de Gastos/Inversiones</h3>
-                    <ul class="lista_historial">
-                        <li>
-                            <div class="elemento_historial">
-                                <img src="flecha_transaccion.png" alt="↑">
-                                <h3>Gasto</h3>
-                                <p class="fecha">27 March 2024, at 12:40 PM</p>
-                                <p class="monto_elemento_historial">-$2500</p>
-                            </div>
-                        </li>
-            
-                    </ul>
-                </div>
-                <div class="detalles_ajustes">
-                </div>
-            </div>
+  
 
             <div class="right-half">
                 <h2>Detalles de transaccion: </h2>
@@ -142,10 +101,46 @@
                         </a>
                         
                 </div>
-            
+        
             </div>
+
+            <div id="table-responsive">
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Dia</th>
+                            <th>Dinero Inicial</th>
+                            <th>Gastado</th>
+                            <th>Obtenido</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for dato in money %}
+                        <tr>
+                            <td>{{ dato.Day }}</td>
+                            <td>{{ dato.Initial_Money }}</td>
+                            <td>{{ dato.Spent }}</td>
+                            <td>{{ dato.Obtained }}</td>
+                            <td>{{ dato.Final_Money }}</td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="5">No hay datos para el día de hoy.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+        
+            </div>
+
+
         </section>
     </div>
+
+
+
     
 </body>
 </html>
