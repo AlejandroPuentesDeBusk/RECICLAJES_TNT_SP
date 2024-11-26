@@ -212,6 +212,35 @@ header h1 {
     color: #fff;
 }
 
+.search {
+    gap: 5px;
+    display: flex;
+    flex: 1;
+    justify-content: flex-end;
+    height: 4vh;
+}
+
+.search input {
+    font-family: "Outfit", sans-serif;
+    padding: 5px;
+    position: sticky;
+    top: 120px;
+}
+
+.search button {
+    font-family: "Outfit", sans-serif;
+    padding: 5px;
+    outline: none;
+    border-radius: 8px;
+    border: none;
+    background-color: #344E41;
+    color: #ffffff;
+    font-weight: 400;
+    position: sticky;
+    top: 120px;
+}
+
+
 /* ESTILOS DE TABLA DE TRANSACCIONES */
 .transactions-container {
     padding: 20px;
