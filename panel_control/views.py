@@ -81,6 +81,7 @@ def transacciones(request):
             Q(Total__icontains=search_query)  
         )
 
+    paginator = None
     if not search_query:
         transactions = Transaction.objects.all()
         
