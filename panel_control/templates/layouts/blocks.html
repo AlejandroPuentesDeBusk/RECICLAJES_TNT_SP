@@ -10,7 +10,6 @@
         Panel de Control | Cortes
         {% endblock title %}
     </title>
-    
     <link rel="stylesheet" href="{% static "panel_control/css/blocks.css" %}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -35,7 +34,6 @@
         <div class="logo">
             <img src="{% static "panel_control/img/tnt_logo.jpg" %}">
         </div>
-
         <nav>
             <div class="nav-item {% if active_nav == "dashboard" %}active{% endif %}">
                 <a href="{% url "dashboard" %}">Dashboard</a>
@@ -51,49 +49,67 @@
                 <a href="{% url "materiales" %}" class="active">Panel de Control</a>
             </div>
         </nav>
-
         <div class="help">
             <p>¿Necesitas ayuda?<br>Revisa la documentación</p>
             <button>DOCUMENTACIÓN</button>
         </div>
     </div>
-    <div class="main-content">
-        <div id="cabecera">
-            <header>
-                {% block section %}
-                <h1>Panel de Control</h1>
-                {% endblock section %}
-                {% block buscador %}
-                
-                {% endblock buscador %}
-            </header>
-            <div class="tabs">
-                <button class="tab {% if active_tab == 'materials' %}active{% endif %}"><a href="{% url "materiales" %}">Materiales</a></button>
-                <button class="tab {% if active_tab == 'transactions' %}active{% endif %}"><a href="{% url "transacciones" %}">Transacciones</a></button>
-                <button class="tab {% if active_tab == 'personnel' %}active{% endif %}"><a href="{% url "personal" %}">Personal</a></button>
-                <button class="tab {% if active_tab == 'reports' %}active{% endif %}"><a href="{% url "cortes" %}">Cortes</a></button></div>
-            <h2>
-                {% block subsection %}
-                    Historial de Cortes
-                {% endblock subsection %}
-            </h2>
-            <div id="botones">
-                {% block botones %}
-                    {% comment %} 
-                        Botones de añadir o de filtrado, dependiendo de la tab 
-                    {% endcomment %}
-                {% endblock botones %}
+    <div class="hidden">
+        <div class="hidden">
+            <div class="centrado" id="cargando">
+                <div class="lds-roller">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
             </div>
         </div>
         
-        <section class="transactions-table">
-            {% block content_box %}
+        <div class="main-content">
+            <div id="cabecera">
+                <header>
+                    {% block section %}
+                    <h1>Panel de Control</h1>
+                    {% endblock section %}
+                    {% block buscador %}
+                    
+                    {% endblock buscador %}
+                </header>
+                <div class="tabs">
+                    <button class="tab {% if active_tab == 'materials' %}active{% endif %}"><a href="{% url "materiales" %}">Materiales</a></button>
+                    <button class="tab {% if active_tab == 'transactions' %}active{% endif %}"><a href="{% url "transacciones" %}">Transacciones</a></button>
+                    <button class="tab {% if active_tab == 'personnel' %}active{% endif %}"><a href="{% url "personal" %}">Personal</a></button>
+                    <button class="tab {% if active_tab == 'reports' %}active{% endif %}"><a href="{% url "cortes" %}">Cortes</a></button></div>
+                <h2>
+                    {% block subsection %}
+                        Historial de Cortes
+                    {% endblock subsection %}
+                </h2>
+                <div id="botones">
+                    {% block botones %}
+                        {% comment %} 
+                            Botones de añadir o de filtrado, dependiendo de la tab 
+                        {% endcomment %}
+                    {% endblock botones %}
+                </div>
+            </div>
+            
+            <section class="transactions-table">
+                {% block content_box %}
 
-            {% endblock content_box %}
-        </section>
-        <footer>
-            <p>© 2024, made by bola de huevones</p>
-        </footer>
+                {% endblock content_box %}
+            </section>
+            <footer>
+                <p>© 2024, made by bola de huevones</p>
+            </footer>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+        <script src="{% static "panel_control/JS/personal.js" %} "></script>
     </div>
 </body>
 </html>

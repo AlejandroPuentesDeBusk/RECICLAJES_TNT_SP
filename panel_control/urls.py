@@ -1,7 +1,7 @@
 from django . urls import path
 from . import views
 from django.contrib.auth import views as auth_views
-#from django.conf.urls import handler404
+from django.conf.urls import handler404
 
 
 urlpatterns = [
@@ -12,4 +12,4 @@ urlpatterns = [
     path('cortes', views.cortes, name='cortes')
 ]
 
-#handler404 = 'mainapp.views.error404'
+handler404 = 'mainapp.views.error404'
