@@ -76,11 +76,11 @@
             <span>{{ current_date }}</span>
             <a href="#"><div class="icon-user"></div></a>
         </div>
-        <div>
+        <div id="cerrar">
             <span>{% now "Y-m-d H:i" %} </span>
             <form method="POST" action="{% url "logout" %}">
                 {% csrf_token %}
-                <button type="submit" class="btn-logout">Cerras sesión</button>
+                <button type="submit" class="btn-logout">Cerrar sesión</button>
             </form>
         </div>
     </header>
