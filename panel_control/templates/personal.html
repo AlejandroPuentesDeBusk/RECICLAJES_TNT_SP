@@ -25,6 +25,11 @@
         <button type="submit">Buscar</button>
     </div>
 </form>
+{% if messages %}
+  {% for message in messages %}
+    <div class="alert alert-success">{{ message }}</div>
+  {% endfor %}
+{% endif %}
 <div class="transactions-container">
     <div class="table-responsive">
         <table class="table">

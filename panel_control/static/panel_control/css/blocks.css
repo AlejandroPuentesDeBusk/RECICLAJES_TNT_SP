@@ -86,6 +86,7 @@ nav a.active {
     border-radius: 5px;
 }
 
+
 .main-content {
     margin-left: 250px;
     padding: 20px;
@@ -118,7 +119,47 @@ header h1 {
     font-weight: bold;
 }
 
-.search {
+/* Contenedor general de la fecha y el botón */
+header div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    gap: 5px;
+}
+
+/* Estilo de la fecha */
+header span {
+    font-family: "Outfit", sans-serif;
+    font-size: 16px;
+    color: #344E41;
+    font-weight: bold;
+}
+
+/* Estilo del botón de cerrar sesión */
+header .btn-logout {
+    font-family: "Outfit", sans-serif;
+    font-size: 14px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    width: auto;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    background-color: #B7B7B8;
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+header .btn-logout:hover {
+    background-color: #717171; /* Color más claro al pasar el cursor */
+}
+
+
+/* .search {
     display: flex;
     align-items: center;
     gap: 20px;
@@ -133,7 +174,7 @@ header h1 {
 .search a {
     text-decoration: none;
     color: #2D3748;
-}
+} */
 
 .tabs {
     display: flex;

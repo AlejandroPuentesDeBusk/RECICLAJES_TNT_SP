@@ -144,3 +144,11 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / "mainapp/media"
 
 LOGIN_URL = 'login' #Es para que se redirija al login si un usuario no está autenticado, ya sea cuando recién entra a la app o cuando trata de visitar una vista protegida
+
+
+EMAIL_USE_TLS=True
+EMAIL_HOST='smtp.gmail.com'
+EMAIL_PORT=25
+EMAIL_HOST_USER=config('MAIL')
+EMAIL_HOST_PASSWORD=config('MAIL_PASS')
+EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
