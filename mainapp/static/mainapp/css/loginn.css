@@ -79,6 +79,10 @@ button:hover {
 
 .img_tnt {
     flex: 1;
-    background: url('../static/img/Tnt_reciclajes.jpg') no-repeat center center;
+    margin-top: .5rem;
+    height: 35rem;
+    width: 35rem;
+    border-radius: 1%;
+    margin-right: 1rem;
     background-size: cover;
 }
