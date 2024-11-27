@@ -18,40 +18,41 @@
 {% endblock subsection %}
 
 {% block botones %}
-    <select id="filter-btn" name="tipo_operacion">
-        <option value="" disabled selected>Tipo</option>
-        <option value="compra" selected>Compra</option>
-        <option value="venta">Venta</option>
-    </select>
-    <button class="btns" id="add-btn" onclick="window.location.href='{% url 'crear_mat' %}'">Añadir</button>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const filterBtn = document.getElementById('filter-btn');
-            const tableRows = document.querySelectorAll('#materials-table tr');
-            const purchaseHeader = document.getElementById('price-purchase-header');
-            const saleHeader = document.getElementById('price-sale-header');
-            filterBtn.addEventListener('change', () => {
-                const filterValue = filterBtn.value; 
-                tableRows.forEach(row => {
-                    if (!filterValue || row.dataset.operation === filterValue) {
-                        row.style.display = ''; 
-                    } else {
-                        row.style.display = 'none'; 
-                    }
-                });
-                if (filterValue === 'compra') {
-                    purchaseHeader.textContent = 'Precio Compra Mayorista';
-                    saleHeader.textContent = 'Precio Venta Mayorista';
-                } else if (filterValue === 'venta') {
-                    purchaseHeader.textContent = 'Precio Compra Minorista';
-                    saleHeader.textContent = 'Precio Venta Minorista';
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const filterBtn = document.getElementById('filter-btn');
+        const tableRows = document.querySelectorAll('#materials-table tr');
+        const purchaseHeader = document.getElementById('price-purchase-header');
+        const saleHeader = document.getElementById('price-sale-header');
+        filterBtn.addEventListener('change', () => {
+            const filterValue = filterBtn.value; 
+            tableRows.forEach(row => {
+                if (!filterValue || row.dataset.operation === filterValue) {
+                    row.style.display = ''; 
                 } else {
-                    purchaseHeader.textContent = 'Precio Compra';
-                    saleHeader.textContent = 'Precio Venta';
+                    row.style.display = 'none'; 
                 }
             });
+            if (filterValue === 'compra') {
+                purchaseHeader.textContent = 'Precio Compra Mayorista';
+                saleHeader.textContent = 'Precio Venta Mayorista';
+            } else if (filterValue === 'venta') {
+                purchaseHeader.textContent = 'Precio Compra Minorista';
+                saleHeader.textContent = 'Precio Venta Minorista';
+            } else {
+                purchaseHeader.textContent = 'Precio Compra';
+                saleHeader.textContent = 'Precio Venta';
+            }
         });
-    </script>
+    });
+</script>
+<select id="filter-btn" name="tipo_operacion">
+    <option value="" disabled selected>Tipo</option>
+    <option value="compra" selected>Mayoreo</option>
+    <option value="venta">Menudeo</option>
+</select>
+<button class="btns" id="add-btn" onclick="window.location.href='{% url 'crear_mat' %}'">Añadir</button>
+
 {% endblock botones %}
 
 {% block content_box %}
