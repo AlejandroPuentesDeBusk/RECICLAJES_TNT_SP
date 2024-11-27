@@ -15,7 +15,7 @@ Users = get_user_model()
 
 
 
-
+@login_required
 def cv(request):
     materials = Material.objects.all()
     money= Day_Report.objects.latest('Day')
@@ -42,7 +42,7 @@ def realizar_compra(request):
         try:
             data = json.loads(request.body)
 
-            # Extraer datos del request
+            
             materials = data.get('materials', [])
             tipo_operacion = data.get('tipoOperacion')
             tipo_cargo = data.get('tipoCargo')
@@ -51,27 +51,27 @@ def realizar_compra(request):
             total = data.get('total', 0)
             description = data.get('description', '')
 
-            # Validar datos
+        
             if not materials or not tipo_operacion or not tipo_cargo:
                 return JsonResponse({'success': False, 'message': 'Datos incompletos.'})
 
-            # Crear la transacción
+       
             transaction = Transaction.objects.create(
                 User=request.user,
                 Total=total,
                 Discount=discount,
-                Transaction_Type=tipo_operacion.upper(),  # Convierte a mayúsculas
+                Transaction_Type=tipo_operacion.upper(),  
                 Description=description,
-                Status='COMPLETED'  # O según tu lógica
+                Status='COMPLETED'  
             )
 
-            # Crear los detalles de la transacción
+           
             for item in materials:
                 material_id = item.get('materialId')
                 quantity = item.get('quantity', 0)
                 price = item.get('price', 0)
 
-                # Obtener instancia de Material
+              
                 try:
                     material = Material.objects.get(id=material_id)
                 except Material.DoesNotExist:
@@ -79,7 +79,7 @@ def realizar_compra(request):
 
                 subtotal = float(quantity) * float(price)
 
-                # Crear Transaction_Details
+               
                 Transaction_Details.objects.create(
                     Material=material,
                     Transaction=transaction,

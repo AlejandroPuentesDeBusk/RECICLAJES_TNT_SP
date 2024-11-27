@@ -92,6 +92,20 @@
                         <p class="caja_total">Total:</p>
                         <p class="caja_cantidad">+ {{ dinero_en_caja }}</p>
                     </div>
+
+
+                    <!--paginator___________________________________-->
+
+
+
+                    <!--paginator___________________________________-->
+
+
+
+
+
+
+
                 <div class="right-half">
                     <div class="tipo_transaccion">
                         {% if error_message %}
@@ -134,7 +148,7 @@
                         </thead>
     
                         <tbody>
-                            {% for dato in in_ga %}
+                            {% for dato in show_page %}
                             
                             <tr>
                                 <td>{{ dato.Date|date:"H:i" }}</td>
@@ -152,8 +166,33 @@
                             {% endfor %}
                         </tbody>
                     </table>
+
+                    <div class="pagination">
+                        <span class="step-links">
+                            {% if show_page.has_previous %}
+                                <a href="?page={{ show_page.previous_page_number }}" class="page-link">Anterior</a>
+                            {% endif %}
+            
+                            {% for page_num in show_page.paginator.page_range %}
+                                {% if page_num == show_page.number %}
+                                    <span class="current page-link active">
+                                        {{ page_num }}
+                                    </span>
+                                {% else %}
+                                    <a class="page-link" href="?page={{ page_num }}">
+                                        {{ page_num }}
+                                    </a>
+                                {% endif %}
+                            {% endfor %}
+            
+                            {% if show_page.has_next %}
+                                <a class="page-link" href="?page={{ show_page.next_page_number }}">Siguiente</a>
+                            {% endif %}
+                        </span>
+                    </div>
             
                 </div>
+
     
     
             </section>
