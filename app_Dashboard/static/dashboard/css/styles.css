@@ -20,6 +20,7 @@ body {
 }
 
 
+
 .cont_1{
     margin-left: 18rem;
 }
@@ -28,6 +29,10 @@ body {
 header{
     margin-left: 18rem;
     padding-top: 2rem;
+}
+
+#dash{
+    color: #2a663c;
 }
 
 .contenido {
