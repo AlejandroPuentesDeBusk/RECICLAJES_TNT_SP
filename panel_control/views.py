@@ -6,6 +6,8 @@ from django.core.paginator import Paginator, EmptyPage
 from django.db.models import Q
 from django.http import Http404
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import user_passes_test
+from mainapp.views import is_owner
 
 Users = get_user_model()
 
@@ -15,7 +17,7 @@ Users = get_user_model()
 # def panel_control(request):
 #     materials = Material.objects.all()
 #     return render(request, 'panel.html',{'materials': materials})
-
+@user_passes_test(is_owner)
 @login_required
 def personal(request):
     search_query = request.GET.get('search', '').lower()
@@ -54,7 +56,7 @@ def personal(request):
 
 
     return render(request, 'personal.html', context)
-
+@user_passes_test(is_owner)
 def transacciones(request):
     search_query = request.GET.get('search', '').lower()  # Obtener lo que se ingreso en el elemento con el name "search", en minuscula para hacer el mapeo
     # transactions = Transaction.objects.all()
@@ -106,6 +108,7 @@ def transacciones(request):
     
     return render(request, 'transacciones.html', context)
 
+@user_passes_test(is_owner)
 def materiales(request):
     search_query = request.GET.get('search','')
 
@@ -141,6 +144,7 @@ def materiales(request):
 
     return render (request, 'materiales.html', context)
 
+@user_passes_test(is_owner)
 def cortes(request):
     search_query = request.GET.get('search', '')  # Obtener lo que se busca
 
