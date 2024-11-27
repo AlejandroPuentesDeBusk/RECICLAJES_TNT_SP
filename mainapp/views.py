@@ -14,6 +14,8 @@ from django.urls import reverse_lazy
 from .models import Material, Users, Transaction, Transaction_Details
 from django.forms import modelformset_factory
 from .forms import MaterialForm, UserForm, TransactionForm   # Para dar estilos a los formularios
+from django.contrib import messages
+
 
 Users = get_user_model()
 
@@ -165,8 +167,10 @@ class SignupCreateView(CreateView):
 
     def form_valid(self, form):
         user = form.save(commit=False)
-        user.set_password(form.cleaned_data['password'])
+        default_password = "pass.123"
+        user.set_password(default_password)
         user.save()
+        messages.success(self.request, f"El usuario '{user.username}' ha sido creado con la contraseña predeterminada.")
         return super().form_valid(form)
 
 class MaterialCreateView(CreateView):

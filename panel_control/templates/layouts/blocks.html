@@ -77,7 +77,13 @@
                     <h1>Panel de Control</h1>
                     {% endblock section %}
                     {% block buscador %}
-                    
+                    <div>
+                        <span>{% now "Y-m-d H:i" %} </span>
+                        <form method="POST" action="{% url "logout" %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn-logout">Cerras sesión</button>
+                        </form>
+                    </div>
                     {% endblock buscador %}
                 </header>
                 <div class="tabs">
