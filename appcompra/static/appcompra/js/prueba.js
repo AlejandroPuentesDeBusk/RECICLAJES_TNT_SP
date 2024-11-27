@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (operacion === 'compra') {
             priceAttr = tipoCargo.toLowerCase();
         } else if (operacion === 'venta') {
-            // Reemplazar 'purchase' por 'sale' en el tipo de cargo
+            // Reemplazar 'Purchase' por 'Sale' en el tipo de cargo
             priceAttr = tipoCargo.replace('Purchase', 'Sale').toLowerCase();
         }
 
@@ -238,6 +238,14 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         }
 
+        // Mostrar confirmación al usuario
+        const confirmacion = confirm('¿Estás seguro de que deseas realizar esta operación?');
+
+        if (!confirmacion) {
+            // El usuario canceló la operación
+            return;
+        }
+
         // Enviar datos al servidor
         fetch(realizarCompraUrl, {
             method: 'POST',
@@ -255,14 +263,14 @@ document.addEventListener('DOMContentLoaded', function () {
         })
         .then(result => {
             if (result.success) {
-                alert('Compra realizada con éxito.');
+                alert('Operación realizada con éxito.');
                 // Limpiar selecciones y recargar la página
                 localStorage.removeItem('selectedMaterials');
                 localStorage.removeItem('tipoOperacionSeleccionado');
                 localStorage.removeItem('tipoCargoSeleccionado');
                 window.location.reload();
             } else {
-                alert('Error al realizar la compra: ' + result.message);
+                alert('Error al realizar la operación: ' + result.message);
             }
         })
         .catch(error => {
@@ -273,6 +281,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Ya no es necesario obtener el token CSRF desde las cookies, ya que lo estamos pasando desde el HTML
 });
+
 
 
 
