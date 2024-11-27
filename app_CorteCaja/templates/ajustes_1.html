@@ -11,6 +11,12 @@
 
         <link rel="stylesheet" href="{%static 'ajustes_caja/css/caja.css' %}">
         <script src="{% static 'ajustes_caja/js/caja.js' %}"></script>
+        <script src="{% static 'ajustes_caja/js/script.js' %}"></script>
+        <script>
+            const dineroEnCaja = {{ dinero_en_caja }};
+        </script>
+        
+    
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
@@ -88,6 +94,12 @@
                     </div>
                 <div class="right-half">
                     <div class="tipo_transaccion">
+                        {% if error_message %}
+                            <div class="error-message" style="color: red; font-weight: bold; margin-top: 10px;">
+                                {{ error_message }}
+                            </div>
+                        {% endif %}
+
                 
                         <form action="{% url 'ajustes_1' %}" method="post">
                             {% csrf_token %}
