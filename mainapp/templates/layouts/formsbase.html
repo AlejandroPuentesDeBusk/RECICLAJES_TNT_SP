@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Editar | {% endblock title %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'mainapp/css/formsbase.css' %}">
+</head>
+<body>
+    <header>
+        <!-- Encabezado global -->
+    </header>
+    <main class="main-content">
+        <div class="main-container">
+            {% block content %}
+            {% endblock content %}
+        </div>
+    </main>
+    <footer>
+        <div class="footer">
+            <!-- Pie de página -->
+        </div>
+    </footer>
+</body>
+</html>
