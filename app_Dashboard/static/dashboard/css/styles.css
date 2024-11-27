@@ -203,6 +203,19 @@ footer {
     font-weight: bold;
 }
 
+
+.pagination{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+
+
+
+
+
 /*______Grafiacs________*/
 canvas{
     max-width: 100%;
