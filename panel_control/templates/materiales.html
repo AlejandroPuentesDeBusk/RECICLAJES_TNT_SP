@@ -18,21 +18,28 @@
 {% endblock subsection %}
 
 {% block botones %}
+
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         const filterBtn = document.getElementById('filter-btn');
         const tableRows = document.querySelectorAll('#materials-table tr');
         const purchaseHeader = document.getElementById('price-purchase-header');
         const saleHeader = document.getElementById('price-sale-header');
-        filterBtn.addEventListener('change', () => {
-            const filterValue = filterBtn.value; 
+    
+        // Recuperar selección guardada en localStorage o usar el valor por defecto 'venta' asi que ALEJANDRO NO LE MUEVAS AL FILTRO DE COMPRA VENTA
+        const savedFilter = localStorage.getItem('selectedFilter') || 'venta';
+        filterBtn.value = savedFilter;
+    
+        // Función para aplicar filtro
+        const applyFilter = (filterValue) => {
             tableRows.forEach(row => {
                 if (!filterValue || row.dataset.operation === filterValue) {
-                    row.style.display = ''; 
+                    row.style.display = ''; // Mostrar fila
                 } else {
-                    row.style.display = 'none'; 
+                    row.style.display = 'none'; // Ocultar fila
                 }
             });
+            // Cambiar encabezados según el filtro
             if (filterValue === 'compra') {
                 purchaseHeader.textContent = 'Precio Compra Mayorista';
                 saleHeader.textContent = 'Precio Venta Mayorista';
@@ -43,12 +50,23 @@
                 purchaseHeader.textContent = 'Precio Compra';
                 saleHeader.textContent = 'Precio Venta';
             }
+        };
+        // Aplicar filtro al cargar la mendiga página
+        applyFilter(savedFilter);
+        // Actualizar filtro al cambiar la mendiga selección que se mueve sola
+        filterBtn.addEventListener('change', () => {
+            const filterValue = filterBtn.value;
+            // Guardar la selección en localStorage por que esta menso el brave
+            localStorage.setItem('selectedFilter', filterValue);
+            // Aplicar filtro por que no voy hacerlo a mano uno a uno
+            applyFilter(filterValue);
         });
     });
+    
 </script>
 <select id="filter-btn" name="tipo_operacion">
-    <option value="" disabled selected>Tipo</option>
-    <option value="compra" selected>Mayoreo</option>
+    <option value="" disabled>Tipo</option>
+    <option value="compra">Mayoreo</option>
     <option value="venta">Menudeo</option>
 </select>
 <button class="btns" id="add-btn" onclick="window.location.href='{% url 'crear_mat' %}'">Añadir</button>
