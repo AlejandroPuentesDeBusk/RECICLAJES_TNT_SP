@@ -10,8 +10,6 @@ body {
     background-color: white;
 }
 
-
-
 .main-content {
     margin-left: 250px;
     padding: 20px;
@@ -25,26 +23,11 @@ header {
     margin-bottom: 20px;
 }
 
-
-
 .search {
     display: flex;
     align-items: center;
     gap: 20px;
 }
-
-.search input {
-    padding: 5px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-}
-
-.search a {
-    text-decoration: none;
-    color: #2D3748;
-}
-
-
 
 footer {
     text-align: center;
@@ -53,34 +36,18 @@ footer {
     color: #999;
 }
 
-footer div a {
-    color: #2a663c;
-    text-decoration: none;
-    margin: 0.5px
-}
-h3{
-    font-size: 1rem;
-}
-
-
-.contenido{
+.contenido {
     display: flex;
     gap: 20px;
     background-color: white;
-
 }
 
-/*Estilos para la mitad izquierda de la ventana*/
-.left-half
-{
+.left-half {
     flex: 47%;
 }
 
-/*Estilos del panel con el dinero de caja*/
-.panel_dinero
-{
-    /*background-color: #a3b18a;*/
-    background: linear-gradient(70deg, #a3b18a, #77966a 40% , #95a27e);
+.panel_dinero {
+    background: linear-gradient(70deg, #a3b18a, #77966a 40%, #95a27e);
     width: 97%;
     height: 30%;
     padding: 20px;
@@ -92,315 +59,74 @@ h3{
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     color: #073f07;
     font-family: Arial, sans-serif; 
-    margin-bottom:1px;
     margin-top: 1%;
-   
 }
 
-.icono
-{
+.icono {
     height: 45%;
 }
 
-.icono img
-{
+.icono img {
     height: 100%;
 }
 
-
-
-.dinero_en_caja
-{
+.dinero_en_caja,
+.caja_total {
     font-weight: bold;
-    font-size: 150%;
     color: black;
 }
 
-.caja_total
-{
-    margin-top:1.3%;
-    color: black;
-    font-weight: bold;
+.dinero_en_caja {
+    font-size: 150%;
+}
+
+.caja_total {
+    margin-top: 1.3%;
     font-size: 100%;
 }
 
-.caja_cantidad
-{
+.caja_cantidad {
     font-weight: bolder;
     margin-top: 1.5%;
     font-size: 200%;
 }
-/*Fin de estilos para el panel con el dinero de caja*/
 
-/* Estilos para los botones de agregar*/
-.anadir_transacciones
-{
-    background-color: whitesmoke; /* Herramienta para el desarrollo, ayuda a ver el tamano de la seccion*/
-    height: 20%;
-}
-
-anadir transacciones h2
-{
-    font-weight: bold;
-    font-size:30%;
-}
-
-.anadir_botones
-{
-    display: flex;
-    justify-content: space-between;
-    margin-top: 5%;
-    height: 40%;
-    width: 90%;
-}
-
-.boton_añadir
-{
-    background-color: white;
-    display: flex;
-    justify-content: space-between;
-    width: 50%;
-    margin-left: 4%;
-}
-
-.boton_añadir button
-{
-    width:22%;
-    height:90%;
-
-}
-.boton_añadir img
-{
-    border-radius: 20%;
-    width: 100%;
-    height: 100%;
-    border-color: white;
-}
-
-
-.boton_añadir h3{
-    text-align: left;
-    padding-left: 0.5rem;
-    font-size: 20px;
-}
-/* Fin de estilos para los botones de anadir*/
-
-/*Estilos para el historial de gastos e inversiones*/
-.historial
-{
-    background-color: white;
-    display: flex;  
-    flex-direction: column;
-    border-radius: 10px;
-    width: 29rem;
-
-}
-
-.historial h3
-{
-    color: #2D3748;
-    width: 200px;
-    margin-left: 3%;
-    margin-top: 2%;
-    display: flex;
-    width: 80%;
-    margin-bottom: 2%;
-}
-
-.lista_historial
-{
-    display: flex;
-    gap: 40px;
-}
-
-.elemento_historial
-{
-    width: 95%;
-    display: flex;
-    align-items: center;
-    gap: 30px;
-    justify-content: space-between;
-    margin-left: 5%;
-
-}
-
-.elemento_historial img
-{
-    border-radius: 20%;
-    width: 30px;
-    height: 30px;
-    border-color: white;
-}
-
-.fecha
-{
-    font-size: small;
-    font-weight: bold;
-}
-
-.monto_elemento_historial
-{
-    color: red;
-}
-
-.detalles_ajustes
-{
-    background-color: white;
-    margin-left: 50%;
-
-}
-/*Estilos para la mitad derecha de la ventana*/
-.right-half
-{
+.right-half {
     flex: 53%;
     background-color: white;
     border-radius: 3%;
 }
 
-.right-half h2
-{
-    margin-top: 3%;
-    margin-left: 5%;
-    color: #344E41;
-    margin-bottom: 5%;
-}
-
-
-
-
-
-.tipo_transaccion
-{
+.tipo_transaccion {
     width: 90%;
     margin-left: 4%;
-    height:3.5%;
-    display: flex;
     padding-top: 2rem;
     padding-bottom: 2rem;
+    display: flex;
 }
 
-.tipo_transaccion p
-{
-    background-color: #A2B18A;
-    border-radius: 5%;
-    text-align: center;
-    color: black;
-    width:40%;
+.tipo_transaccion .error-message {
+    color: red;
     font-weight: bold;
+    margin-top: 10px;
 }
 
-.tipo_transaccion input
-{
-    margin-left: 9%;
-    font-weight: bold;
-}
-
-.table{
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-
-
-
-
-
-.descripcion_transaccion
-{
-    margin-left: 4%;
-    width: 92%;
-    height: 50%
-}
-
-.descripcion_transaccion p
-{
-    background-color: #588157;
-    border-radius: 4px;
-    text-align: center;
-    color: white;
-    font-weight: bold;
-}
-
-.descripcion_transaccion input
-{
-    height: 90%;
-    background-color: #DAD8CC;
-    width:100%;
-    color: black;
-    padding-left: 2.5%;
-    font-size: 120%;
-    border: white;
-}
-
-.descripcion_transaccion input::placeholder
-{
-    color: black;
-    font-weight: bold;
-}
-
-.total
-{
-    margin-left: 4%;
-    color: #2D3748;
-    margin-top: 1%;
-    height: 20%;
-    width: 92%;
-    background-color: white;
-}
-
-.total h2
-{
-    font-size: 150%;
-    font-weight: bolder;
-    margin-left: -0.7%;
-}
-
-
-.total span
-{
-    color: #008f39;
-    font-weight: bold;
-    font-size: 100%;
-}
-.total input
-{
-    margin-top: 0.5%;
-    height: 20%;
-    color: #008f39;
-    font-weight: bold;
-    padding-left: 2%;
-    font-size: 100%;
-}
-
-.total input::placeholder
-{
-    color: #008f39;
-    font-weight: bold;
-    padding-left: 2%;
-    font-size: 100%;
-}
-
-.total button
-{
-    width: 25%;
-    margin-left: 20%;
-    border-radius: 5%;
-    background-color: #395a3f;
-    color: white;
-    height: 30%;
-}
-
-
-/*______________UNLTIMO________________*/
 .transaccion-row {
     display: flex;
     align-items: center;
-    gap: 1rem; /* Espacio entre elementos */
+    gap: 1rem;
 }
+
+#realizar_compra{
+    border-radius: .5rem;
+    width: 10rem;
+    height: 2.5rem;
+}
+
 
 #descripcion{
     width: 40vw;
 }
-
 
 .transaccion-row select,
 .transaccion-row input,
@@ -433,42 +159,36 @@ anadir transacciones h2
     color: white;
     border: none;
     border-radius: 5px;
-    cursor: not-allowed;
-}
-
-.transaccion-row button:enabled {
     cursor: pointer;
-    background-color: #4CAF50;
 }
 
-/*____________pantalla de carga________________*/
+#table-responsive .table {
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
 
-.hidden{
+.hidden {
     overflow: hidden;
 }
 
-.centrado{
+.centrado {
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.lds-roller,
-.lds-roller div,
-.lds-roller div:after {
-    box-sizing: border-box;
-}
 .lds-roller {
     display: inline-block;
     position: relative;
     width: 80px;
     height: 80px;
 }
+
 .lds-roller div {
     animation: lds-roller 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
     transform-origin: 40px 40px;
 }
+
 .lds-roller div:after {
     content: " ";
     display: block;
@@ -479,67 +199,13 @@ anadir transacciones h2
     background: currentColor;
     margin: -3.6px 0 0 -3.6px;
 }
-.lds-roller div:nth-child(1) {
-    animation-delay: -0.036s;
-}
-.lds-roller div:nth-child(1):after {
-    top: 62.62742px;
-    left: 62.62742px;
-}
-.lds-roller div:nth-child(2) {
-    animation-delay: -0.072s;
-}
-.lds-roller div:nth-child(2):after {
-    top: 67.71281px;
-    left: 56px;
-}
-.lds-roller div:nth-child(3) {
-    animation-delay: -0.108s;
-}
-.lds-roller div:nth-child(3):after {
-    top: 70.90963px;
-    left: 48.28221px;
-}
-.lds-roller div:nth-child(4) {
-    animation-delay: -0.144s;
-}
-.lds-roller div:nth-child(4):after {
-    top: 72px;
-    left: 40px;
-}
-.lds-roller div:nth-child(5) {
-    animation-delay: -0.18s;
-}
-.lds-roller div:nth-child(5):after {
-    top: 70.90963px;
-    left: 31.71779px;
-}
-.lds-roller div:nth-child(6) {
-    animation-delay: -0.216s;
-}
-.lds-roller div:nth-child(6):after {
-    top: 67.71281px;
-    left: 24px;
-}
-.lds-roller div:nth-child(7) {
-    animation-delay: -0.252s;
-}
-.lds-roller div:nth-child(7):after {
-    top: 62.62742px;
-    left: 17.37258px;
-}
-.lds-roller div:nth-child(8) {
-    animation-delay: -0.288s;
-}
-.lds-roller div:nth-child(8):after {
-    top: 56px;
-    left: 12.28719px;
-}
+
 @keyframes lds-roller {
     0% {
-    transform: rotate(0deg);
+        transform: rotate(0deg);
     }
     100% {
-    transform: rotate(360deg);
+        transform: rotate(360deg);
     }
 }
+
