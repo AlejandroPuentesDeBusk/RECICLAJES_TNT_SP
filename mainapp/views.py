@@ -16,9 +16,24 @@ from django.forms import modelformset_factory
 from .forms import MaterialForm, UserForm, TransactionForm   # Para dar estilos a los formularios
 from django.contrib import messages
 
+#LO necesario para los procedimientos
+from .procedures import generate_day_report, generate_material_report_details
+from datetime import date
 
 Users = get_user_model()
 
+
+#Generear reportes - métanme un tiro, por favor
+def generar_reporte(request):
+    if request.method == 'POST':
+        report_date = request.POST.get('report_date', date.today())
+        
+        generate_day_report(report_date)
+        generate_material_report_details(report_date)
+        
+        return redirect('cortes')
+
+    return render(request, 'ola.html')
 
 def is_owner(users):
     return users.is_active and users.is_superuser

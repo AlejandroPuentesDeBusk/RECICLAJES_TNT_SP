@@ -1,0 +1,22 @@
+{% extends "layouts/blocks.html" %}
+
+{% block title %}
+    Generar Reporteww
+{% endblock title %}
+
+{% block section %}
+    <h1>Generar Reporte Diario</h1>
+{% endblock section %}
+
+{% block content_box %}
+
+<form method="POST" action="{% url 'cortar' %}">
+    {% csrf_token %}
+    <!-- Formulario con el campo de fecha visible -->
+    <label for="report_date">Selecciona la fecha:</label>
+    <input type="date" id="report_date" name="report_date" required>
+
+    <!-- Botón para generar el reporte -->
+    <button type="submit">Generar Reporte</button>
+</form>
+{% endblock content_box %}
