@@ -6,6 +6,9 @@ from django.core.paginator import Paginator
 from django.http import JsonResponse, Http404
 import json
 
+from django.utils import timezone
+
+
 from mainapp.models import Material, Transaction, Transaction_Details, Day_Report
 
 
@@ -17,6 +20,10 @@ Users = get_user_model()
 
 @login_required
 def cv(request):
+
+    today = timezone.now
+
+
     materials = Material.objects.all()
     money= Day_Report.objects.latest('Day')
     final_money= money.Final_Money
@@ -31,7 +38,9 @@ def cv(request):
 
 
 
-    return render(request, 'compra_venta/com_ven.html', {'show_page': show_page, 'box_money':box_money})
+    return render(request, 'compra_venta/com_ven.html', {'show_page': show_page,
+                                                          'box_money':box_money,
+                                                          'today':today})
 
 
 

@@ -23,18 +23,17 @@
 
 #dinero_caja{
     background-color: #F8F9FA;
-    margin-right: 10%;
+
 
 }
 
 #dinero_caja_fondo{
-    
+    padding-top: 1rem;
     background-color: white;
-    width: 10rem;
+    width: 20rem;
     height: 4rem;
     text-align: center;
-    box-shadow: 3px 3px 3px #888888;
-    border-radius: .5rem;
+
 }
 
 #dinero_caja_fondo h3{
