@@ -117,23 +117,37 @@
                     {% endfor %}
                 </table>
 <!--__________________________CONTROL DE LA PAGINACION_________________________________________________-->
-                <div class="pagination">
-                    <span class="step-links">
-                        {% if show_page.has_previous %}
-                            <a href="?page=1">&laquo; Primera</a>
-                            <a href="?page={{ show_page.previous_page_number }}">Anterior</a>
-                        {% endif %}
+<div class="pagination">
+    <span class="step-links">
+        {% if show_page.has_previous %}
+            <a href="?page={{ show_page.previous_page_number }}" class="page-link">Anterior</a>
+        {% endif %}
 
-                        <span class="current">
-                            Página {{ show_page.number }} de {{ show_page.paginator.num_pages }}.
-                        </span>
+        {% for page_num in show_page.paginator.page_range %}
+            {% if page_num == show_page.number %}
+                <span class="current page-link active">
+                    {{ page_num }}
+                </span>
+            {% else %}
+                <a class="page-link" href="?page={{ page_num }}">
+                    {{ page_num }}
+                </a>
+            {% endif %}
+        {% endfor %}
 
-                        {% if show_page.has_next %}
-                            <a href="?page={{ show_page.next_page_number }}">Siguiente</a>
-                            <a href="?page={{ show_page.paginator.num_pages }}">Última &raquo;</a>
-                        {% endif %}
-                    </span>
-                </div>
+        {% if show_page.has_next %}
+            <a class="page-link" href="?page={{ show_page.next_page_number }}">Siguiente</a>
+        {% endif %}
+    </span>
+</div>
+
+
+
+
+                <!--PRUEBAS DE PAGINACION ESTILO-->
+                
+
+
 
                 <!-- Paginación -->
 

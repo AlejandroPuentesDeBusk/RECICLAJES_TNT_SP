@@ -113,26 +113,30 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>Dia</th>
-                            <th>Dinero Inicial</th>
-                            <th>Gastado</th>
-                            <th>Obtenido</th>
+                            <th>Hora</th>
+                            <th>Usuario</th>
+                            <th>Tipo operacion</th>
                             <th>Total</th>
+                            <th>Descripcion</th>
                         </tr>
                     </thead>
+
                     <tbody>
-                        {% for dato in money_all %}
+                        {% for dato in in_ga %}
+                        
                         <tr>
-                            <td>{{ dato.Day }}</td>
-                            <td>{{ dato.Initial_Money }}</td>
-                            <td>{{ dato.Spent }}</td>
-                            <td>{{ dato.Obtained }}</td>
-                            <td>{{ dato.Final_Money }}</td>
+                            <td>{{ dato.Date|date:"H:i" }}</td>
+                            <td>{{ dato.User }}</td>
+                            <td>{{ dato.get_Transaction_Type_display }}</td>
+                            <td>{{ dato.Total }}</td>
+                            <td>{{ dato.Description }}</td>
+
                         </tr>
                         {% empty %}
                         <tr>
                             <td colspan="5">No hay datos para el día de hoy.</td>
                         </tr>
+                        
                         {% endfor %}
                     </tbody>
                 </table>

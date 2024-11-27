@@ -29,6 +29,15 @@ def cv(request):
     show_page = materials_p.get_page(page_numb)
 
 
+    page = request.GET.get('page', 1)
+
+    try:
+        paginator = Paginator(materials, 8)
+        materials = paginator.page(page)
+    except:
+        raise Http404
+
+
 
 
     return render(request, 'compra_venta/com_ven.html', {'show_page': show_page, 'box_money':box_money})
