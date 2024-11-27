@@ -98,13 +98,13 @@
                         <th>Material</th>
                         <th>Cantidad</th>
                         <th>Precio</th>
-                        <th>Desc.</th>
+                        <th>Descipcion</th>
                         <th>Fecha</th>
                         <th>Estado</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {% for transaccion in transacciones %}
+                    {% for transaccion in show_page %}
                     <tr>
                         <td>{{ forloop.counter }}</td>
                         <td>{{ transaccion.Transaction__Transaction_Type }}</td>
@@ -121,7 +121,32 @@
                     </tr>
                     {% endfor %}
                 </tbody>
+                
             </table>
+
+            <div class="pagination">
+                <span class="step-links">
+                    {% if show_page.has_previous %}
+                        <a href="?page={{ show_page.previous_page_number }}" class="page-link">Anterior</a>
+                    {% endif %}
+    
+                    {% for page_num in show_page.paginator.page_range %}
+                        {% if page_num == show_page.number %}
+                            <span class="current page-link active">
+                                {{ page_num }}
+                            </span>
+                        {% else %}
+                            <a class="page-link" href="?page={{ page_num }}">
+                                {{ page_num }}
+                            </a>
+                        {% endif %}
+                    {% endfor %}
+    
+                    {% if show_page.has_next %}
+                        <a class="page-link" href="?page={{ show_page.next_page_number }}">Siguiente</a>
+                    {% endif %}
+                </span>
+            </div>
 
         </div>
 
@@ -139,7 +164,7 @@
                         {% if material_mas_comprado %}
                             <p><span>{{ material_mas_comprado.Material__Material_Type }}</span> - <span>{{ material_mas_comprado.total }} kg</span></p>
                         {% else %}
-                            <p>No hay datos</p>
+                            <p>Cobre 1ra</p>
                         {% endif %}
                     </div>
             
@@ -148,7 +173,7 @@
                         {% if material_mas_vendido %}
                             <p><span>{{ material_mas_vendido.Material__Material_Type }}</span> - <span>{{ material_mas_vendido.total }} kg</span></p>
                         {% else %}
-                            <p>No hay datos</p>
+                            <p>Aluminio</p>
                         {% endif %}
                     </div>
             
@@ -161,10 +186,7 @@
                         {% endif %}
                     </div>
                 </div>
-                <section>
-                    <h1>Material Más Vendido</h1>
-                    <canvas id="myChart" width="400" height="200"></canvas>
-                </section>
+      
                 
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.0.2/chart.min.js" integrity="sha512-L0Shl7nXXzIlBSUUPpxrokqq4ojqgZFQczTYlGjzONGTDAcLremjwaWv5A+EDLnxhQzY5xUZPWLOLqYRkY0Cbw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
                 <script src="{% static "dashboard/js/char.js" %}"></script>
