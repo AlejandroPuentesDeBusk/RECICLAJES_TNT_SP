@@ -25,126 +25,120 @@
 
 </head>
 <body>
-
+    
 
     <div class="sidebar">
         <div class="logo">
             <img src="{%static 'ajustes_caja/img/tnt.jpeg' %}" alt="TNT">
-          </div>
+        </div>
         <nav>
             <div class="nav-item">
                 <div class="icon-home"></div>
                 <a href="{% url 'dashboard' %}">Dashboard</a>
             </div>
-           <div class="nav-item">
+            <div class="nav-item">
                 <div class="icon-banknote"></div>
                 <a href="{% url 'cv' %}">Compra - venta</a>
-           </div>
-           <div class="nav-item">
+            </div>
+            <div class="nav-item">
                 <div class="icon-credit-card"></div>
                 <a href="{% url 'ajustes_1' %}">Ajuste de caja</a>
-           </div>
-           <div class="nav-item" >
+            </div>
+            <div class="nav-item" >
                 <div class="icon-cog"></div>
                 <a href="{% url 'materiales' %}" class="active">Panel de Control</a>
-           </div>
+            </div>
         </nav>
-
         <div class="help">
             <p>¿Necesitas ayuda?<br>Revisa la documentación</p>
             <button>DOCUMENTACIÓN</button>
         </div>
     </div>
-
-    <div class="main-content">
-        <header>
-            <h1>Ajustes de Caja</h1>
-            <div class="search">
-                <input type="text" placeholder="Buscar...">
-                <span>{{ hora_actual }}</span>
-                <a href="#"><div class="icon-user"></div></a>
+    <div class="hidden">
+        <div class="centrado" id="cargando">
+            <div class="lds-roller">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
             </div>
-        </header>
-
-        <section class="contenido">
-            <div class="left-half">
-    
-                <div class="panel_dinero">
-                    <div class="icono">
-                        <img src="{%static 'ajustes_caja/img/cartera.png' %}" alt="💼">
-                    </div>
-                    <p class="dinero_en_caja">Dinero en caja:</p>
-                    <p class="caja_total">Total:</p>
-                    <p class="caja_cantidad">+ {{ box_money.final_money }}</p>
+        </div>
+        <div class="main-content">
+            <header>
+                <h1>Ajustes de Caja</h1>
+                <div class="search">
+                    <input type="text" placeholder="Buscar...">
+                    <span>{{ hora_actual }}</span>
+                    <a href="#"><div class="icon-user"></div></a>
                 </div>
-
-  
-
-            <div class="right-half">
-
-                <div class="tipo_transaccion">
-                    <form action="">
-                        <div class="opciones">
-                            <div class="transaccion-row">
-                                <select id="tipo_operacion" name="tipo_operacion">
-                                    <option value="" disabled selected>Operacion</option>
-                                    <option value="inversion">Inversion</option>
-                                    <option value="gasto">Gasto</option>
-                                </select>
-                
-                                <input type="number" id="cantidad" min="0" step="10" placeholder="Monto">
-                
-                                <textarea id="descripcion" placeholder="Añadir descripción"></textarea>
-                
-                                <button type="button" id="realizar_compra" disabled>Realizar</button>
-                            </div>
+            </header>
+            <section class="contenido">
+                <div class="left-half">
+                    <div class="panel_dinero">
+                        <div class="icono">
+                            <img src="{%static 'ajustes_caja/img/cartera.png' %}" alt="💼">
                         </div>
-                    </form>
+                        <p class="dinero_en_caja">Dinero en caja:</p>
+                        <p class="caja_total">Total:</p>
+                        <p class="caja_cantidad">+ {{ box_money.final_money }}</p>
+                    </div>
+                <div class="right-half">
+                    <div class="tipo_transaccion">
+                        <form action="">
+                            <div class="opciones">
+                                <div class="transaccion-row">
+                                    <select id="tipo_operacion" name="tipo_operacion">
+                                        <option value="" disabled selected>Operacion</option>
+                                        <option value="inversion">Inversion</option>
+                                        <option value="gasto">Gasto</option>
+                                    </select>
+                                    <input type="number" id="cantidad" min="0" step="10" placeholder="Monto">
+                                    <textarea id="descripcion" placeholder="Añadir descripción"></textarea>
+                                    <button type="button" id="realizar_compra" disabled>Realizar</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    
                 </div>
-                
-            </div>
-
-
-
-            
-
-            <div id="table-responsive">
-
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Dia</th>
-                            <th>Dinero Inicial</th>
-                            <th>Gastado</th>
-                            <th>Obtenido</th>
-                            <th>Total</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for dato in money_all %}
-                        <tr>
-                            <td>{{ dato.Day }}</td>
-                            <td>{{ dato.Initial_Money }}</td>
-                            <td>{{ dato.Spent }}</td>
-                            <td>{{ dato.Obtained }}</td>
-                            <td>{{ dato.Final_Money }}</td>
-                        </tr>
-                        {% empty %}
-                        <tr>
-                            <td colspan="5">No hay datos para el día de hoy.</td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-        
-            </div>
-
-
-        </section>
+                <div id="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Dia</th>
+                                <th>Dinero Inicial</th>
+                                <th>Gastado</th>
+                                <th>Obtenido</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for dato in money_all %}
+                            <tr>
+                                <td>{{ dato.Day }}</td>
+                                <td>{{ dato.Initial_Money }}</td>
+                                <td>{{ dato.Spent }}</td>
+                                <td>{{ dato.Obtained }}</td>
+                                <td>{{ dato.Final_Money }}</td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="5">No hay datos para el día de hoy.</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
     </div>
-
-
-
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="{% static "ajustes_caja/js/carga.js" %} "></script>
+    
     
 </body>
 </html>
