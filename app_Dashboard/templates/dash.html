@@ -23,7 +23,19 @@
     <script src="{% static 'appcompra/js/prueba.js' %}" defer></script>
 </head>
 
-<body>
+<body class="hidden">
+    <div class="centrado" id="cargando">
+        <div class="lds-roller">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div> 
     <div class="sidebar">
         <div class="logo">
             <img src="{% static 'panel_control/img/tnt_logo.jpg' %}">
@@ -111,8 +123,6 @@
             <section class="contenido_2">
                 <h2>Flujo de Caja</h2>
                 <canvas id="cashFlowChart"></canvas>
-            
-            
                 <div class="info-containers">
                     <div class="info-box">
                         <h3>Material más Comprado del Día</h3>
@@ -141,8 +151,18 @@
                         {% endif %}
                     </div>
                 </div>
+                <section>
+                    <h1>Material Más Vendido</h1>
+                    <canvas id="myChart" width="400" height="200"></canvas>
+                </section>
+                
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.0.2/chart.min.js" integrity="sha512-L0Shl7nXXzIlBSUUPpxrokqq4ojqgZFQczTYlGjzONGTDAcLremjwaWv5A+EDLnxhQzY5xUZPWLOLqYRkY0Cbw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+                <script src="{% static "dashboard/js/char.js" %}"></script>
                 
             </section>
-
         </div>
     </div>
+    
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="{% static "panel_control/JS/personal.js" %} "></script>
+</body>
