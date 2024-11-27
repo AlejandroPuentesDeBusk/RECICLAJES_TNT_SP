@@ -48,10 +48,12 @@
                 <div class="icon-credit-card"></div>
                 <a href="{% url 'ajustes_1' %}">Gastos del dia</a>
             </div>
+            {% if user.is_superuser %}
             <div class="nav-item">
                 <div class="icon-cog"></div>
                 <a href="{% url 'materiales' %}">Panel de Control</a>
             </div>
+            {% endif %}
         </nav>
 
         <div class="help">
