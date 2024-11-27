@@ -7,13 +7,12 @@
 body {
     font-family: "Outfit", sans-serif;
     color: #333;
-    display: flex;
     min-height: 100vh; 
-    flex-direction: column;
+ 
 }
 
 .container {
-    grid-template-columns: 70% 30%;
+    grid-template-columns: 97%;
     gap: 1rem;
     display: grid;
 
@@ -44,6 +43,7 @@ header{
 }
 
 .contenido_2 {
+    margin-left: 18rem;
     background-color:#F8F9FA;
     padding: 20px;
     flex: 1;
