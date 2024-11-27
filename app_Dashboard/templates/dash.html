@@ -90,37 +90,40 @@
 
 
         <div class="cont_1">
-            <table class="transaction-table">
-                <thead>
-                    <tr>
-                        <th>Num.</th>
-                        <th>Tipo</th>
-                        <th>Material</th>
-                        <th>Cantidad</th>
-                        <th>Precio</th>
-                        <th>Descipcion</th>
-                        <th>Fecha</th>
-                        <th>Estado</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for transaccion in show_page %}
-                    <tr>
-                        <td>{{ forloop.counter }}</td>
-                        <td>{{ transaccion.Transaction__Transaction_Type }}</td>
-                        <td>{{ transaccion.Material__Material_Type }}</td>
-                        <td>{{ transaccion.Quantity }}</td>
-                        <td>${{ transaccion.Price }}</td>
-                        <td>{{ transaccion.Transaction__Description }}</td>
-                        <td>{{ transaccion.Transaction__Date }}</td>
-                        <td>{{ transaccion.Transaction__Status }}</td>
-                    </tr>
-                    {% empty %}
-                    <tr>
-                        <td colspan="8">No hay transacciones para mostrar.</td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
+            <h1>Transacciones del {{ today }}</h1>
+
+            {% if show_page %}
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Usuario</th>
+                            <th>Tipo</th>
+                            <th>Total</th>
+                            <th>Descuento</th>
+                            <th>Estado</th>
+                            <th>Descripción</th>
+                            <th>Fecha</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for transaction in show_page %}
+                            <tr>
+                                <td>{{ transaction.id }}</td>
+                                <td>{{ transaction.User.username }}</td>
+                                <td>{{ transaction.Transaction_Type }}</td>
+                                <td>{{ transaction.Total }}</td>
+                                <td>{{ transaction.Discount }}</td>
+                                <td>{{ transaction.Status }}</td>
+                                <td>{{ transaction.Description }}</td>
+                                <td>{{ transaction.Date }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p>No hay transacciones para el día de hoy.</p>
+            {% endif %}
                 
             </table>
 
