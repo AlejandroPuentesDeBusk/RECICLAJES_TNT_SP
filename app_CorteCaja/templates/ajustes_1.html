@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ajustes Caja</title>
+    <title>Gastos del Dia</title>
 
     {%load static%}
 
@@ -69,7 +69,7 @@
         </div>
         <div class="main-content">
             <header>
-                <h1>Ajustes de Caja</h1>
+                <h1>Gastos del Dia</h1>
                 <div class="search">
                     
                     <span>{{ hora_actual }}</span>
@@ -84,24 +84,27 @@
                         </div>
                         <p class="dinero_en_caja">Dinero en caja:</p>
                         <p class="caja_total">Total:</p>
-                        <p class="caja_cantidad">+ {{ box_money.final_money }}</p>
+                        <p class="caja_cantidad">+ {{ dinero_en_caja }}</p>
                     </div>
                 <div class="right-half">
                     <div class="tipo_transaccion">
-                        <form action="">
+                
+                        <form action="{% url 'ajustes_1' %}" method="post">
+                            {% csrf_token %}
                             <div class="opciones">
                                 <div class="transaccion-row">
-                                    <select id="tipo_operacion" name="tipo_operacion">
+                                    <select id="tipo_operacion" name="tipo_operacion" required>
                                         <option value="" disabled selected>Operacion</option>
-                                        <option value="inversion">Inversion</option>
-                                        <option value="gasto">Gasto</option>
+                                        <option value="INVESTMENT">Inversión</option>
+                                        <option value="EXPENSE">Gasto</option>
                                     </select>
-                                    <input type="number" id="cantidad" min="0" step="10" placeholder="Monto">
-                                    <textarea id="descripcion" placeholder="Añadir descripción"></textarea>
-                                    <button type="button" id="realizar_compra" disabled>Realizar</button>
+                                    <input type="number" id="monto" name="monto" min="0"  placeholder="Monto" required>
+                                    <textarea id="descripcion" name="descripcion" placeholder="Añadir descripción" required></textarea>
+                                    <button type="submit" id="realizar_compra">Realizar</button>
                                 </div>
                             </div>
                         </form>
+                        
                     </div>
                     
                 </div>
