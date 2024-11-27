@@ -13,6 +13,7 @@ from django.views.generic.edit import UpdateView, CreateView
 from django.urls import reverse_lazy
 from .models import Material, Users, Transaction, Transaction_Details
 from django.forms import modelformset_factory
+from .forms import MaterialForm, UserForm, TransactionForm   # Para dar estilos a los formularios
 
 Users = get_user_model()
 
@@ -68,19 +69,19 @@ def logout_view(request):
 
 class UpdateMaterial(UpdateView):
     model = Material
-    fields = ['Material_Type', 'Wholesale_Purchase_Price', 'Wholesale_Sale_Price', 'Retail_Purchase_Price', 'Retail_Sale_Price', 'image' ]
+    form_class = MaterialForm
     template_name = 'update/update_material.html'
     success_url = reverse_lazy('materiales')
 
 class UpdateUsers(UpdateView):
     model = Users
-    fields = fields = ['username', 'email', 'Name', 'Paternal_Surname', 'Maternal_Surname', 'Phone', 'is_superuser', 'is_staff', 'is_active']
+    form_class = UserForm
     template_name = 'update/update_user.html'
     success_url = reverse_lazy('personal')
 
 class UpdateTransaction(UpdateView):
     model = Transaction
-    fields = ['User', 'Total', 'Discount', 'Status', 'Transaction_Type', 'Description']
+    form_class = TransactionForm
     template_name = 'update/update_transaction.html'
     success_url = reverse_lazy('transacciones')
 
@@ -112,7 +113,7 @@ class UpdateTransaction(UpdateView):
 
 class TransactionCreateView(CreateView):
     model = Transaction
-    fields = ['User', 'Total', 'Discount', 'Status', 'Transaction_Type', 'Description']
+    form_class = TransactionForm
     template_name = 'create/transaction_create.html'
     success_url = reverse_lazy('transacciones')
 
@@ -158,7 +159,7 @@ class TransactionCreateView(CreateView):
 
 class SignupCreateView(CreateView):
     model = Users
-    fields = ['username','password', 'email', 'Name', 'Paternal_Surname', 'Maternal_Surname', 'Phone', 'is_superuser', 'is_staff', 'is_active']
+    form_class = UserForm
     template_name = 'create/create_user.html'
     success_url = reverse_lazy('personal')
 
@@ -170,7 +171,7 @@ class SignupCreateView(CreateView):
 
 class MaterialCreateView(CreateView):
     model = Material
-    fields = ['Material_Type', 'Wholesale_Purchase_Price', 'Wholesale_Sale_Price', 'Retail_Purchase_Price', 'Retail_Sale_Price', 'image' ]
+    form_class = MaterialForm
     template_name = 'create/mat_create.html'
     success_url = reverse_lazy('materiales')
 
