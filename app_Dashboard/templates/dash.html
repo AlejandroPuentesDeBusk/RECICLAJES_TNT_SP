@@ -127,7 +127,7 @@
             <div class="pagination">
                 <span class="step-links">
                     {% if show_page.has_previous %}
-                        <a href="?page={{ show_page.previous_page_number }}" class="page-link">Anterior</a>
+                        <a href="?transaction_page={{ show_page.previous_page_number }}" class="page-link">Anterior</a>
                     {% endif %}
     
                     {% for page_num in show_page.paginator.page_range %}
@@ -136,14 +136,14 @@
                                 {{ page_num }}
                             </span>
                         {% else %}
-                            <a class="page-link" href="?page={{ page_num }}">
+                            <a class="page-link" href="?transaction_page={{ page_num }}">
                                 {{ page_num }}
                             </a>
                         {% endif %}
                     {% endfor %}
     
                     {% if show_page.has_next %}
-                        <a class="page-link" href="?page={{ show_page.next_page_number }}">Siguiente</a>
+                        <a class="page-link" href="?transaction_page={{ show_page.next_page_number }}">Siguiente</a>
                     {% endif %}
                 </span>
             </div>
