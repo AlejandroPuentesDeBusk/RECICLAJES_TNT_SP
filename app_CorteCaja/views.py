@@ -5,29 +5,31 @@ from django.utils.timezone import make_aware, now
 from datetime import datetime, timezone
 from django.core.paginator import Paginator
 
+from django.utils.timezone import localtime, now
+from datetime import time
+
 @login_required
 def ajustes_1(request):
- 
-    today = now().date()
-    start_of_day = datetime.combine(today, datetime.min.time()).replace(tzinfo=timezone.utc)
-    end_of_day = datetime.combine(today, datetime.max.time()).replace(tzinfo=timezone.utc)
+    # Usar zona horaria local para calcular los límites del día
+    today_start = localtime(now()).replace(hour=0, minute=0, second=0, microsecond=0)
+    today_end = localtime(now()).replace(hour=23, minute=59, second=59, microsecond=999999)
 
+    # Filtrar transacciones del día actual
     in_ga = Transaction.objects.filter(
-        Date__range=(start_of_day, end_of_day),
+        Date__range=(today_start, today_end),
         Transaction_Type__in=["INVESTMENT", "EXPENSE"]
     )
 
+    # Paginación
     materials_p = Paginator(in_ga, 10)
     page_numb = request.GET.get('page')
     show_page = materials_p.get_page(page_numb)
 
-   
-    dinero_en_caja = 0
-    for trans in in_ga:
-        if trans.Transaction_Type == "INVESTMENT":
-            dinero_en_caja += trans.Total  
-        elif trans.Transaction_Type == "EXPENSE":
-            dinero_en_caja -= trans.Total 
+    # Calcular dinero en caja
+    dinero_en_caja = sum(
+        trans.Total if trans.Transaction_Type == "INVESTMENT" else -trans.Total
+        for trans in in_ga
+    )
 
     error_message = None
 
@@ -39,8 +41,6 @@ def ajustes_1(request):
         if tipo_operacion and monto and descripcion:
             try:
                 monto = float(monto)
-
-            
                 if tipo_operacion == "EXPENSE" and monto > dinero_en_caja:
                     error_message = "El gasto excede el dinero disponible en caja."
                 else:
@@ -51,13 +51,11 @@ def ajustes_1(request):
                         Transaction_Type=tipo_operacion,
                         Description=descripcion,
                         Status="COMPLETED",
-                        Date=now()  
+                        Date=now()  # Fecha con zona horaria correcta
                     )
                     nueva_trans.save()
                     return redirect('ajustes_1')
-                
             except Exception as e:
-
                 print(f"Error al crear la transacción: {e}")
                 error_message = "Ocurrió un error al procesar la transacción."
 
@@ -67,7 +65,6 @@ def ajustes_1(request):
         'hora_actual': now(),
         'in_ga': in_ga,
         'dinero_en_caja': dinero_en_caja,
-        'show_page':show_page,
-        'error_message': error_message 
+        'show_page': show_page,
+        'error_message': error_message
     })
-
