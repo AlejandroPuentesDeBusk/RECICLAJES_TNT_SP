@@ -13,18 +13,22 @@ def dashboard(request):
         Transaction__Transaction_Type__in=['COMPRA', 'VENTA']
     ).select_related('Material', 'Transaction')  # Optimizamos consultas
 
-    # Paginación
-    paginator = Paginator(transaction_details, 5)
-    page_number = request.GET.get('page')
-    show_page = paginator.get_page(page_number)
+    # Paginación de transacciones
+    transaction_paginator = Paginator(transaction_details, 5)
+    transaction_page_number = request.GET.get('transaction_page')
+    show_page = transaction_paginator.get_page(transaction_page_number)
 
-    # Obtener todos los materiales
+    # Obtener todos los materiales con paginación
     materials = Material.objects.all()
+    material_paginator = Paginator(materials, 5)
+    material_page_number = request.GET.get('material_page')
+    materials_page = material_paginator.get_page(material_page_number)
 
     context = {
         'show_page': show_page,
+        'materials_page': materials_page,
         'today': today_start.date(),
-        'materials': materials,
     }
     return render(request, 'dash.html', context)
+
 

@@ -151,81 +151,54 @@
 
             <!--MAteriales___________________________________-->
             <h1>Materiales Disponibles</h1>
-                {% if materials %}
-                    <table class="table">
-                        <thead>
+            {% if materials_page %}
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Imagen</th>
+                            <th>Nombre del Material</th>
+                            <th>Stock Disponible</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for material in materials_page %}
                             <tr>
-                                <th>Imagen</th>
-                                <th>Nombre del Material</th>
-                                <th>Stock Disponible</th>
+                                <td>
+                                    {% if material.image %}
+                                        <img class="imagen" src="{{ material.image.url }}" alt="{{ material.Material_Type }}" width="50" height="50">
+                                    {% else %}
+                                        Sin imagen
+                                    {% endif %}
+                                </td>
+                                <td>{{ material.Material_Type }}</td>
+                                <td>{{ material.Stock }}</td>
                             </tr>
-                        </thead>
-                        <tbody>
-                            {% for material in materials %}
-                                <tr>
-                                    <td>
-                                        {% if material.image %}
-                                            <img class="imagen" src="{{ material.image.url }}" alt="{{ material.Material_Type }}" width="50" height="50">
-                                        {% else %}
-                                            Sin imagen
-                                        {% endif %}
-                                    </td>
-                                    <td>{{ material.Material_Type }}</td>
-                                    <td>{{ material.Stock }}</td>
-                                </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                {% else %}
-                    <p>No hay materiales disponibles.</p>
-                {% endif %}
-
-
-
-
-
-
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <div class="pagination">
+                    <span class="step-links">
+                        {% if materials_page.has_previous %}
+                            <a href="?material_page={{ materials_page.previous_page_number }}">Anterior</a>
+                        {% endif %}
+                        {% for page_num in materials_page.paginator.page_range %}
+                            {% if page_num == materials_page.number %}
+                                <span class="current page-link active">{{ page_num }}</span>
+                            {% else %}
+                                <a class="page-link" href="?material_page={{ page_num }}">{{ page_num }}</a>
+                            {% endif %}
+                        {% endfor %}
+                        {% if materials_page.has_next %}
+                            <a href="?material_page={{ materials_page.next_page_number }}">Siguiente</a>
+                        {% endif %}
+                    </span>
+                </div>
+            {% else %}
+                <p>No hay materiales disponibles.</p>
+            {% endif %}
+            
 
         </div>
-
-
-
-
-
-        <div class="cont_2">
-
-
-            <section class="contenido_2">
-                <h2>Stats</h2>
-                <canvas id="cashFlowChart"></canvas>
-                <div class="info-containers">
-                    <div class="info-box">
-                        <h3>Material más Comprado del Día</h3>
-                        {% if material_mas_comprado %}
-                            <p><span>{{ material_mas_comprado.Material__Material_Type }}</span> - <span>{{ material_mas_comprado.total }} kg</span></p>
-                        {% else %}
-                            <p>Cobre 1ra</p>
-                        {% endif %}
-                    </div>
-            
-                    <div class="info-box">
-                        <h3>Producto más Vendido</h3>
-                        {% if material_mas_vendido %}
-                            <p><span>{{ material_mas_vendido.Material__Material_Type }}</span> - <span>{{ material_mas_vendido.total }} kg</span></p>
-                        {% else %}
-                            <p>Aluminio</p>
-                        {% endif %}
-                    </div>
-            
-                    <div class="info-box">
-                        <h3>Producto con Más Stock</h3>
-                        {% if producto_mas_stock %}
-                            <p><span>{{ producto_mas_stock.Material_Type }}</span> - <span>{{ producto_mas_stock.stock }} kg</span></p>
-                        {% else %}
-                            <p>No hay datos</p>
-                        {% endif %}
-                    </div>
-                </div>
       
                 
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.0.2/chart.min.js" integrity="sha512-L0Shl7nXXzIlBSUUPpxrokqq4ojqgZFQczTYlGjzONGTDAcLremjwaWv5A+EDLnxhQzY5xUZPWLOLqYRkY0Cbw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
