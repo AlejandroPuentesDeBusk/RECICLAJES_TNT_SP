@@ -7,7 +7,7 @@
 body {
     font-family: "Outfit", sans-serif;
     color: #333;
-    min-height: 100vh; 
+
  
 }
 
@@ -39,7 +39,7 @@ header{
 .contenido {
     background-color: #F8F9FA;
     padding: 20px;
-    flex: 2; 
+    
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -48,14 +48,14 @@ header{
     margin-left: 18rem;
     background-color:#F8F9FA;
     padding: 20px;
-    flex: 1;
+  
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 
 header {
-    display: flex;
+   
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
@@ -66,58 +66,10 @@ header h1 {
     font-weight: bold;
 }
 
-.search {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-}
 
-.search input {
-    padding: 5px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-}
-
-.search a {
-    text-decoration: none;
-    color: #2D3748;
-}
-
-.tabs {
-    display: flex;
-    gap: 15px;
-    margin-bottom: 20px;
-}
-
-.tabs button {
-    font-family: "Outfit", serif;
-    font-weight: 600;
-    width: 150px;
-    padding: 10px 30px;
-    background-color: rgba(218, 215, 205, 0.6);
-    color: #344E41;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
-.tabs button.active {
-    background: rgba(163, 177, 138, 0.6);
-    color: #2D3748;
-}
-
-footer {
-    text-align: center;
-    font-size: 14px;
-    color: #fff;
-    background-color: #2a663c;
-    padding: 15px 0;
-    margin-top: auto; 
-    width: 100%;
-}
 
 .transaction-table {
-    width: 100%;
+  
     border-collapse: collapse;
     margin-top: 20px;
     font-size: 14px;
@@ -146,75 +98,15 @@ footer {
     background-color: #3A5A40;
 }
 
-.info-containers {
-    display: flex;
-    gap: 20px;
-    margin-top: 20px;
-}
 
-.info-box {
-    flex: 1;
-    background-color: #3A5A40;
-    padding: 20px;
-    border-radius: 8px;
-    text-align: center;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.info-box h3 {
-    font-size: 16px;
-    color: #ffffff;
-    margin-bottom: 10px;
-}
-
-.info-box p {
-    font-size: 20px;
-    font-weight: bold;
-    color: #ffffff;
-}
-
-.info-box span {
-    display: inline-block;
-    font-weight: normal;
-    color: #ffffff;
-}
-
-.info-containers {
-    display: flex;
-    gap: 20px;
-    margin-top: 20px;
-}
-
-.info-box {
-    flex: 1;
-    background-color: #3A5A40;
-    padding: 20px;
-    border-radius: 8px;
-    text-align: center;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    color: #fff;
-}
-
-.info-box h3 {
-    font-size: 16px;
-    margin-bottom: 10px;
-}
-
-.info-box p {
-    font-size: 20px;
-    font-weight: bold;
-}
 
 
 .pagination{
     display: flex;
     text-align: center;
     justify-content: center;
-    margin-top: 2rem;
+    margin-top: 1rem;
 }
-
-
-
 
 
 
@@ -225,8 +117,9 @@ canvas{
 
 /*____________pantalla de carga________________*/
 
-.hidden {
-    overflow: hidden;
+
+body {
+    overflow: auto; /* Asegura que el scroll esté habilitado */
 }
 
 .centrado{

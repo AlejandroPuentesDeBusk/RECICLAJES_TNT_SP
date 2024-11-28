@@ -10,22 +10,21 @@ from datetime import time
 
 @login_required
 def ajustes_1(request):
-    # Usar zona horaria local para calcular los límites del día
+
     today_start = localtime(now()).replace(hour=0, minute=0, second=0, microsecond=0)
     today_end = localtime(now()).replace(hour=23, minute=59, second=59, microsecond=999999)
 
-    # Filtrar transacciones del día actual
+
     in_ga = Transaction.objects.filter(
         Date__range=(today_start, today_end),
         Transaction_Type__in=["INVESTMENT", "EXPENSE"]
     )
 
-    # Paginación
-    materials_p = Paginator(in_ga, 10)
+   
+    materials_p = Paginator(in_ga, 5)
     page_numb = request.GET.get('page')
     show_page = materials_p.get_page(page_numb)
 
-    # Calcular dinero en caja
     dinero_en_caja = sum(
         trans.Total if trans.Transaction_Type == "INVESTMENT" else -trans.Total
         for trans in in_ga
@@ -51,7 +50,7 @@ def ajustes_1(request):
                         Transaction_Type=tipo_operacion,
                         Description=descripcion,
                         Status="COMPLETED",
-                        Date=now()  # Fecha con zona horaria correcta
+                        Date=now()  
                     )
                     nueva_trans.save()
                     return redirect('ajustes_1')

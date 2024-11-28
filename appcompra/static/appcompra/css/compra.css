@@ -10,7 +10,7 @@
 
 
 #texto_compra{
-    margin-top: 1rem;
+  
     padding-top: 1.5rem;
     background-color: #F8F9FA;
    
@@ -63,7 +63,7 @@
 }
 
 #c_second{
-    margin-top: 5rem;
+    margin-top: 3rem;
 }
 
 #lista_material_comprar hr {
@@ -118,7 +118,7 @@ hr{
 
 
 .materiales td,  .materiales th{
-    padding: .5rem;
+    padding: .4rem;
     text-align: center;
     font-size: 1vw;
     vertical-align: middle;

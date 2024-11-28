@@ -23,7 +23,7 @@ def dashboard(request):
 
     # Obtener todos los materiales con paginación
     materials = Material.objects.all()
-    material_paginator = Paginator(materials, 5)
+    material_paginator = Paginator(materials, 4)
     material_page_number = request.GET.get('material_page')
     materials_page = material_paginator.get_page(material_page_number)
 
