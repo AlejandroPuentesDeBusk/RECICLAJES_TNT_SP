@@ -63,6 +63,15 @@ class Transaction (models.Model):
     def __str__(self): #Para que su represenación sea legible para el humano 
         return f"{self.Transaction_Type} hecha por {self.User.username}"
 
+class Transaction_Audit(models.Model):
+    transaction = models.ForeignKey(Transaction, on_delete=models.CASCADE)
+    transaction_type = models.CharField(max_length=20)
+    total = models.DecimalField(max_digits=10, decimal_places=2)
+    action = models.CharField(max_length=20)
+    log_date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.Action} {self.Transaction_Type} {self.Log_Date}"
 
 class Transaction_Details(models.Model):
     Material = models.ForeignKey(Material, on_delete= models.SET_NULL , null=True)
