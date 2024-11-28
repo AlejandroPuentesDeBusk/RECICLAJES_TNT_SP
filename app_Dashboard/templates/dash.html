@@ -96,27 +96,24 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>ID</th>
-                            <th>Usuario</th>
-                            <th>Tipo</th>
-                            <th>Total</th>
-                            <th>Descuento</th>
-                            <th>Estado</th>
-                            <th>Descripción</th>
+                                                  <th>Material</th>
+                            <th>Tipo de Transacción</th>
+                            <th>Cantidad</th>
+                            <th>Precio</th>
+                            <th>Subtotal</th>
                             <th>Fecha</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {% for transaction in show_page %}
+                        {% for detail in show_page %}
                             <tr>
-                                <td>{{ transaction.id }}</td>
-                                <td>{{ transaction.User.username }}</td>
-                                <td>{{ transaction.Transaction_Type }}</td>
-                                <td>{{ transaction.Total }}</td>
-                                <td>{{ transaction.Discount }}</td>
-                                <td>{{ transaction.Status }}</td>
-                                <td>{{ transaction.Description }}</td>
-                                <td>{{ transaction.Date }}</td>
+           
+                                <td>{{ detail.Material.Material_Type }}</td>
+                                <td>{{ detail.Transaction.Transaction_Type }}</td>
+                                <td>{{ detail.Quantity }}</td>
+                                <td>{{ detail.Price }}</td>
+                                <td>{{ detail.Subtotal }}</td>
+                                <td>{{ detail.Transaction.Date }}</td>
                             </tr>
                         {% endfor %}
                     </tbody>
@@ -151,7 +148,47 @@
                 </span>
             </div>
 
+
+            <!--MAteriales___________________________________-->
+            <h1>Materiales Disponibles</h1>
+                {% if materials %}
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Imagen</th>
+                                <th>Nombre del Material</th>
+                                <th>Stock Disponible</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for material in materials %}
+                                <tr>
+                                    <td>
+                                        {% if material.image %}
+                                            <img class="imagen" src="{{ material.image.url }}" alt="{{ material.Material_Type }}" width="50" height="50">
+                                        {% else %}
+                                            Sin imagen
+                                        {% endif %}
+                                    </td>
+                                    <td>{{ material.Material_Type }}</td>
+                                    <td>{{ material.Stock }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% else %}
+                    <p>No hay materiales disponibles.</p>
+                {% endif %}
+
+
+
+
+
+
+
         </div>
+
+
 
 
 
