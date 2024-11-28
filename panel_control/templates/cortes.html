@@ -15,19 +15,30 @@
 {% endblock subsection %}
 
 {% block botones %}
-    <button class="btns" id="filter-btn">Filter</button>
-    <button class="btns" id="add-btn">Añadir</button>
+    {% comment %} <button class="btns" id="filter-btn">Filter</button> {% endcomment %}
+        {% comment %} <button class="btns" id="add-btn">Añadir</button> {% endcomment %}
+    <form method="POST" action="{% url 'cortar' %}">
+        {% csrf_token %}
+        <!-- Formulario con el campo de fecha visible -->
+        <label for="report_date">Selecciona la fecha:</label>
+        <input type="date" id="report_date" name="report_date" required>
+    
+        <!-- Botón para generar el reporte -->
+        <button type="submit" id="add-btn">Generar Reporte</button>
+    </form>
 {% endblock botones %}
 
 
 {% block content_box %}
-{% csrf_token %}
-<form method="GET" action="">
+{% comment %} {% csrf_token %} {% endcomment %}
+
+{% comment %} <form method="GET" action="">
     <div class="search">
         <input type="text" name="search" placeholder="Buscar..." value="{{ search_query }}">
         <button type="submit">Buscar</button>
     </div>
-</form>
+</form> {% endcomment %}
+
 <div class="transactions-container">
     <div class="table-responsive">
         <table class="table">
