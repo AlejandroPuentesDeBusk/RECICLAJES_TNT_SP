@@ -23,19 +23,7 @@
     <script src="{% static 'appcompra/js/prueba.js' %}" defer></script>
 </head>
 
-<body class="hidden">
-    <div class="centrado" id="cargando">
-        <div class="lds-roller">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
-    </div> 
+
     <div class="sidebar">
         <div class="logo">
             <img src="{% static 'panel_control/img/tnt_logo.jpg' %}">
@@ -60,7 +48,7 @@
                 <a href="{% url 'materiales' %}">Panel de Control</a>
             </div>
             {% endif %}
-           
+            
         </nav>
 
         <div class="help">
@@ -87,7 +75,19 @@
 
 
     <div class="container">
-
+        <body class="hidden">
+            <div class="centrado" id="cargando">
+                <div class="lds-roller">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+            </div> 
 
         <div class="cont_1">
             <h1>Transacciones del {{ today }}</h1>
@@ -96,7 +96,7 @@
                 <table class="table">
                     <thead>
                         <tr>
-                                                  <th>Material</th>
+                            <th>Material</th>
                             <th>Tipo de Transacción</th>
                             <th>Cantidad</th>
                             <th>Precio</th>
@@ -107,7 +107,7 @@
                     <tbody>
                         {% for detail in show_page %}
                             <tr>
-           
+        
                                 <td>{{ detail.Material.Material_Type }}</td>
                                 <td>{{ detail.Transaction.Transaction_Type }}</td>
                                 <td>{{ detail.Quantity }}</td>
@@ -197,9 +197,7 @@
                 <p>No hay materiales disponibles.</p>
             {% endif %}
             
-
         </div>
-      
                 
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.0.2/chart.min.js" integrity="sha512-L0Shl7nXXzIlBSUUPpxrokqq4ojqgZFQczTYlGjzONGTDAcLremjwaWv5A+EDLnxhQzY5xUZPWLOLqYRkY0Cbw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
                 <script src="{% static "dashboard/js/char.js" %}"></script>
