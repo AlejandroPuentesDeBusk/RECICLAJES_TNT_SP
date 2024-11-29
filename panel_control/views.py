@@ -8,6 +8,7 @@ from django.http import Http404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import user_passes_test
 from mainapp.views import is_owner
+from django.utils import timezone
 
 Users = get_user_model()
 
@@ -21,6 +22,7 @@ Users = get_user_model()
 @login_required
 def personal(request):
     search_query = request.GET.get('search', '').lower()
+    today = timezone.now
 
     if search_query:
         usuarios = Users.objects.filter(
@@ -44,14 +46,15 @@ def personal(request):
         raise Http404
 
     context = {
-         'title': 'Panel de Control | Personal',
+        'title': 'Panel de Control | Personal',
         'section': 'Panel de Control',
         'subsection': 'Ajustes de Personal',
         'entity': usuarios,
         'paginator': paginator,  
         'search_query': search_query,
         'active_tab': 'personnel',
-        'active_nav': 'panel_control'
+        'active_nav': 'panel_control',
+        'today':today,
     }
 
 
@@ -60,6 +63,7 @@ def personal(request):
 def transacciones(request):
     search_query = request.GET.get('search', '').lower()  # Obtener lo que se ingreso en el elemento con el name "search", en minuscula para hacer el mapeo
     # transactions = Transaction.objects.all()
+    today = timezone.now
 
     transaction_type_mapping = {
         'venta': 'SALE',
@@ -103,7 +107,8 @@ def transacciones(request):
         'entity': transactions,
         'paginator': paginator,
         'active_tab': 'transactions',
-        'active_nav': 'panel_control'
+        'active_nav': 'panel_control',
+        'today':today,
     }
     
     return render(request, 'transacciones.html', context)
@@ -111,6 +116,7 @@ def transacciones(request):
 @user_passes_test(is_owner)
 def materiales(request):
     search_query = request.GET.get('search','')
+    today = timezone.now
 
     # Filtrar los materiales según el término de búsqueda
     if search_query:
@@ -138,7 +144,8 @@ def materiales(request):
         'paginator': paginator,
         'search_query': search_query,
         'active_tab': 'materials',
-        'active_nav': 'panel_control'
+        'active_nav': 'panel_control',
+        'today':today,
     }
 
 
@@ -147,6 +154,7 @@ def materiales(request):
 @user_passes_test(is_owner)
 def cortes(request):
     search_query = request.GET.get('search', '')  # Obtener lo que se busca
+    today = timezone.now
 
     if search_query:
         reports = Day_Report.objects.filter(
@@ -172,7 +180,8 @@ def cortes(request):
         'paginator': paginator,
         'search_query': search_query,
         'active_tab': 'reports',
-        'active_nav': 'panel_control'
+        'active_nav': 'panel_control',
+        'today':today,
     }
 
     return render (request, 'cortes.html', context)

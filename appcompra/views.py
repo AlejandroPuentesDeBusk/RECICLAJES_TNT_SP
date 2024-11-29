@@ -39,8 +39,8 @@ def cv(request):
 
 
     return render(request, 'compra_venta/com_ven.html', {'show_page': show_page,
-                                                          'box_money':box_money,
-                                                          'today':today})
+                                                        'box_money':box_money,
+                                                        'today':today})
 
 
 

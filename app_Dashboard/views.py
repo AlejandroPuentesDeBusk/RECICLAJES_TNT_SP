@@ -2,8 +2,10 @@ from django.utils.timezone import localtime, now
 from django.shortcuts import render
 from mainapp.models import Transaction_Details, Material
 from django.core.paginator import Paginator
+from django.utils import timezone
 
 def dashboard(request):
+    today = timezone.now
     today_start = localtime(now()).replace(hour=0, minute=0, second=0, microsecond=0)
     today_end = localtime(now()).replace(hour=23, minute=59, second=59, microsecond=999999)
 

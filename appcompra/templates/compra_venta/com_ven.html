@@ -79,11 +79,27 @@
             <div id="cabecera">
                 <header>
                     <div id="titulo_c"><h1>Compra venta</h1></div>
-                    <div id="dinero_caja">
-                        <div id="dinero_caja_fondo">
-                            <p>{{ today }}</p>
-                        </div>
-                    </div>
+                    <div>
+                        <!--_________________Script cerrar sesion___________________-->
+                        <script >
+                            document.addEventListener('DOMContentLoaded', () => {
+                                const logoutButton = document.querySelector('.btn-logout');
+                                if (logoutButton) {
+                                    logoutButton.addEventListener('click', (event) => {
+                                        const confirmLogout = confirm('¿Estás seguro de que deseas cerrar sesión?');
+                                        if (!confirmLogout) {
+                                            // Evitar que el formulario se envíe si el usuario cancela
+                                            event.preventDefault();
+                                        }
+                                    });
+                                }
+                            });
+                        </script>
+                        <span> {{ today }} </span>
+                        <form method="POST" action="{% url "logout" %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn-logout">Cerras sesión</button>
+                        </form>
                 </header>
             </div>
 
@@ -226,6 +242,7 @@
             </div>
         </div>
     </div>
+    <!--_____________Script Pantalla carga______________________-->
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script src="{% static 'appcompra/js/carga.js' %}" defer></script>
 </body>

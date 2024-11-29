@@ -79,7 +79,22 @@
             <header>
                 <h1>Gastos del Dia</h1>
                 <div>
-                    <span>{% now "Y-m-d H:i" %} </span>
+                    <!--_________________Script cerrar sesion___________________-->
+                    <script >
+                        document.addEventListener('DOMContentLoaded', () => {
+                            const logoutButton = document.querySelector('.btn-logout');
+                            if (logoutButton) {
+                                logoutButton.addEventListener('click', (event) => {
+                                    const confirmLogout = confirm('¿Estás seguro de que deseas cerrar sesión?');
+                                    if (!confirmLogout) {
+                                        // Evitar que el formulario se envíe si el usuario cancela
+                                        event.preventDefault();
+                                    }
+                                });
+                            }
+                        });
+                    </script>
+                    <span>  {% now "Y-m-d H:i" %} </span>
                     <form method="POST" action="{% url "logout" %}">
                         {% csrf_token %}
                         <button type="submit" class="btn-logout">Cerras sesión</button>
