@@ -96,8 +96,9 @@
                         <span>  {{today}} </span>
                         <form method="POST" action="{% url "logout" %}">
                             {% csrf_token %}
-                            <button type="submit" class="btn-logout">Cerras sesión</button>
+                            <button type="submit" class="btn-logout">Cerrar sesión</button>
                         </form>
+                        <a href="{% url "profile" %}"><img id="pfp" src="{% static "panel_control/img/pfp.png" %}" alt=""></a>
                     </div>
                     {% endblock buscador %}
                 </header>

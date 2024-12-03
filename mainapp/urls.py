@@ -2,6 +2,7 @@ from django . urls import path
 from . import views
 from django.contrib.auth import views as auth_views
 from django.conf.urls import handler404
+from .views import UserProfileView, CustomPasswordChangeView
 
 from django.urls import include
 
@@ -35,6 +36,11 @@ urlpatterns = [
     path('crear_user/', views.SignupCreateView.as_view(), name='crear_us'),
     path('crear_material/', views.MaterialCreateView.as_view(), name='crear_mat'),
     path('generar_corte/', views.generar_reporte, name='cortar'),
+    
+    # urls para el perfil 
+    path('profile/', UserProfileView.as_view(), name='profile'),
+    path('profile/change-password/', CustomPasswordChangeView.as_view(), name='change_password'),  # Usa el nombre correcto.
+
 ]
 
 handler404 = 'mainapp.views.error404'

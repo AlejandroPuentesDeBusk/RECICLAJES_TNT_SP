@@ -78,6 +78,7 @@ nav a.active {
 }
 
 .help button {
+    margin-top: 12px;
     background-color: #fff;
     color: #2a663c;
     border: none;
@@ -156,6 +157,11 @@ header .btn-logout {
 
 header .btn-logout:hover {
     background-color: #717171; /* Color más claro al pasar el cursor */
+}
+
+#pfp {
+    width: 40px;
+    height: 40px;
 }
 
 
@@ -314,17 +320,17 @@ header .btn-logout:hover {
 }
 
 .edit-btn {
-    background-color: #007bff;
+    background-color: #588157;
     color: white;
     border: none;
     padding: 5px 10px;
-    border-radius: 4px;
+    border-radius: 8px;
     cursor: pointer;
     font-size: 12px;
 }
 
 .edit-btn:hover {
-    background-color: #0056b3;
+    background-color: #364f35;
 }
 
 .text-success {
@@ -343,7 +349,7 @@ header .btn-logout:hover {
     display: inline-block;
     padding: 4px 10px;
     border-radius: 10px;
-    font-weight: 600;
+    font-weight: 500;
     color: #fff;
     text-align: center;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); 
