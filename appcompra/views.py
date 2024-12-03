@@ -25,10 +25,6 @@ def cv(request):
 
 
     materials = Material.objects.all()
-    money= Day_Report.objects.latest('Day')
-    final_money= money.Final_Money
-
-    box_money = {'final_money': final_money}
 
     #paginador
     materials_p = Paginator(materials, 8)
@@ -39,7 +35,6 @@ def cv(request):
 
 
     return render(request, 'compra_venta/com_ven.html', {'show_page': show_page,
-                                                        'box_money':box_money,
                                                         'today':today})
 
 

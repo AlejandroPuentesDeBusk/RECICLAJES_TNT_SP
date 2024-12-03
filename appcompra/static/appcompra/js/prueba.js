@@ -90,9 +90,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
         let priceAttr = '';
 
-        if (operacion === 'PURACHASE') {
+        if (operacion === 'PURCHASE') {
             priceAttr = tipoCargo.toLowerCase();
-        } else if (operacion === 'SELL') {
+        } else if (operacion === 'SALE') {
             // Reemplazar 'Purchase' por 'Sale' en el tipo de cargo
             priceAttr = tipoCargo.replace('Purchase', 'Sale').toLowerCase();
         }

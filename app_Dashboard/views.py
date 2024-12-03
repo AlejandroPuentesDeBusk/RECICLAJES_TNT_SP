@@ -5,6 +5,7 @@ from django.core.paginator import Paginator
 from django.utils import timezone
 
 def dashboard(request):
+    hora = timezone.now
     today = timezone.now
     today_start = localtime(now()).replace(hour=0, minute=0, second=0, microsecond=0)
     today_end = localtime(now()).replace(hour=23, minute=59, second=59, microsecond=999999)
@@ -15,7 +16,7 @@ def dashboard(request):
     # Filtrar detalles de transacciones del día actual
     transaction_details = Transaction_Details.objects.filter(
         Transaction__Date__range=(today_start, today_end),
-        Transaction__Transaction_Type__in=['PURACHASE', 'SELL']
+        Transaction__Transaction_Type__in=['SALE', 'PURACHASE']
     ).select_related('Material', 'Transaction')  # Optimizamos consultas
 
     # Paginación de transacciones
@@ -33,6 +34,7 @@ def dashboard(request):
         'show_page': show_page,
         'materials_page': materials_page,
         'today': today_start.date(),
+        'hora' : hora,
     }
     return render(request, 'dash.html', context)
 

@@ -7,9 +7,12 @@ from django.core.paginator import Paginator
 
 from django.utils.timezone import localtime, now
 from datetime import time
+from django.utils import timezone
 
 @login_required
 def ajustes_1(request):
+
+    hora= timezone.now
 
     today_start = localtime(now()).replace(hour=0, minute=0, second=0, microsecond=0)
     today_end = localtime(now()).replace(hour=23, minute=59, second=59, microsecond=999999)
@@ -48,7 +51,7 @@ def ajustes_1(request):
                         Transaction_Type=tipo_operacion,
                         Description=descripcion,
                         Status="COMPLETED",
-                        Date=now()  
+                        Date=now() 
                     )
                     nueva_trans.save()
                     return redirect('ajustes_1')
@@ -64,5 +67,6 @@ def ajustes_1(request):
         'dinero_en_caja': dinero_en_caja,
         'show_page': show_page,
         'error_message': error_message,
+        'hora':hora,
         
     })

@@ -94,7 +94,7 @@
                             }
                         });
                     </script>
-                    <span>  {% now "Y-m-d H:i" %} </span>
+                    <span>  {{ hora }} </span>
                     <form method="POST" action="{% url "logout" %}">
                         {% csrf_token %}
                         <button type="submit" class="btn-logout">Cerras sesión</button>

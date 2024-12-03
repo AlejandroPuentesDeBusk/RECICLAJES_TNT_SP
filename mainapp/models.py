@@ -18,9 +18,9 @@ class Material(models.Model):
 
     @property 
     def Stock(self):
-        purchases = Transaction_Details.objects.filter(Material = self, Transaction__Transaction_Type = 'PURACHASE').aggregate(total_purchased = models.Sum('Quantity'))['total_purchased'] or 0
+        purchases = Transaction_Details.objects.filter(Material = self, Transaction__Transaction_Type = 'PURCHASE').aggregate(total_purchased = models.Sum('Quantity'))['total_purchased'] or 0
         
-        sales = Transaction_Details.objects.filter(Material = self, Transaction__Transaction_Type = 'SELL').aggregate(total_sold = models.Sum('Quantity'))['total_sold'] or 0
+        sales = Transaction_Details.objects.filter(Material = self, Transaction__Transaction_Type = 'SALE').aggregate(total_sold = models.Sum('Quantity'))['total_sold'] or 0
         
         return purchases - sales
     
