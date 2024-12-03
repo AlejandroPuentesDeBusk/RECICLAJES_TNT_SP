@@ -12,6 +12,13 @@ def dashboard(request):
 
     print(f"Rango: {today_start} - {today_end}")
 
+    # Diccionario para traducir tipos de transacción
+    transaction_type_mapping = {
+        'SALE': 'Venta',
+        'PURCHASE': 'Compra',
+        'INVESTMENT': 'Inversión',
+        'EXPENSE': 'Gasto'
+    }
 
     # Filtrar detalles de transacciones del día actual
     transaction_details = Transaction_Details.objects.filter(
@@ -19,8 +26,16 @@ def dashboard(request):
         Transaction__Transaction_Type__in=['SALE', 'PURCHASE']
     ).select_related('Material', 'Transaction')  # Optimizamos consultas
 
-    # Paginación de transacciones
-    transaction_paginator = Paginator(transaction_details, 5)
+    # Traducir tipos de transacción antes de pasarlos al contexto
+    translated_transactions = []
+    for detail in transaction_details:
+        translated_transaction = detail
+        transaction_type = detail.Transaction.Transaction_Type
+        translated_transaction.Transaction.Transaction_Type = transaction_type_mapping.get(transaction_type, transaction_type)
+        translated_transactions.append(translated_transaction)
+
+    # Paginación de transacciones traducidas
+    transaction_paginator = Paginator(translated_transactions, 5)
     transaction_page_number = request.GET.get('transaction_page')
     show_page = transaction_paginator.get_page(transaction_page_number)
 
@@ -34,8 +49,6 @@ def dashboard(request):
         'show_page': show_page,
         'materials_page': materials_page,
         'today': today_start.date(),
-        'hora' : hora,
+        'hora': hora,
     }
     return render(request, 'dash.html', context)
-
-
