@@ -61,6 +61,9 @@
                         <td>{{ user.date_joined|date:"d/m/Y" }}</td>
                         <td>
                             <button class="edit-btn" onclick="window.location.href='{% url 'editar_personal' user.pk %}'">Editar</button>
+                            {% comment %} <a href="{% url 'editar_material' material.pk %}" class="btn btn-primary btn-sm">
+                                Editar
+                            </a> {% endcomment %}
                         </td>
                     </tr>
                 {% empty %}

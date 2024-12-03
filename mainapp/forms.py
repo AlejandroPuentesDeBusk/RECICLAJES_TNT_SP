@@ -1,6 +1,8 @@
 from django import forms
 from django.forms import modelformset_factory
 from .models import Transaction, Transaction_Details, Material, Users
+from django.contrib.auth.forms import PasswordChangeForm
+
 
 class loginn(forms.Form):
     username = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'placeholder': 'Tu nombre de usuario'}))
@@ -37,6 +39,35 @@ class UserForm(forms.ModelForm):
             'is_staff': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
             'is_active': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
         }
+
+class UserProfileForm(forms.ModelForm):
+    class Meta:
+        model = Users
+        fields = ['username', 'email', 'Name', 'Paternal_Surname', 'Maternal_Surname', 'Phone']
+        widgets = {
+            'username': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nombre de Usuario'}),
+            'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Correo Electrónico'}),
+            'Name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nombre'}),
+            'Paternal_Surname': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Apellido Paterno'}),
+            'Maternal_Surname': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Apellido Materno'}),
+            'Phone': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Teléfono'}),
+        }
+
+class CustomPasswordChangeForm(PasswordChangeForm):
+    """Formulario personalizado para cambiar contraseña."""
+    old_password = forms.CharField(
+        label="Old Password",
+        widget=forms.PasswordInput(attrs={'class': 'form-control'}),
+    )
+    new_password1 = forms.CharField(
+        label="New Password",
+        widget=forms.PasswordInput(attrs={'class': 'form-control'}),
+    )
+    new_password2 = forms.CharField(
+        label="Confirm New Password",
+        widget=forms.PasswordInput(attrs={'class': 'form-control'}),
+    )
+
 
 class TransactionForm(forms.ModelForm):
     class Meta:

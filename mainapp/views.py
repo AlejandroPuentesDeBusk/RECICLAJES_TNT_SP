@@ -15,6 +15,14 @@ from .models import Material, Users, Transaction, Transaction_Details
 from django.forms import modelformset_factory
 from .forms import MaterialForm, UserForm, TransactionForm   # Para dar estilos a los formularios
 from django.contrib import messages
+from .forms import UserProfileForm
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import get_object_or_404
+
+
+# NECESARIO PARA EL CAMBIO DE CONTRASEÑA
+from django.contrib.auth.views import PasswordChangeView
+from .forms import CustomPasswordChangeForm
 
 #LO necesario para los procedimientos
 from .procedures import generate_day_report, generate_material_report_details
@@ -253,3 +261,22 @@ class MaterialCreateView(CreateView):
 
 
 #-----------views aqui hacer la query de insert-------------
+
+
+# VISTA DE LA PESTAÑA DE PERFIL
+class UserProfileView(LoginRequiredMixin, UpdateView):
+    model = Users
+    form_class = UserProfileForm
+    template_name = 'profile/profile.html'
+    success_url = reverse_lazy('profile')
+
+    def get_object(self):
+        return get_object_or_404(Users, pk=self.request.user.pk)
+    
+
+# VISTA PARA CAMBIAR LA CONTRASEÑA
+
+class CustomPasswordChangeView(PasswordChangeView):
+    form_class = CustomPasswordChangeForm
+    template_name = 'profile/change_password.html'
+    success_url = reverse_lazy('profile')
