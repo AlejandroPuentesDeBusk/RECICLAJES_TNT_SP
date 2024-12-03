@@ -16,7 +16,7 @@ def dashboard(request):
     # Filtrar detalles de transacciones del día actual
     transaction_details = Transaction_Details.objects.filter(
         Transaction__Date__range=(today_start, today_end),
-        Transaction__Transaction_Type__in=['SALE', 'PURACHASE']
+        Transaction__Transaction_Type__in=['SALE', 'PURCHASE']
     ).select_related('Material', 'Transaction')  # Optimizamos consultas
 
     # Paginación de transacciones
