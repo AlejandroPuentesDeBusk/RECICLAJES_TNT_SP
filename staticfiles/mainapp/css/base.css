@@ -1,0 +1,160 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-color: #F8F9FA;
+    font-family: sans-serif;
+}
+
+.container{
+    display: grid;
+    grid-template-columns: 13rem 40% 35%;
+    grid-gap: 2rem;
+
+
+}
+
+.container div{
+    background-color: white;
+    border-radius: 1rem;
+    margin-bottom: 0rem;
+    padding-top: 1rem;
+
+
+
+}
+
+/*___________________ESTILOS MENU ADRI_________________________*/
+
+.sidebar {
+    width: 11rem;
+    background-color: #F8F9FA;
+    height: 100%;
+    position: sticky;
+
+}
+
+.logo {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.logo img {
+    width: 100px;
+    border-radius: 50%;
+}
+
+nav .nav-item {
+    display: flex;
+    align-items: center; 
+    margin-bottom: 15px;
+    padding: 10px, 15px;
+    border-radius: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0n, 0, 0.1);
+    transition: backround-color 0.3s ease;
+}
+
+nav .nav-item:hover {
+    background-color: #ffffff;
+}
+
+nav .nav-item:active {
+    background-color: #ffffff;
+}
+
+nav .nav-item div {
+    width: 20px; 
+    height: 20px;
+    margin-left: 0px;
+    margin-right: 10px;
+    align-items: center;
+    border-radius: 5px;
+}
+
+nav .nav-item div:hover {
+    color: #ffffff;
+}
+
+nav a {
+    display: block;
+    padding: 10px 0;
+    color: #A0AEC0;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    flex: 1;
+}
+
+nav a.active {
+    color: #2a663c;
+}
+
+.help {
+    background-color: #344e41;
+    color: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 30px;
+    text-align: center;
+}
+
+.help button {
+    background-color: #fff;
+    color: #2a663c;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+
+
+
+
+/*________________Estilos contenedor 1_______________________________________________*/
+
+
+
+/*________________Estilos contenedor 2_______________________________________________*/
+
+
+
+
+/*_______________Estilos contenedor 3________________________________________________*/
+
+
+
+/*________________AJUSTES DE LOS TOP___________________*/
+
+#cont_t_1{
+    background-color: #F8F9FA    ;
+    margin-top: 0rem;
+    display: grid;
+    gap: 0;
+    position: sticky;
+
+}
+
+#cont_t_2{
+    background-color: #F8F9FA    ;
+    grid-gap: 0rem;
+    margin-top: 0rem;
+
+}
+
+#cont_t_3{
+    background-color: #F8F9FA    ;
+    grid-gap: 0rem;
+    margin-top: 0rem;
+    
+
+
+}
+
+/*___________________AYUDA________________*/
+
+
+  

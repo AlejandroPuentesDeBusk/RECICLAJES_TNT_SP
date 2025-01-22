@@ -131,7 +131,12 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 #STATICFILES_DIRS = [BASE_DIR / "static"] 
-STATICFILES_DIRS = [BASE_DIR / "mainapp/static"]
+#STATICFILES_DIRS = [BASE_DIR / "mainapp/static"]
+
+STATIC_ROOT = BASE_DIR / "staticfiles"
+MIDDLEWARE.insert(1, "whitenoise.middleware.WhiteNoiseMiddleware")
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

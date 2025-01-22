@@ -1,0 +1,82 @@
+
+.pestañas button:hover {
+    background-color: #c0d09f;
+}
+/*body{
+    color: blue;
+}
+*/
+a{
+    text-decoration: none;
+    color: #7c7c79;
+
+}
+.lapiz{
+    margin: 1rem;
+    width: 1rem;
+}
+.logo{
+    padding-left: 1rem;
+    margin: 1rem;
+    height: 120px;
+    border-radius: 15%;
+}
+
+.cuerpo{
+    margin: 2rem;
+    padding: 1.5rem;
+}
+
+#imagen {
+    width: 9rem;
+    height: 2.5rem;
+    border-radius: 8px;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    object-fit: cover;
+}
+
+.materiales td, .materiales th {
+    padding: .5rem;
+    text-align: left;
+    font-size: 1vw;
+}
+
+.pestañas {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.pestañas button {
+    padding: 10px 20px;
+    background-color: #d5dfb3;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    color: #333;
+}
+
+.pestañas button:hover {
+    background-color: #c0d09f;
+}
+
+.materiales h2 {
+    font-size: 20px;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+tbody td .tablas{
+    padding: 10px;
+    border-top: 2px solid #1f1a1a;
+}
+
+tbody tr.tablas :nth-child(even) {
+    background-color: #3c3c3c;
+}
+
+.links{
+    color: aqua;
+}

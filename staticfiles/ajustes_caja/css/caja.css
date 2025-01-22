@@ -1,0 +1,226 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Outfit", sans-serif;
+    color: #333;
+    background-color: white;
+}
+
+.main-content {
+    margin-left: 250px;
+    padding: 20px;
+    background-color: white;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.search {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+footer {
+    text-align: center;
+    margin-top: 230px;
+    font-size: 14px;
+    color: #999;
+}
+
+.contenido {
+    display: flex;
+    gap: 20px;
+    background-color: white;
+}
+
+.left-half {
+    flex: 47%;
+}
+
+.panel_dinero {
+    background: linear-gradient(70deg, #a3b18a, #77966a 40%, #95a27e);
+    width: 97%;
+    height: 17vw;
+    padding: 20px;
+    display: flex;  
+    flex-direction: column;
+    justify-content: center;    
+    align-items: center;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    color: #073f07;
+    font-family: Arial, sans-serif; 
+    margin-top: 1%;
+}
+
+.icono {
+    height: 45%;
+}
+
+.icono img {
+    height: 100%;
+}
+
+.dinero_en_caja,
+.caja_total {
+   
+    font-weight: bold;
+    color: black;
+}
+
+.dinero_en_caja {
+    font-size: 150%;
+}
+
+.caja_total {
+    margin-top: 1.3%;
+    font-size: 100%;
+}
+
+.caja_cantidad {
+    font-weight: bolder;
+    margin-top: 1.5%;
+    font-size: 200%;
+}
+
+.right-half {
+    flex: 53%;
+    background-color: white;
+    border-radius: 3%;
+}
+
+.tipo_transaccion {
+    width: 90%;
+    margin-left: 4%;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    display: flex;
+}
+
+.tipo_transaccion .error-message {
+    color: red;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.transaccion-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+#realizar_compra{
+    border-radius: .5rem;
+    width: 10rem;
+    height: 2.5rem;
+}
+
+
+#descripcion{
+    width: 40vw;
+}
+
+.transaccion-row select,
+.transaccion-row input,
+.transaccion-row textarea {
+    font-family: 'Outfit', sans-serif;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.transaccion-row select {
+    width: 15%;
+}
+
+.transaccion-row input {
+    width: 15%;
+}
+
+.transaccion-row textarea {
+    width: 40%;
+    height: 2.5rem;
+    resize: none;
+}
+
+.transaccion-row button {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    background-color: #3A5A40;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#table-responsive .table {
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.hidden {
+    overflow: hidden;
+}
+
+.centrado {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.lds-roller {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+}
+
+.lds-roller div {
+    animation: lds-roller 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    transform-origin: 40px 40px;
+}
+
+.lds-roller div:after {
+    content: " ";
+    display: block;
+    position: absolute;
+    width: 7.2px;
+    height: 7.2px;
+    border-radius: 50%;
+    background: currentColor;
+    margin: -3.6px 0 0 -3.6px;
+}
+
+@keyframes lds-roller {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/*___________paginator_______________*/
+.pagination{
+    margin-top: 1rem;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+}
+
+table{
+    margin-bottom: 2rem;
+}

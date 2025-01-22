@@ -1,0 +1,378 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Outfit", sans-serif;
+    color: #333;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #F8F9FA;
+    padding: 20px;
+    position: fixed;
+    height: 100%;
+}
+
+.logo {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.logo img {
+    width: 100px;
+    border-radius: 50%;
+}
+
+nav .nav-item {
+    display: flex;
+    align-items: center; 
+    margin-bottom: 15px;
+    padding: 10px, 15px;
+    border-radius: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0n, 0, 0.1);
+    transition: backround-color 0.3s ease;
+}
+
+nav .nav-item:hover {
+    background-color: #ffffff;
+}
+
+nav .nav-item:active {
+    background-color: #ffffff;
+}
+
+/* nav .nav-item img {
+    color: #344E41;
+    width: 24px;
+    height: 24px;
+    margin-right: 15px;
+    border-radius: 5px;
+} */
+
+nav a {
+    display: block;
+    padding: 10px 0;
+    color: #A0AEC0;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    flex: 1;
+}
+
+nav a.active {
+    color: #2a663c;
+}
+
+.help {
+    background-color: #344e41;
+    color: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 30px;
+    text-align: center;
+}
+
+.help button {
+    margin-top: 12px;
+    background-color: #fff;
+    color: #2a663c;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+
+.main-content {
+    margin-left: 250px;
+    padding: 20px;
+}
+
+#cabecera {
+    top: 0;
+    position: sticky;
+    background-color: #ffffff;
+    padding-bottom: 10px;
+    margin-bottom: 0;
+}
+
+#cabecera h2 {
+    display: inline-block;
+    font-size: 22px;
+    margin-bottom: 10px;
+    vertical-align: middle;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+header h1 {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+/* Contenedor general de la fecha y el botón */
+header div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    gap: 5px;
+}
+
+/* Estilo de la fecha */
+header span {
+    font-family: "Outfit", sans-serif;
+    font-size: 16px;
+    color: #344E41;
+    font-weight: bold;
+}
+
+/* Estilo del botón de cerrar sesión */
+header .btn-logout {
+    font-family: "Outfit", sans-serif;
+    font-size: 14px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    width: auto;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    background-color: #B7B7B8;
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+header .btn-logout:hover {
+    background-color: #717171; /* Color más claro al pasar el cursor */
+}
+
+#pfp {
+    width: 40px;
+    height: 40px;
+}
+
+
+/* .search {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.search input {
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.search a {
+    text-decoration: none;
+    color: #2D3748;
+} */
+
+.tabs {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.tabs button {
+    font-family: "Outfit", serif;
+    font-weight: 600;
+    width: 150px;
+    margin: 0px;
+    padding: 10px 30px;
+    background-color: rgba(218, 215, 205, 0.6);
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+
+}
+
+.tabs button a {
+    text-decoration: none;
+    color: #344E41;
+}
+
+.tabs button.active {
+    background: rgba(163, 177, 138, 0.6);
+}
+
+.tabs button.active a {
+    color: #2D3748;
+}
+
+
+.transactions-table {
+    /* margin-top: 20px; */
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#botones {
+    display: inline-flex;
+    gap: 8px;
+    font-family: "Outfit", serif;
+    vertical-align: middle;
+    float: right;
+    position: sticky;
+    top: 100px;
+    margin-bottom: 10px;
+    margin-top: 0;
+    
+}
+
+#filter-btn, #add-btn {
+    font-family: "Outfit", serif;
+    font-size: 14px;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    width: 110px;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+/* Botón de Filtrar */
+#filter-btn {
+    background-color: #A2B18A;
+    color: #fff;
+}
+
+/* Botón de Crear */
+#add-btn {
+    background-color: #588157;
+    color: #fff;
+}
+
+.search {
+    gap: 5px;
+    display: flex;
+    flex: 1;
+    justify-content: flex-end;
+    height: 4vh;
+}
+
+.search input {
+    font-family: "Outfit", sans-serif;
+    padding: 5px;
+    position: sticky;
+    top: 120px;
+}
+
+.search button {
+    font-family: "Outfit", sans-serif;
+    padding: 5px;
+    outline: none;
+    border-radius: 8px;
+    border: none;
+    background-color: #344E41;
+    color: #ffffff;
+    font-weight: 400;
+    position: sticky;
+    top: 120px;
+}
+
+
+/* ESTILOS DE TABLA DE TRANSACCIONES */
+.transactions-container {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+.table thead tr {
+    background-color: #f8f9fa;
+    text-align: left;
+    border-bottom: 2px solid #ddd;
+}
+
+.table th, .table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+.edit-btn {
+    background-color: #588157;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.edit-btn:hover {
+    background-color: #364f35;
+}
+
+.text-success {
+    color: #28a745;
+}
+
+.text-warning {
+    color: #ffc107;
+}
+
+.text-danger {
+    color: #dc3545;
+}
+
+.status {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 10px;
+    font-weight: 500;
+    color: #fff;
+    text-align: center;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); 
+}
+
+.status.online {
+    background-color: #588157; 
+}
+
+.status.offline {
+    background-color: #B7B7B8; 
+}
+
+
+footer {
+    text-align: center;
+    margin-top: 230px;
+    font-size: 14px;
+    color: #999;
+}
+
+footer div a {
+    color: #2a663c;
+    text-decoration: none;
+    margin: 0 5px;
+}

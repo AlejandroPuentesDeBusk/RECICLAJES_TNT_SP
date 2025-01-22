@@ -1,0 +1,130 @@
+/* Reset general */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilo general del cuerpo */
+body {
+    font-family: "Outfit", sans-serif;
+    color: #333;
+    background-color: #f5f5f5;
+    height: 100vh; /* Ocupar toda la ventana */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Quita el scroll vertical */
+}
+
+/* Contenedor principal del formulario */
+.form-container {
+    width: 90%;
+    max-width: 800px; /* Ancho máximo */
+    height: 90vh; /* Ajustar para que quepa en la pantalla */
+    display: flex;
+    flex-direction: column; /* Apilar elementos */
+    justify-content: space-between; /* Distribuir espacio */
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #f8f9fa;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden; /* Garantizar que no haya scroll interno */
+}
+
+/* Encabezado del formulario */
+h1 {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    color: #344E41;
+    margin-bottom: 10px;
+}
+
+/* Ajustes de los grupos de campos */
+.form-group {
+    margin-bottom: 10px;
+}
+
+.form-group label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+    color: #2D3748;
+}
+
+/* Estilo para los inputs y select */
+.form-control, select, textarea {
+    width: 100%;
+    padding: 8px; /* Reducir tamaño */
+    font-size: 14px; /* Reducir texto */
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: inset 0px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: #588157;
+    box-shadow: 0 0 4px rgba(88, 129, 87, 0.4);
+}
+
+/* Textos de ayuda */
+.form-text {
+    font-size: 12px;
+    color: #6c757d;
+    margin-top: 3px;
+}
+
+/* Mensajes de error */
+.text-danger {
+    font-size: 12px;
+    color: #dc3545;
+    margin-top: 3px;
+}
+
+/* Botones */
+.btn {
+    padding: 8px 16px; /* Reducir tamaño */
+    font-size: 14px;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-success {
+    background-color: #588157;
+    color: #fff;
+}
+
+.btn-success:hover {
+    background-color: #4e734c;
+}
+
+.btn-secondary {
+    background-color: #A2B18A;
+    color: #fff;
+}
+
+.btn-secondary:hover {
+    background-color: #91a27a;
+}
+
+/* Contenedor para botones */
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+/* Ajustes responsivos para pantallas pequeñas */
+@media (max-width: 768px) {
+    .form-container {
+        width: 95%; /* Usar la mayor parte del ancho de la pantalla */
+        max-width: 100%; /* Quitar restricción de ancho máximo */
+    }
+}
