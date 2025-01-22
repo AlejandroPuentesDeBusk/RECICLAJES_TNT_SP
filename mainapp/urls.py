@@ -12,7 +12,7 @@ from django.urls import include
 #3. le asignas un nombre mas este no importa para mas cosas
 
 urlpatterns = [
-    path('', views.index, name = 'index'),
+    #path('', views.index, name = 'index'),
     #path('compra_venta', views.menu_cv, name='compra_venta'), #Lo movi a appcompra
     #path('compra_1', views.compra_1, name = 'compra_1' ), #Lo movi a appcompra
     #path('venta_1', views.venta_1, name = 'venta_1'), #Lo movi a appcompra
@@ -23,7 +23,7 @@ urlpatterns = [
     path('pantalla_carga', views.pantalla_carga, name='pantalla_carga'),
 #    path('panel_control_transacciones', views.panel_control_transacciones, name='transacciones'),
 
-    path('login/', views.login_view, name = 'login'),
+    path('', views.login_view, name = 'login'),
     path('logout/', views.logout_view, name='logout'),
 
     #URLs para los update
